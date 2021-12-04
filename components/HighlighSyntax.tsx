@@ -1,5 +1,6 @@
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import style from 'react-syntax-highlighter/dist/cjs/styles/hljs/night-owl';
+// @ts-ignore
+import style from 'react-syntax-highlighter/dist/cjs/styles/hljs/stackoverflow-light';
 import {
   DetailedHTMLProps,
   HTMLAttributes,
@@ -19,7 +20,10 @@ export const PreBlock = ({ children: code }: PreBlockProps) => {
     <SyntaxHighlighter
       style={style}
       showLineNumbers
-      customStyle={{ margin: '8px 0', borderRadius: 10 }}
+      css={css`
+        margin: 8px 0;
+        border-radius: 10px;
+      `}
       language={language}
     >
       {children}
@@ -34,8 +38,10 @@ export const CodeBlock = ({ className, ...rest }: any) => {
     <code
       css={(theme) =>
         css`
-          color: ${theme.color.primary1};
+          color: ${theme.color.primary};
           background-color: ${theme.color.primary2};
+          padding: 2px 4px;
+          border-radius: 6px;
         `
       }
       {...rest}
