@@ -8,7 +8,7 @@ const theme = {
     text: {
       light: '#D1D5DB',
       main: '#B7BCBE',
-      dark: '#111827',
+      dark: '#6B7280',
     },
     link: {
       light: '#D1D5DB',

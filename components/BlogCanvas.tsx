@@ -5,6 +5,7 @@ import { Code, H2, Pre } from './HTMLElements';
 import fs from 'fs';
 import path from 'path';
 import { bundleMDX } from 'mdx-bundler';
+import { format } from 'date-fns';
 
 interface HomeProps {
   code: string;
@@ -19,7 +20,7 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
         max-width: 800px;
         margin: 70px auto;
         padding: 30px;
-        border-radius: 20px;
+        border-radius: 14px;
         color: ${theme.color.text.main};
         background-color: ${theme.color.background.main};
         //default styles
@@ -47,6 +48,44 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
         }
       `}
     >
+      <header
+        css={css`
+          margin: 1.2rem 0;
+        `}
+      >
+        <h1
+          css={css`
+            text-align: center;
+            line-height: 3rem;
+          `}
+        >
+          {frontmatter.title}
+        </h1>
+        <div
+          css={(theme) => css`
+            border-top: 1px solid ${theme.color.text.dark};
+            border-bottom: 1px solid ${theme.color.text.dark};
+            padding: 8px 0;
+            margin: 2rem 0;
+            & p {
+              margin: 0;
+              font-size: 15px;
+            }
+          `}
+        >
+          <div
+            css={css`
+              display: flex;
+              justify-content: space-between;
+              max-width: 300px;
+              margin: 0 auto;
+            `}
+          >
+            <p>{format(new Date(frontmatter.publishedDate), 'LLL do, yyyy')}</p>
+            <p>{frontmatter.author}</p>
+          </div>
+        </div>
+      </header>
       <Component
         components={{
           pre: Pre,
