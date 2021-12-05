@@ -20,6 +20,9 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
         max-width: 800px;
         margin: 70px auto;
         padding: 30px;
+        @media (max-width: 780px) {
+          padding: 20px;
+        }
         border-radius: 14px;
         color: ${theme.color.text.main};
         background-color: ${theme.color.background.main};
