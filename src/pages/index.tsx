@@ -20,7 +20,7 @@ function Home({ code, frontmatter }: HomeProps) {
 }
 
 export async function getStaticProps() {
-  const files = fs.readFileSync(path.join('_posts', 'Test.mdx'), 'utf-8');
+  const files = fs.readFileSync(path.join('src/_posts', 'Test.mdx'), 'utf-8');
   const { code, frontmatter } = await bundleMDX({ source: files });
 
   return {

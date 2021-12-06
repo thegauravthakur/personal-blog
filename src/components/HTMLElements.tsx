@@ -7,6 +7,7 @@ import {
   ReactComponentElement,
 } from 'react';
 import { css } from '@emotion/react';
+import Image from 'next/image';
 
 // todo avoid any here
 type HTMLElementProps = DetailedHTMLProps<HTMLAttributes<any>, any>;
@@ -65,6 +66,7 @@ export const H2 = ({ children }: HTMLElementProps) => {
   return (
     <h2
       css={css`
+        scroll-margin-top: 1.2rem;
         display: flex;
         align-items: center;
       `}
@@ -81,5 +83,20 @@ export const H2 = ({ children }: HTMLElementProps) => {
         #
       </a>
     </h2>
+  );
+};
+
+export const Img = ({ alt, src, ...rest }) => {
+  console.log(rest);
+  return (
+    <Image
+      css={css`
+        border-radius: 10px;
+      `}
+      width={2800}
+      height={1867}
+      src={src}
+      alt={alt}
+    />
   );
 };

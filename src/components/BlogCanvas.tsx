@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
+import Image from 'next/image';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { css, Global } from '@emotion/react';
-import { Code, H2, Pre } from './HTMLElements';
+import { Code, H2, Pre, Img } from './HTMLElements';
 import fs from 'fs';
 import path from 'path';
 import { bundleMDX } from 'mdx-bundler';
@@ -23,7 +24,7 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
         @media (max-width: 780px) {
           padding: 20px;
         }
-        border-radius: 14px;
+        border-radius: 10px;
         color: ${theme.color.text.main};
         background-color: ${theme.color.background.main};
         //default styles
@@ -94,6 +95,7 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
           pre: Pre,
           code: Code,
           h2: H2,
+          img: Img,
         }}
       />
     </main>
