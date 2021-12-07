@@ -86,17 +86,18 @@ export const H2 = ({ children }: HTMLElementProps) => {
   );
 };
 
-export const Img = ({ alt, src, ...rest }) => {
-  console.log(rest);
+export const Img = ({ alt, src }: any) => {
+  const [altText, dimension] = alt.split('+');
+  const { width, height } = JSON.parse(dimension);
   return (
     <Image
       css={css`
         border-radius: 10px;
       `}
-      width={2800}
-      height={1867}
+      width={width}
+      height={height}
       src={src}
-      alt={alt}
+      alt={altText}
     />
   );
 };

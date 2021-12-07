@@ -36,7 +36,8 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
         pre,
         p,
         ul,
-        ol {
+        ol,
+        img {
           margin: 1.2rem 0;
         }
         a {
