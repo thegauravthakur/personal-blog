@@ -88,14 +88,14 @@ export const H2 = ({ children }: HTMLElementProps) => {
 
 export const Img = ({ alt, src }: any) => {
   const [altText, dimension] = alt.split('+');
-  const { width, height } = JSON.parse(dimension);
+  const { width, height } = JSON.parse(dimension ?? '{}');
   return (
     <Image
       css={css`
         border-radius: 10px;
       `}
-      width={width}
-      height={height}
+      width={width ?? 3200}
+      height={height ?? 1800}
       src={src}
       alt={altText}
     />

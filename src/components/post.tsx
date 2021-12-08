@@ -2,13 +2,11 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 import Truncate from 'react-text-truncate';
 import { useMediaQuery } from 'react-responsive';
+import { useRouter } from 'next/router';
 
-export function Post() {
-  const is1200 = useMediaQuery({ maxWidth: 1200 });
-  const text = `JavaScript is a very flexible programming language. It provides\\n' +
-      "                you with many pre-implemented helper methods which you can't\\n" +
-      '                find in any other language. In this article, I would try to list\\n' +
-      '                down all the important array methods in JavaScript`;
+export function Post({ slug, data, imagePath }: any) {
+  const { description } = data;
+  const router = useRouter();
   return (
     <div
       css={css`
@@ -45,7 +43,7 @@ export function Post() {
               border-radius: 10px;
             `}
             alt=''
-            src='/images/js_array_methods.png'
+            src={`/images/${imagePath}`}
             height={1800}
             width={3200}
           />
@@ -62,9 +60,15 @@ export function Post() {
               }
             `}
           >
-            <Truncate line={4} element='span' truncateText='…' text={text} />
+            <Truncate
+              line={4}
+              element='span'
+              truncateText='…'
+              text={description}
+            />
           </div>
           <button
+            onClick={() => router.push(`/${slug}`)}
             css={(theme) => css`
               position: absolute;
               bottom: 10px;

@@ -19,7 +19,7 @@ function Home({ code, frontmatter }: HomeProps) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps(context: any) {
   const { slug } = context.params;
   const files = fs.readFileSync(
     path.join('src/content/posts', `${slug}.mdx`),

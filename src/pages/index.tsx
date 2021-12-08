@@ -3,12 +3,11 @@ import { Nav } from '../components/nav';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
 import { Post } from '../components/post';
 
-function Home({ finalData }) {
-  console.log(finalData);
+function Home({ finalData }: any) {
+  const { slug, data, imagePath } = finalData[0];
+  console.log(slug, finalData);
   return (
     <div>
       <Nav />
@@ -38,10 +37,11 @@ function Home({ finalData }) {
             `
           }
         >
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+          {finalData.map(({ slug, data, imagePath }: any) => {
+            return (
+              <Post key={slug} slug={slug} data={data} imagePath={imagePath} />
+            );
+          })}
         </div>
         <div
           css={(theme) => css`
@@ -60,8 +60,8 @@ function Home({ finalData }) {
 
 export default Home;
 
-export async function getStaticProps(context) {
-  const finalData = [];
+export async function getStaticProps(context: any) {
+  const finalData: any = [];
   const allFiles = fs.readdirSync('src/content/posts');
   allFiles.forEach((file) => {
     const files = fs.readFileSync(
@@ -69,7 +69,16 @@ export async function getStaticProps(context) {
       'utf-8'
     );
     const { data } = matter(files);
-    finalData.push({ slug: file.split('.')[0], data });
+    const allImages = fs.readdirSync('public/images');
+    const getCorrectImage = allImages.find(
+      (image) => image.split('.')[0] === file.split('.')[0]
+    );
+    if (!getCorrectImage) throw new Error('No image found');
+    finalData.push({
+      slug: file.split('.')[0],
+      imagePath: getCorrectImage,
+      data,
+    });
   });
 
   return {
