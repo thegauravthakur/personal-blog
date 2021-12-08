@@ -2,8 +2,10 @@ import { css } from '@emotion/react';
 import { Nav } from '../components/nav';
 import fs from 'fs';
 import path from 'path';
-import Image from 'next/image';
 import matter from 'gray-matter';
+import { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { Post } from '../components/post';
 
 function Home({ finalData }) {
   console.log(finalData);
@@ -16,6 +18,9 @@ function Home({ finalData }) {
           display: flex;
           margin: 70px auto;
           max-width: 1800px;
+          @media (max-width: 1370px) {
+            flex-direction: column;
+          }
         `}
       >
         <div
@@ -26,64 +31,17 @@ function Home({ finalData }) {
               padding: 40px;
               border-radius: 10px;
               margin: 30px;
+              @media (max-width: 900px) {
+                margin: 30px 20px;
+                padding: 40px 20px;
+              }
             `
           }
         >
-          <h2>JavaScript Array Methods with their Usage</h2>
-          <div
-            css={css`
-              display: flex;
-              margin: 30px 0;
-              column-gap: 40px;
-            `}
-          >
-            <div
-              css={css`
-                max-width: 400px;
-              `}
-            >
-              <Image
-                css={css`
-                  border-radius: 10px;
-                `}
-                alt=''
-                src='/images/js_array_methods.png'
-                height={1800}
-                width={3200}
-              />
-            </div>
-            <div
-              css={css`
-                position: relative;
-              `}
-            >
-              <p
-                css={css`
-                  display: -webkit-box;
-                  -webkit-line-clamp: 3;
-                `}
-              >
-                JavaScript is a very flexible programming language. It provides
-                you with many pre-implemented helper methods which you can't
-                find in any other language. In this article, I would try to list
-                down all the important array methods in JavaScript
-              </p>
-              <button
-                css={(theme) => css`
-                  position: absolute;
-                  bottom: 10px;
-                  padding: 8px 16px;
-                  border-radius: 6px;
-                  color: ${theme.color.text.light};
-                  border: 0;
-                  cursor: pointer;
-                  background-color: ${theme.color.primary};
-                `}
-              >
-                Read More!
-              </button>
-            </div>
-          </div>
+          <Post />
+          <Post />
+          <Post />
+          <Post />
         </div>
         <div
           css={(theme) => css`

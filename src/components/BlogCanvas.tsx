@@ -72,6 +72,8 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
             border-bottom: 1px solid ${theme.color.text.dark};
             padding: 8px 0;
             margin: 2rem 0;
+            display: flex;
+            justify-content: center;
             & p {
               margin: 0;
               font-size: 15px;
@@ -81,9 +83,19 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
           <div
             css={css`
               display: flex;
-              justify-content: space-between;
-              max-width: 300px;
-              margin: 0 auto;
+              column-gap: 100px;
+              @media (max-width: 900px) {
+                column-gap: 70px;
+              }
+              @media (max-width: 600px) {
+                column-gap: 40px;
+              }
+              @media (max-width: 500px) {
+                column-gap: 30px;
+              }
+              @media (max-width: 400px) {
+                column-gap: 20px;
+              }
             `}
           >
             <p>{format(new Date(frontmatter.publishedDate), 'LLL do, yyyy')}</p>
