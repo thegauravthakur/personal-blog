@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import { useRouter } from 'next/router';
 
 export function Post({ slug, data, imagePath }: any) {
-  const { description } = data;
+  const { description, title } = data;
   const router = useRouter();
   return (
     <div
@@ -13,7 +13,7 @@ export function Post({ slug, data, imagePath }: any) {
         margin-bottom: 50px;
       `}
     >
-      <h2>JavaScript Array Methods with their Usage</h2>
+      <h2>{title}</h2>
       <div
         css={css`
           display: flex;

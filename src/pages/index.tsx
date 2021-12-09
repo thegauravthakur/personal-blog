@@ -15,11 +15,8 @@ function Home({ finalData }: any) {
         css={(theme) => css`
           color: ${theme.color.text.main};
           display: flex;
+          justify-content: center;
           margin: 70px auto;
-          max-width: 1800px;
-          @media (max-width: 1370px) {
-            display: block;
-          }
         `}
       >
         <div
@@ -29,6 +26,7 @@ function Home({ finalData }: any) {
               flex: 1;
               padding: 40px;
               border-radius: 10px;
+              max-width: 1200px;
               margin: 30px;
               @media (max-width: 900px) {
                 margin: 30px 20px;
@@ -46,25 +44,6 @@ function Home({ finalData }: any) {
               <Post key={slug} slug={slug} data={data} imagePath={imagePath} />
             );
           })}
-        </div>
-        <div
-          css={(theme) => css`
-            min-width: 350px;
-            margin: 30px;
-            @media (max-width: 1370px) {
-              min-width: 0;
-            }
-            @media (max-width: 900px) {
-              margin: 30px 20px;
-            }
-            @media (max-width: 500px) {
-              margin: 30px 0;
-            }
-            background-color: ${theme.color.background.main};
-            border-radius: 10px;
-          `}
-        >
-          <p>world</p>
         </div>
       </div>
     </div>
