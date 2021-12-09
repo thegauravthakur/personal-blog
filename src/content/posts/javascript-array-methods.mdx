@@ -39,6 +39,18 @@ const result = array.filter((val) => val >= 10 && val <= 20);
 console.log(result); // [12, 11, 14, 18]
 ```
 
+## Map
+
+The `map` method expects a callback function to be passed as an argument.
+It will run that callback method for each value and returns the new array of results
+
+
+```javascript
+const array = [2, 4, 6];
+const result = array.map((val) => val * 2);
+console.log(result); // [4, 8, 12]
+```
+
 ## Concat
 
 The `concat` method is used to join two or more arrays. Instead of changing the current array, it will return a new array.
@@ -68,5 +80,3 @@ array.forEach(callback); //1 2 3 4 5
 ```
 
 The callback function accepts three values, the current item, index (optional) and the array on which filter was called (optional).
-
-![Laptop Image + `{"width":2800,"height":1867}`](/images/sample_image.jpg "Laptop Image")

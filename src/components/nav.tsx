@@ -1,8 +1,11 @@
 import { css } from '@emotion/react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 export function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
+  const router = useRouter();
   return (
     <header>
       <nav
@@ -30,7 +33,17 @@ export function Nav() {
             color: ${theme.color.text.main};
           `}
         >
-          Gaurav's Blog
+          <Link href='/'>
+            <a
+              tabIndex={0}
+              css={(theme) => css`
+                color: ${theme.color.text.main};
+                cursor: pointer;
+              `}
+            >
+              Gaurav's Blog
+            </a>
+          </Link>
         </h1>
         <div
           css={css`
