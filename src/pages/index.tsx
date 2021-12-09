@@ -18,7 +18,7 @@ function Home({ finalData }: any) {
           margin: 70px auto;
           max-width: 1800px;
           @media (max-width: 1370px) {
-            flex-direction: column;
+            display: block;
           }
         `}
       >
@@ -34,6 +34,10 @@ function Home({ finalData }: any) {
                 margin: 30px 20px;
                 padding: 40px 20px;
               }
+              @media (max-width: 500px) {
+                margin: 30px 0;
+                padding: 40px 20px;
+              }
             `
           }
         >
@@ -46,9 +50,18 @@ function Home({ finalData }: any) {
         <div
           css={(theme) => css`
             min-width: 350px;
+            margin: 30px;
+            @media (max-width: 1370px) {
+              min-width: 0;
+            }
+            @media (max-width: 900px) {
+              margin: 30px 20px;
+            }
+            @media (max-width: 500px) {
+              margin: 30px 0;
+            }
             background-color: ${theme.color.background.main};
             border-radius: 10px;
-            margin: 30px;
           `}
         >
           <p>world</p>
