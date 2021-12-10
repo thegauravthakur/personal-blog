@@ -17,6 +17,12 @@ function Home({ finalData }: any) {
           display: flex;
           justify-content: center;
           margin: 70px auto;
+          @media (max-width: 600px) {
+            margin: 40px auto;
+          }
+          @media (max-width: 500px) {
+            margin: 30px auto;
+          }
         `}
       >
         <div

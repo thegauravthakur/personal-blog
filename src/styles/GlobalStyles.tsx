@@ -18,6 +18,10 @@ export const GlobalStyles = () => {
         code {
           font-family: 'Source Code Pro', monospace;
         }
+        #nprogress .bar {
+          background-color: ${theme.color.link.main};
+          height: 3px;
+        }
       `}
     />
   );
