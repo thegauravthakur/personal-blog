@@ -39,9 +39,15 @@ export function Post({ slug, data, imagePath }: any) {
             cursor: pointer;
           }
           @media (max-width: 750px) {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: 1fr max-content;
             place-items: flex-start;
+            font-size: 14px;
             margin: 20px 0 0 0;
+            & > div {
+              column-gap: 4px;
+              padding: 0 10px;
+              min-width: max-content;
+            
           }
         `}
       >
