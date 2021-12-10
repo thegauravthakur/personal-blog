@@ -3,9 +3,15 @@ import Image from 'next/image';
 import Truncate from 'react-text-truncate';
 import { useMediaQuery } from 'react-responsive';
 import { useRouter } from 'next/router';
+import { format } from 'date-fns';
+import { VscCalendar } from 'react-icons/vsc';
+import { AiOutlineTags } from 'react-icons/ai';
+import { BsPencil } from 'react-icons/bs';
+import { GoCommentDiscussion } from 'react-icons/go';
 
 export function Post({ slug, data, imagePath }: any) {
-  const { description, title } = data;
+  const { description, title, publishedDate, tags, author } = data;
+  const [mainTag, ...rest] = tags.split(',');
   const router = useRouter();
   return (
     <div
@@ -14,6 +20,48 @@ export function Post({ slug, data, imagePath }: any) {
       `}
     >
       <h2>{title}</h2>
+      <div
+        css={(theme) => css`
+          display: grid;
+          grid-template-columns: 170px 170px 170px 170px;
+          place-items: center;
+          & > div {
+            padding: 0 14px;
+            border-radius: 12px;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            column-gap: 7px;
+          }
+          & > div:hover {
+            background-color: ${theme.color.information};
+            color: ${theme.color.link.main};
+            cursor: pointer;
+          }
+          @media (max-width: 750px) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            place-items: flex-start;
+            margin: 20px 0 0 0;
+          }
+        `}
+      >
+        <div>
+          <VscCalendar />
+          <p>{format(new Date(publishedDate), 'MMM do, yyyy')}</p>
+        </div>
+        <div>
+          <AiOutlineTags />
+          <p>{mainTag}</p>
+        </div>
+        <div>
+          <BsPencil />
+          <p>{author}</p>
+        </div>
+        <div>
+          <GoCommentDiscussion />
+          <p>0 Comments</p>
+        </div>
+      </div>
       <div
         css={css`
           display: flex;
@@ -87,6 +135,15 @@ export function Post({ slug, data, imagePath }: any) {
           >
             Read More!
           </button>
+          <hr
+            css={(theme) => css`
+              margin-top: 50px;
+              margin-left: auto;
+              margin-right: auto;
+              max-width: 250px;
+              color: ${theme.color.text.main};
+            `}
+          />
         </div>
       </div>
     </div>
