@@ -25,7 +25,12 @@ export const darkTheme = {
       main: '#1B6FFF',
       dark: '#111827',
     },
-    primary: '#2563EB',
+    shadow: 'rgba(37, 99, 235, 0.3)',
+    primary: {
+      light: '',
+      main: '#2563EB',
+      dark: '#1d4ed8',
+    },
     information: 'rgba(191,219,254,0.1)',
   },
 } as const;
@@ -48,7 +53,12 @@ export const lightTheme = {
       main: '#dc2626',
       dark: '#111827',
     },
-    primary: '#dc2626',
+    shadow: 'rgba(107,114,128,0.6)',
+    primary: {
+      light: '',
+      main: '#e11d48',
+      dark: '#be123c',
+    },
     information: 'rgba(220,38,38,0.15)',
   },
 } as const;

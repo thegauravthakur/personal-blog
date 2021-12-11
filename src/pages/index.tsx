@@ -60,7 +60,7 @@ function Home({ finalData }: any) {
             `
           }
         >
-          {finalData.map(({ slug, data, imagePath, date }: any) => {
+          {finalData.map(({ slug, data, imagePath, date }: any, index: any) => {
             return (
               <Post
                 key={slug}
@@ -68,6 +68,7 @@ function Home({ finalData }: any) {
                 data={data}
                 date={date}
                 imagePath={imagePath}
+                isLast={index === finalData.length - 1}
               />
             );
           })}

@@ -20,7 +20,12 @@ declare module '@emotion/react' {
         light: string;
         dark: string;
       };
-      primary: string;
+      primary: {
+        main: string;
+        light: string;
+        dark: string;
+      };
+      shadow: string;
       information: string;
     };
   }

@@ -39,14 +39,15 @@ export function Nav() {
         <h1
           css={(theme) => css`
             font-size: 20px;
-            color: ${theme.color.text.main};
           `}
         >
           <Link href='/'>
             <a
               tabIndex={0}
               css={(theme) => css`
-                color: ${theme.color.text.main};
+                color: ${theme.type === 'dark'
+                  ? theme.color.text.main
+                  : theme.color.primary.dark};
                 cursor: pointer;
               `}
             >
