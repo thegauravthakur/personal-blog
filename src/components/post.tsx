@@ -11,7 +11,7 @@ import { GoCommentDiscussion } from 'react-icons/go';
 
 export function Post({ slug, data, imagePath, date, isLast }: any) {
   const { description, title, publishedDate, tags, author } = data;
-  const { modifiedDate, createdDate } = date;
+
   const [mainTag, ...rest] = tags.split(',');
   const router = useRouter();
   return (
@@ -41,6 +41,7 @@ export function Post({ slug, data, imagePath, date, isLast }: any) {
             cursor: pointer;
           }
           @media (max-width: 750px) {
+            display: none; // hide it for now, //todo check if needs to show in mobile
             grid-template-columns: 1fr max-content;
             place-items: flex-start;
             font-size: 14px;
@@ -55,7 +56,7 @@ export function Post({ slug, data, imagePath, date, isLast }: any) {
       >
         <div>
           <VscCalendar />
-          <p>{format(new Date(createdDate), 'MMM do, yyyy')}</p>
+          <p>{format(new Date(publishedDate), 'MMM do, yyyy')}</p>
         </div>
         <div>
           <AiOutlineTags />

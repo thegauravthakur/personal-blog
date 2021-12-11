@@ -98,19 +98,16 @@ export async function getStaticProps(context: any) {
     if (!getCorrectImage) throw new Error('No image found');
     finalData.push({
       slug: file.split('.')[0],
-      date: {
-        modifiedDate: modifiedDate.mtime.toDateString(),
-        createdDate: modifiedDate.birthtime.toDateString(),
-      },
       imagePath: getCorrectImage,
       data,
     });
   });
+
   return {
     props: {
       finalData: finalData.sort((data1: any, data2: any) => {
-        const date1 = new Date(data1.date.createdDate);
-        const date2 = new Date(data2.date.createdDate);
+        const date1 = new Date(data1.data.publishedDate);
+        const date2 = new Date(data2.data.publishedDate);
         if (date1 < date2) return 1;
         if (date1 > date2) return -1;
         return 0;
