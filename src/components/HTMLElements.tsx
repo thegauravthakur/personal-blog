@@ -43,7 +43,7 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
       </SyntaxHighlighter>
       <MdOutlineContentCopy
         onClick={() => {
-          navigator.clipboard.writeText();
+          // navigator.clipboard.writeText();
         }}
         css={css`
           position: absolute;
