@@ -14,7 +14,6 @@ export function Post({ slug, data, imagePath, date }: any) {
   const { modifiedDate, createdDate } = date;
   const [mainTag, ...rest] = tags.split(',');
   const router = useRouter();
-  console.log(date);
   return (
     <div
       css={css`

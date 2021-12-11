@@ -19,7 +19,7 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
   const { theme: currentTheme } = useContext(ThemeContext);
   const { children, className } = (code as ReactComponentElement<any>).props;
 
-  const [_, language] = className?.split('-');
+  const [, language] = className?.split('-');
   return (
     <>
       <SyntaxHighlighter
