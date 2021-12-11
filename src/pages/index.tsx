@@ -12,10 +12,17 @@ function Home({ finalData }: any) {
 
   useLayoutEffect(() => {
     const storedTheme = localStorage.getItem('theme') as Theme | null;
-    if (storedTheme && storedTheme !== theme) setTheme(storedTheme);
+    if (!storedTheme) {
+      const isDarkTheme = window.matchMedia(
+        '(prefers-color-scheme: dark)'
+      ).matches;
+      if (isDarkTheme && theme !== 'dark') setTheme('dark');
+      if (!isDarkTheme && theme !== 'light') setTheme('light');
+    } else {
+      if (storedTheme !== theme) setTheme(storedTheme);
+    }
   }, [theme, setTheme]);
 
-  const { slug, data, imagePath } = finalData[0];
   return (
     <div>
       <Nav />
@@ -53,9 +60,15 @@ function Home({ finalData }: any) {
             `
           }
         >
-          {finalData.map(({ slug, data, imagePath }: any) => {
+          {finalData.map(({ slug, data, imagePath, date }: any) => {
             return (
-              <Post key={slug} slug={slug} data={data} imagePath={imagePath} />
+              <Post
+                key={slug}
+                slug={slug}
+                data={data}
+                date={date}
+                imagePath={imagePath}
+              />
             );
           })}
         </div>
@@ -74,6 +87,8 @@ export async function getStaticProps(context: any) {
       path.join('src/content/posts', file),
       'utf-8'
     );
+    const modifiedDate = fs.statSync(path.join('src/content/posts', file));
+
     const { data } = matter(files);
     const allImages = fs.readdirSync('public/images');
     const getCorrectImage = allImages.find(
@@ -82,12 +97,23 @@ export async function getStaticProps(context: any) {
     if (!getCorrectImage) throw new Error('No image found');
     finalData.push({
       slug: file.split('.')[0],
+      date: {
+        modifiedDate: modifiedDate.mtime.toDateString(),
+        createdDate: modifiedDate.birthtime.toDateString(),
+      },
       imagePath: getCorrectImage,
       data,
     });
   });
-
   return {
-    props: { finalData }, // will be passed to the page component as props
+    props: {
+      finalData: finalData.sort((data1: any, data2: any) => {
+        const date1 = new Date(data1.date.createdDate);
+        const date2 = new Date(data2.date.createdDate);
+        if (date1 < date2) return 1;
+        if (date1 > date2) return -1;
+        return 0;
+      }),
+    }, // will be passed to the page component as props
   };
 }

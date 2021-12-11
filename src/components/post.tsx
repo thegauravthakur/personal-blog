@@ -9,10 +9,12 @@ import { AiOutlineTags } from 'react-icons/ai';
 import { BsPencil } from 'react-icons/bs';
 import { GoCommentDiscussion } from 'react-icons/go';
 
-export function Post({ slug, data, imagePath }: any) {
+export function Post({ slug, data, imagePath, date }: any) {
   const { description, title, publishedDate, tags, author } = data;
+  const { modifiedDate, createdDate } = date;
   const [mainTag, ...rest] = tags.split(',');
   const router = useRouter();
+  console.log(date);
   return (
     <div
       css={css`
@@ -42,7 +44,7 @@ export function Post({ slug, data, imagePath }: any) {
             grid-template-columns: 1fr max-content;
             place-items: flex-start;
             font-size: 14px;
-            margin: 20px 0 0 0;
+            margin:0;
             & > div {
               column-gap: 4px;
               padding: 0 10px;
@@ -53,7 +55,7 @@ export function Post({ slug, data, imagePath }: any) {
       >
         <div>
           <VscCalendar />
-          <p>{format(new Date(publishedDate), 'MMM do, yyyy')}</p>
+          <p>{format(new Date(createdDate), 'MMM do, yyyy')}</p>
         </div>
         <div>
           <AiOutlineTags />

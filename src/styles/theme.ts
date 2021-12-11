@@ -8,6 +8,7 @@ export const ThemeContext = createContext<{
 export type Theme = 'dark' | 'light';
 
 export const darkTheme = {
+  type: 'dark',
   color: {
     background: {
       light: '',
@@ -30,6 +31,7 @@ export const darkTheme = {
 } as const;
 
 export const lightTheme = {
+  type: 'light',
   color: {
     background: {
       light: '',

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import Image from 'next/image';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { css, Global } from '@emotion/react';
-import { Code, H2, Pre, Img } from './HTMLElements';
+import { Code, H2, Pre, Img, H3 } from './HTMLElements';
 import fs from 'fs';
 import path from 'path';
 import { bundleMDX } from 'mdx-bundler';
@@ -111,6 +111,7 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
           pre: Pre,
           code: Code,
           h2: H2,
+          h3: H3,
           img: Img,
         }}
       />
