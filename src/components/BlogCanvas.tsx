@@ -7,7 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import { bundleMDX } from 'mdx-bundler';
 import { format } from 'date-fns';
-
+import { HiMoon } from 'react-icons/hi';
 interface HomeProps {
   code: string;
   frontmatter: { [p: string]: any };
@@ -84,6 +84,9 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
             css={css`
               display: flex;
               column-gap: 100px;
+              & > p {
+                margin: 0 !important;
+              }
               @media (max-width: 900px) {
                 column-gap: 70px;
               }

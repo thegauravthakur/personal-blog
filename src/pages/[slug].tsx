@@ -4,6 +4,8 @@ import path from 'path';
 import { bundleMDX } from 'mdx-bundler';
 import { Nav } from '../components/nav';
 import { BlogCanvas } from '../components/BlogCanvas';
+import { useContext, useLayoutEffect } from 'react';
+import { Theme, ThemeContext } from '../styles/theme';
 
 interface HomeProps {
   code: string;
@@ -11,6 +13,20 @@ interface HomeProps {
 }
 
 function Home({ code, frontmatter }: HomeProps) {
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  useLayoutEffect(() => {
+    const storedTheme = localStorage.getItem('theme') as Theme | null;
+    if (!storedTheme) {
+      const isDarkTheme = window.matchMedia(
+        '(prefers-color-scheme: dark)'
+      ).matches;
+      if (isDarkTheme && theme !== 'dark') setTheme('dark');
+      if (!isDarkTheme && theme !== 'light') setTheme('light');
+    } else {
+      if (storedTheme !== theme) setTheme(storedTheme);
+    }
+  }, [theme, setTheme]);
   return (
     <div className={''}>
       <Nav />
@@ -34,7 +50,6 @@ export async function getStaticProps(context: any) {
 
 export async function getStaticPaths() {
   const files = fs.readdirSync('src/content/posts', 'utf-8');
-  console.log(files);
   return {
     fallback: false,
     paths: files.map((file) => {

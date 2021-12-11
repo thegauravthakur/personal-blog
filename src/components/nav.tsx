@@ -1,11 +1,20 @@
 import { css } from '@emotion/react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { ThemeContext } from '../styles/theme';
+import { HiMoon } from 'react-icons/hi';
+import { BsFillMoonFill, BsFillSunFill, BsSunFill } from 'react-icons/bs';
 export function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
+  const { theme, setTheme } = useContext(ThemeContext);
   const router = useRouter();
+  const onThemeChange = () => {
+    const updatedTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(updatedTheme);
+    localStorage.setItem('theme', updatedTheme);
+  };
   return (
     <header>
       <nav
@@ -48,6 +57,12 @@ export function Nav() {
         <div
           css={css`
             height: 60px;
+            @media (max-width: 740px) {
+              display: flex;
+              justify-content: center;
+              align-self: center;
+              column-gap: 20px;
+            }
           `}
         >
           <ul
@@ -78,29 +93,72 @@ export function Nav() {
           >
             <li>Home</li>
             <li>Portfolio</li>
-            <li>Theme</li>
+            <li
+              css={css`
+                column-gap: 10px;
+              `}
+              onClick={onThemeChange}
+            >
+              Theme
+              {theme === 'dark' ? (
+                <BsFillMoonFill css={css``} />
+              ) : (
+                <BsSunFill size={20} />
+              )}
+            </li>
           </ul>
           {!showMobileNav ? (
             <AiOutlineMenu
               onClick={() => setShowMobileNav(!showMobileNav)}
-              css={css`
+              css={(theme) => css`
                 display: none;
                 @media (max-width: 740px) {
                   display: inline-block;
-                  margin: 20px 0;
+                  color: ${theme.color.text.main};
+                  align-self: center;
                 }
               `}
             />
           ) : (
             <AiOutlineClose
               onClick={() => setShowMobileNav(!showMobileNav)}
-              css={css`
+              css={(theme) => css`
                 display: none;
                 @media (max-width: 740px) {
                   display: inline-block;
-                  margin: 20px 0;
+                  color: ${theme.color.text.main};
+                  align-self: center;
+                  //margin: 20px 0;
                 }
               `}
+            />
+          )}
+          {theme === 'dark' ? (
+            <BsFillMoonFill
+              onClick={onThemeChange}
+              css={(theme) =>
+                css`
+                  @media (min-width: 740px) {
+                    display: none;
+                  }
+                  color: ${theme.color.text.main};
+                  align-self: center;
+                `
+              }
+            />
+          ) : (
+            <BsSunFill
+              size={20}
+              onClick={onThemeChange}
+              css={(theme) =>
+                css`
+                  @media (min-width: 740px) {
+                    display: none;
+                  }
+                  color: ${theme.color.text.main};
+                  align-self: center;
+                `
+              }
             />
           )}
         </div>

@@ -4,10 +4,18 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { Post } from '../components/post';
+import { useContext, useLayoutEffect } from 'react';
+import { Theme, ThemeContext } from '../styles/theme';
 
 function Home({ finalData }: any) {
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  useLayoutEffect(() => {
+    const storedTheme = localStorage.getItem('theme') as Theme | null;
+    if (storedTheme && storedTheme !== theme) setTheme(storedTheme);
+  }, [theme, setTheme]);
+
   const { slug, data, imagePath } = finalData[0];
-  console.log(slug, finalData);
   return (
     <div>
       <Nav />

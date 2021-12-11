@@ -148,6 +148,9 @@ export function Post({ slug, data, imagePath }: any) {
               margin-right: auto;
               max-width: 250px;
               color: ${theme.color.text.main};
+              @media (min-width: 600px) {
+                display: none;
+              }
             `}
           />
         </div>
