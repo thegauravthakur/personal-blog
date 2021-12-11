@@ -11,6 +11,7 @@ import {
 import { css } from '@emotion/react';
 import Image from 'next/image';
 import { ThemeContext } from '../styles/theme';
+import { MdOutlineContentCopy } from 'react-icons/all';
 
 // todo avoid any here
 type HTMLElementProps = DetailedHTMLProps<HTMLAttributes<any>, any>;
@@ -21,7 +22,11 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
 
   const [, language] = className?.split('-');
   return (
-    <>
+    <div
+      css={css`
+        position: relative;
+      `}
+    >
       <SyntaxHighlighter
         style={currentTheme === 'light' ? lightStyle : style}
         showLineNumbers
@@ -36,7 +41,17 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
       >
         {children}
       </SyntaxHighlighter>
-    </>
+      <MdOutlineContentCopy
+        onClick={() => {
+          navigator.clipboard.writeText();
+        }}
+        css={css`
+          position: absolute;
+          top: 10px;
+          right: 20px;
+        `}
+      />
+    </div>
   );
 };
 
