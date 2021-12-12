@@ -14,7 +14,7 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 import { ThemeContext } from '../styles/theme';
 import { MdOutlineContentCopy } from 'react-icons/md';
-import { BiCheck } from 'react-icons/all';
+import { BiCheck } from 'react-icons/bi';
 
 // todo avoid any here
 type HTMLElementProps = DetailedHTMLProps<HTMLAttributes<any>, any>;
