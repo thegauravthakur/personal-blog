@@ -6,6 +6,7 @@ import matter from 'gray-matter';
 import { Post } from '../components/post';
 import { useContext, useLayoutEffect } from 'react';
 import { Theme, ThemeContext } from '../styles/theme';
+import Footer from '../components/Footer';
 
 function Home({ finalData }: any) {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -74,6 +75,7 @@ function Home({ finalData }: any) {
           })}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { Nav } from '../components/nav';
 import { BlogCanvas } from '../components/BlogCanvas';
 import { useContext, useLayoutEffect } from 'react';
 import { Theme, ThemeContext } from '../styles/theme';
+import Footer from '../components/Footer';
 
 interface HomeProps {
   code: string;
@@ -31,6 +32,7 @@ function Home({ code, frontmatter }: HomeProps) {
     <div className={''}>
       <Nav />
       <BlogCanvas code={code} frontmatter={frontmatter} />
+      <Footer />
     </div>
   );
 }
