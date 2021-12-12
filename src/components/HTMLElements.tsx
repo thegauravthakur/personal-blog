@@ -2,16 +2,19 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 // @ts-ignore //todo check this issue
 import style from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark-reasonable';
 import lightStyle from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   DetailedHTMLProps,
   HTMLAttributes,
   ReactComponentElement,
   useContext,
+  useState,
 } from 'react';
 import { css } from '@emotion/react';
 import Image from 'next/image';
 import { ThemeContext } from '../styles/theme';
 import { MdOutlineContentCopy } from 'react-icons/md';
+import { BiCheck } from 'react-icons/all';
 
 // todo avoid any here
 type HTMLElementProps = DetailedHTMLProps<HTMLAttributes<any>, any>;
@@ -19,6 +22,7 @@ type HTMLElementProps = DetailedHTMLProps<HTMLAttributes<any>, any>;
 export const Pre = ({ children: code }: HTMLElementProps) => {
   const { theme: currentTheme } = useContext(ThemeContext);
   const { children, className } = (code as ReactComponentElement<any>).props;
+  const [showTick, setShowTick] = useState(false);
 
   const [, language] = className?.split('-');
   return (
@@ -41,16 +45,48 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
       >
         {children}
       </SyntaxHighlighter>
-      <MdOutlineContentCopy
-        onClick={() => {
-          // navigator.clipboard.writeText();
-        }}
-        css={css`
-          position: absolute;
-          top: 10px;
-          right: 20px;
-        `}
-      />
+      {!showTick ? (
+        <CopyToClipboard
+          onCopy={() => {
+            setShowTick(true);
+            setTimeout(() => setShowTick(false), 6000);
+          }}
+          text={children}
+        >
+          <MdOutlineContentCopy
+            size={38}
+            css={(theme) => css`
+              position: absolute;
+              border-radius: 50px;
+              bottom: 4px;
+              right: 20px;
+              padding: 10px;
+              transition: background-color 0.5s ease-out;
+              cursor: pointer;
+              &:hover {
+                background-color: ${theme.color.information};
+              }
+            `}
+          />
+        </CopyToClipboard>
+      ) : (
+        <BiCheck
+          css={(theme) => css`
+            position: absolute;
+            border-radius: 50px;
+            bottom: 4px;
+            right: 20px;
+            padding: 6px;
+            transition: background-color 0.5s ease-out;
+            cursor: pointer;
+            &:hover {
+              background-color: ${theme.color.information};
+            }
+          `}
+          color='#16a34a'
+          size={38}
+        />
+      )}
     </div>
   );
 };
