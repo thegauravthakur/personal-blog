@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ThemeContext } from '../styles/theme';
 import { HiMoon } from 'react-icons/hi';
 import { BsFillMoonFill, BsFillSunFill, BsSunFill } from 'react-icons/bs';
+import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 export function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const { theme, setTheme } = useContext(ThemeContext);
@@ -167,37 +168,58 @@ export function Nav() {
       {showMobileNav && (
         <nav
           css={(theme) => css`
-            background-color: ${theme.color.background.main};
-            border-top: 1px solid ${theme.color.text.main};
-            border-bottom: 1px solid ${theme.color.text.main};
-            color: ${theme.color.text.main};
-            position: absolute;
-            //margin: 0 10px;
-            right: 0;
+            position: fixed;
+            top: 10px;
             left: 0;
-            padding: 10px 60px;
-            @media (max-width: 930px) {
-              padding: 0 50px;
-            }
-            @media (max-width: 830px) {
-              padding: 0 40px;
-            }
-            @media (max-width: 780px) {
-              padding: 0 20px;
-            }
+            right: 0;
+            width: 98%;
+            margin: 0 auto;
+            color: ${theme.color.text.main};
+            background-color: ${theme.color.background.main};
+            border: 2px solid ${theme.color.text.main};
+            padding: 20px;
+            border-radius: 18px;
+            z-index: 2;
           `}
         >
+          <div
+            css={css`
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            `}
+          >
+            <h1
+              css={css`
+                font-size: 18px;
+              `}
+            >
+              Gaurav's Blog
+            </h1>
+            <AiOutlineClose onClick={() => setShowMobileNav(false)} size={22} />
+          </div>
           <ul
             css={css`
               list-style: none;
               & > li {
-                padding: 10px 0;
+                display: flex;
+                align-items: center;
+                padding: 6px 0;
               }
             `}
           >
-            <li>Home</li>
-            <li>Portfolio</li>
-            <li>Resume</li>
+            <li>
+              <MdOutlineKeyboardArrowRight size={22} />
+              Home
+            </li>
+            <li>
+              <MdOutlineKeyboardArrowRight size={22} />
+              Portfolio
+            </li>
+            <li>
+              <MdOutlineKeyboardArrowRight size={22} />
+              Portfolio
+            </li>
           </ul>
         </nav>
       )}
