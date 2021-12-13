@@ -7,6 +7,7 @@ import { ThemeContext } from '../styles/theme';
 import { HiMoon } from 'react-icons/hi';
 import { BsFillMoonFill, BsFillSunFill, BsSunFill } from 'react-icons/bs';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import { menuAnimation } from '../styles/animation';
 export function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const { theme, setTheme } = useContext(ThemeContext);
@@ -180,6 +181,8 @@ export function Nav() {
             padding: 20px;
             border-radius: 18px;
             z-index: 2;
+
+            animation: 0.5s ${menuAnimation};
           `}
         >
           <div
