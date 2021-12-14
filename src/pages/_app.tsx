@@ -7,7 +7,8 @@ import { ThemeContext, darkTheme, lightTheme, Theme } from '../styles/theme';
 import { GlobalStyles } from '../styles/GlobalStyles';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import { useEffect, useState } from 'react'; //nprogress module
+import { useEffect, useState } from 'react';
+import { getHours } from 'date-fns'; //nprogress module
 NProgress.configure({ showSpinner: false });
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());

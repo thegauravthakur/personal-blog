@@ -11,7 +11,7 @@ import { menuAnimation } from '../styles/animation';
 export function Nav() {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const { theme, setTheme } = useContext(ThemeContext);
-  const router = useRouter();
+
   const onThemeChange = () => {
     const updatedTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(updatedTheme);
