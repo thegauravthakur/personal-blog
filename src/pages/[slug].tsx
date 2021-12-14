@@ -4,7 +4,7 @@ import path from 'path';
 import { bundleMDX } from 'mdx-bundler';
 import { Nav } from '../components/nav';
 import { BlogCanvas } from '../components/BlogCanvas';
-import { useContext, useLayoutEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Theme, ThemeContext } from '../styles/theme';
 import Footer from '../components/Footer';
 
@@ -16,7 +16,7 @@ interface HomeProps {
 function Home({ code, frontmatter }: HomeProps) {
   const { theme, setTheme } = useContext(ThemeContext);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const storedTheme = localStorage.getItem('theme') as Theme | null;
     if (!storedTheme) {
       const isDarkTheme = window.matchMedia(

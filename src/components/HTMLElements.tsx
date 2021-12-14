@@ -123,8 +123,6 @@ export const H2 = ({ children }: HTMLElementProps) => {
     <h2
       css={css`
         scroll-margin-top: 1.2rem;
-        display: flex;
-        align-items: center;
       `}
       id={anchor}
     >
@@ -149,8 +147,6 @@ export const H3 = ({ children }: HTMLElementProps) => {
     <h3
       css={css`
         scroll-margin-top: 1.2rem;
-        display: flex;
-        align-items: center;
       `}
       id={anchor}
     >

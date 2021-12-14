@@ -4,20 +4,21 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { Post } from '../components/post';
-import { useContext, useLayoutEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Theme, ThemeContext } from '../styles/theme';
 import Footer from '../components/Footer';
 
 function Home({ finalData }: any) {
   const { theme, setTheme } = useContext(ThemeContext);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const storedTheme = localStorage.getItem('theme') as Theme | null;
     if (!storedTheme) {
       const isDarkTheme = window.matchMedia(
         '(prefers-color-scheme: dark)'
       ).matches;
       if (isDarkTheme && theme !== 'dark') setTheme('dark');
+
       if (!isDarkTheme && theme !== 'light') setTheme('light');
     } else {
       if (storedTheme !== theme) setTheme(storedTheme);
