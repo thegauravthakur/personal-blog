@@ -36,8 +36,8 @@ export function Post({ slug, data, imagePath, date, isLast }: any) {
             transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
           }
           & > div:hover {
-            background-color: ${theme.color.information};
-            color: ${theme.color.link.main};
+            background-color: var(--information);
+            color: var(--link-main);
             cursor: pointer;
           }
           @media (max-width: 750px) {
@@ -132,25 +132,25 @@ export function Post({ slug, data, imagePath, date, isLast }: any) {
               left: 0;
               padding: 10px 16px;
               border-radius: 6px;
-              color: ${theme.color.text.light};
+              color: var(--text-light);
               border: 0;
               cursor: pointer;
-              background-color: ${theme.color.primary.main};
+              background-color: var(--primary-main);
               transition: background-color 0.5s, box-shadow 0.5s, transform 0.5s;
 
               &:hover {
-                background-color: ${theme.color.primary.dark};
-                box-shadow: 0 10px 15px ${theme.color.shadow};
+                background-color: var(--primary-dark);
+                box-shadow: 0 10px 15px var(--shadow);
                 transform: translateY(-1px);
               }
 
               &:active {
                 transform: translateY(1px);
-                box-shadow: 0 10px 10px ${theme.color.shadow};
+                box-shadow: 0 10px 10px var(--shadow);
               }
 
               &:focus {
-                outline: 1px solid ${theme.color.primary.main};
+                outline: 1px solid var(--primary-main);
                 outline-offset: 2px;
               }
 
@@ -169,7 +169,7 @@ export function Post({ slug, data, imagePath, date, isLast }: any) {
                 margin-left: auto;
                 margin-right: auto;
                 max-width: 250px;
-                color: ${theme.color.text.main};
+                color: var(--text-main);
                 @media (min-width: 600px) {
                   display: none;
                 }

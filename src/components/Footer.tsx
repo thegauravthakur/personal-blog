@@ -9,8 +9,8 @@ const Footer = () => {
     <div
       css={(theme) =>
         css`
-          background-color: ${theme.color.background.main};
-          color: ${theme.color.text.main};
+          background-color: var(--background-main);
+          color: var(--text-main);
           padding: 0 10px;
         `
       }
@@ -28,7 +28,7 @@ const Footer = () => {
             margin: 10px 0;
           }
           & > *:hover {
-            background-color: ${color.information};
+            background-color: var(--information);
           }
         `}
       >
@@ -46,7 +46,7 @@ const Footer = () => {
         © {getYear(new Date())} Copyright: Gaurav Thakur | Made with{' '}
         <span
           css={(theme) => css`
-            color: ${theme.color.primary.main};
+            color: var(--primary-main);
           `}
         >
           ❤

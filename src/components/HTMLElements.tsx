@@ -2,27 +2,32 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 // @ts-ignore //todo check this issue
 import style from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark-reasonable';
 import lightStyle from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light';
+import useLayoutEffect from '../hooks/useIsomorphicLayoutEffect';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   DetailedHTMLProps,
   HTMLAttributes,
   ReactComponentElement,
-  useContext,
   useState,
 } from 'react';
 import { css } from '@emotion/react';
 import Image from 'next/image';
-import { ThemeContext } from '../styles/theme';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import { BiCheck } from 'react-icons/bi';
+import useDarkMode from 'use-dark-mode';
 
 // todo avoid any here
 type HTMLElementProps = DetailedHTMLProps<HTMLAttributes<any>, any>;
 
 export const Pre = ({ children: code }: HTMLElementProps) => {
-  const { theme: currentTheme } = useContext(ThemeContext);
+  const { value } = useDarkMode();
+  const [darkMode, setDarkMode] = useState(false);
   const { children, className } = (code as ReactComponentElement<any>).props;
   const [showTick, setShowTick] = useState(false);
+
+  useLayoutEffect(() => {
+    setDarkMode(value);
+  }, [value]);
 
   const [, language] = className?.split('-');
   return (
@@ -32,12 +37,12 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
       `}
     >
       <SyntaxHighlighter
-        style={currentTheme === 'light' ? lightStyle : style}
+        style={!darkMode ? lightStyle : style}
         showLineNumbers
         css={(theme) => css`
           margin: 0.5rem 0;
           border-radius: 10px;
-          border: 1px solid ${theme.color.information};
+          border: 1px solid var(--information);
           font-size: 0.875rem;
           line-height: 1.5rem;
         `}
@@ -64,7 +69,7 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
               transition: background-color 0.5s ease-out;
               cursor: pointer;
               &:hover {
-                background-color: ${theme.color.information};
+                background-color: var(--information);
               }
             `}
           />
@@ -80,7 +85,7 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
             transition: background-color 0.5s ease-out;
             cursor: pointer;
             &:hover {
-              background-color: ${theme.color.information};
+              background-color: var(--information);
             }
           `}
           color='#16a34a'
@@ -98,7 +103,7 @@ export const Code = ({ className, ...rest }: any) => {
     <code
       css={(theme) =>
         css`
-          background-color: ${theme.color.information};
+          background-color: var(--information);
           padding: 0.125rem 0.25rem;
           border-radius: 0.375rem;
           font-size: 0.875rem;

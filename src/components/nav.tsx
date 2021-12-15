@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { useContext, useState } from 'react';
+import useLayoutEffect from '../hooks/useIsomorphicLayoutEffect';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { ThemeContext } from '../styles/theme';
@@ -8,21 +9,25 @@ import { HiMoon } from 'react-icons/hi';
 import { BsFillMoonFill, BsFillSunFill, BsSunFill } from 'react-icons/bs';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { menuAnimation } from '../styles/animation';
+import useDarkMode from 'use-dark-mode';
 export function Nav() {
+  const { toggle, value } = useDarkMode();
+  const [darkMode, setDarkMode] = useState(false);
   const [showMobileNav, setShowMobileNav] = useState(false);
-  const { theme, setTheme } = useContext(ThemeContext);
 
   const onThemeChange = () => {
-    const updatedTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(updatedTheme);
-    localStorage.setItem('theme', updatedTheme);
+    toggle();
   };
+  useLayoutEffect(() => {
+    setDarkMode(value);
+  }, [value]);
+
   return (
     <header>
       <nav
         css={(theme) => css`
           color: white;
-          background-color: ${theme.color.background.main};
+          background-color: var(--background-main);
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -47,9 +52,8 @@ export function Nav() {
             <a
               tabIndex={0}
               css={(theme) => css`
-                color: ${theme.type === 'dark'
-                  ? theme.color.text.main
-                  : theme.color.primary.dark};
+                transition: color 0.2s ease-out;
+                color: var(--title-main);
                 cursor: pointer;
               `}
             >
@@ -72,7 +76,7 @@ export function Nav() {
             css={(theme) => css`
               list-style: none;
               height: 100%;
-              color: ${theme.color.text.main};
+              color: var(--text-main);
               display: flex;
               align-items: center;
               @media (max-width: 740px) {
@@ -88,8 +92,9 @@ export function Nav() {
                 text-align: center;
                 border-bottom: 5px solid transparent;
                 border-top: 5px solid transparent;
+                transition: border-bottom-color 0.2s ease-in;
                 &:hover {
-                  border-bottom: 5px solid ${theme.color.link.main};
+                  border-bottom: 5px solid var(--link-main);
                 }
               }
             `}
@@ -103,7 +108,7 @@ export function Nav() {
               onClick={onThemeChange}
             >
               Theme
-              {theme === 'dark' ? (
+              {darkMode ? (
                 <BsFillMoonFill css={css``} />
               ) : (
                 <BsSunFill size={20} />
@@ -117,7 +122,7 @@ export function Nav() {
                 display: none;
                 @media (max-width: 740px) {
                   display: inline-block;
-                  color: ${theme.color.text.main};
+                  color: var(--text-main);
                   align-self: center;
                 }
               `}
@@ -129,14 +134,14 @@ export function Nav() {
                 display: none;
                 @media (max-width: 740px) {
                   display: inline-block;
-                  color: ${theme.color.text.main};
+                  color: var(--text-main);
                   align-self: center;
                   //margin: 20px 0;
                 }
               `}
             />
           )}
-          {theme === 'dark' ? (
+          {darkMode ? (
             <BsFillMoonFill
               onClick={onThemeChange}
               css={(theme) =>
@@ -144,7 +149,7 @@ export function Nav() {
                   @media (min-width: 740px) {
                     display: none;
                   }
-                  color: ${theme.color.text.main};
+                  color: var(--text-main);
                   align-self: center;
                 `
               }
@@ -158,7 +163,7 @@ export function Nav() {
                   @media (min-width: 740px) {
                     display: none;
                   }
-                  color: ${theme.color.text.main};
+                  color: var(--text-main);
                   align-self: center;
                 `
               }
@@ -175,9 +180,9 @@ export function Nav() {
             right: 0;
             width: 98%;
             margin: 0 auto;
-            color: ${theme.color.text.main};
-            background-color: ${theme.color.background.main};
-            border: 2px solid ${theme.color.text.main};
+            color: var(--text-main);
+            background-color: var(--background-main);
+            border: 2px solid var(--text-main);
             padding: 20px;
             border-radius: 18px;
             z-index: 2;

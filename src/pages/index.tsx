@@ -30,7 +30,7 @@ function Home({ finalData }: any) {
       <Nav />
       <div
         css={(theme) => css`
-          color: ${theme.color.text.main};
+          color: var(--text-main);
           display: flex;
           justify-content: center;
           margin: 70px auto;
@@ -45,7 +45,7 @@ function Home({ finalData }: any) {
         <div
           css={(theme) =>
             css`
-              background-color: ${theme.color.background.main};
+              background-color: var(--background-main);
               flex: 1;
               padding: 40px;
               border-radius: 10px;

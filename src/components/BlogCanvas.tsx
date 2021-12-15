@@ -25,8 +25,8 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
           padding: 20px;
         }
         border-radius: 10px;
-        color: ${theme.color.text.main};
-        background-color: ${theme.color.background.main};
+        color: var(--text-main);
+        background-color: var(--background-main);
         //default styles
         h1,
         h2,
@@ -41,10 +41,10 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
           margin: 1.2rem 0;
         }
         a {
-          color: ${theme.color.link.main};
+          color: var(--link-main);
           text-decoration: none;
           &:hover {
-            text-decoration: ${theme.color.link.main};
+            text-decoration: var(--link-main);
           }
         }
         ul,
@@ -68,8 +68,8 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
         </h1>
         <div
           css={(theme) => css`
-            border-top: 1px solid ${theme.color.text.dark};
-            border-bottom: 1px solid ${theme.color.text.dark};
+            border-top: 1px solid var(--text-dark);
+            border-bottom: 1px solid var(--text-dark);
             padding: 8px 0;
             margin: 2rem 0;
             display: flex;
