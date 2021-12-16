@@ -14,8 +14,6 @@ export const GlobalStyles = () => {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
-          transition-duration: 0.2s;
-          transition-property: background-color;
         }
         code {
           font-family: 'Source Code Pro', monospace;

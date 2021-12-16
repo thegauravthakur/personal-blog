@@ -5,6 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 import { VscCalendar } from 'react-icons/vsc';
+import Link from 'next/link';
 import { AiOutlineTags } from 'react-icons/ai';
 import { BsPencil } from 'react-icons/bs';
 import { GoCommentDiscussion } from 'react-icons/go';

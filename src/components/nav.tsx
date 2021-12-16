@@ -1,19 +1,18 @@
-import { css } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import useLayoutEffect from '../hooks/useIsomorphicLayoutEffect';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { ThemeContext } from '../styles/theme';
-import { HiMoon } from 'react-icons/hi';
-import { BsFillMoonFill, BsFillSunFill, BsSunFill } from 'react-icons/bs';
+import { BsFillMoonFill, BsSunFill } from 'react-icons/bs';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { menuAnimation } from '../styles/animation';
 import useDarkMode from 'use-dark-mode';
+import { RiMoonFill } from 'react-icons/ri';
 export function Nav() {
   const { toggle, value } = useDarkMode();
   const [darkMode, setDarkMode] = useState(false);
   const [showMobileNav, setShowMobileNav] = useState(false);
+  const [animate, setAnimate] = useState(false);
 
   const onThemeChange = () => {
     toggle();
@@ -22,8 +21,21 @@ export function Nav() {
     setDarkMode(value);
   }, [value]);
 
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
+
   return (
     <header>
+      {animate && (
+        <Global
+          styles={css`
+            * {
+              transition: background-color 0.3s ease-in-out;
+            }
+          `}
+        />
+      )}
       <nav
         css={(theme) => css`
           color: white;
@@ -46,20 +58,15 @@ export function Nav() {
         <h1
           css={(theme) => css`
             font-size: 20px;
+            transition: color 0.2s ease-out;
+            cursor: pointer;
+            & a {
+              color: var(--title-main);
+              text-decoration: none;
+            }
           `}
         >
-          <Link href='/'>
-            <a
-              tabIndex={0}
-              css={(theme) => css`
-                transition: color 0.2s ease-out;
-                color: var(--title-main);
-                cursor: pointer;
-              `}
-            >
-              Gaurav's Blog
-            </a>
-          </Link>
+          <Link href='/'>Gaurav's Blog</Link>
         </h1>
         <div
           css={css`
@@ -68,7 +75,7 @@ export function Nav() {
               display: flex;
               justify-content: center;
               align-self: center;
-              column-gap: 20px;
+              //column-gap: 20px;
             }
           `}
         >
@@ -115,35 +122,31 @@ export function Nav() {
               )}
             </li>
           </ul>
-          {!showMobileNav ? (
+          {!showMobileNav && (
             <AiOutlineMenu
               onClick={() => setShowMobileNav(!showMobileNav)}
+              size={38}
               css={(theme) => css`
                 display: none;
                 @media (max-width: 740px) {
                   display: inline-block;
                   color: var(--text-main);
                   align-self: center;
-                }
-              `}
-            />
-          ) : (
-            <AiOutlineClose
-              onClick={() => setShowMobileNav(!showMobileNav)}
-              css={(theme) => css`
-                display: none;
-                @media (max-width: 740px) {
-                  display: inline-block;
-                  color: var(--text-main);
-                  align-self: center;
-                  //margin: 20px 0;
+                  padding: 10px;
+                  border-radius: 50%;
+                  cursor: pointer;
+                  transition: background-color 0.3s ease-in;
+                  &:hover {
+                    background-color: var(--information);
+                  }
                 }
               `}
             />
           )}
           {darkMode ? (
-            <BsFillMoonFill
+            <RiMoonFill
               onClick={onThemeChange}
+              size={40}
               css={(theme) =>
                 css`
                   @media (min-width: 740px) {
@@ -151,12 +154,19 @@ export function Nav() {
                   }
                   color: var(--text-main);
                   align-self: center;
+                  padding: 10px;
+                  border-radius: 50%;
+                  cursor: pointer;
+                  transition: background-color 0.3s ease-in;
+                  &:hover {
+                    background-color: var(--information);
+                  }
                 `
               }
             />
           ) : (
             <BsSunFill
-              size={20}
+              size={40}
               onClick={onThemeChange}
               css={(theme) =>
                 css`
@@ -165,6 +175,13 @@ export function Nav() {
                   }
                   color: var(--text-main);
                   align-self: center;
+                  padding: 10px;
+                  border-radius: 50%;
+                  cursor: pointer;
+                  transition: background-color 0.3s ease-in;
+                  &:hover {
+                    background-color: var(--information);
+                  }
                 `
               }
             />
@@ -186,7 +203,6 @@ export function Nav() {
             padding: 20px;
             border-radius: 18px;
             z-index: 2;
-
             animation: 0.5s ${menuAnimation};
           `}
         >
@@ -200,11 +216,24 @@ export function Nav() {
             <h1
               css={css`
                 font-size: 18px;
+                color: var(--title-main);
               `}
             >
               Gaurav's Blog
             </h1>
-            <AiOutlineClose onClick={() => setShowMobileNav(false)} size={22} />
+            <AiOutlineClose
+              css={css`
+                padding: 10px;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: background-color 0.3s ease-in;
+                &:hover {
+                  background-color: var(--information);
+                }
+              `}
+              onClick={() => setShowMobileNav(false)}
+              size={40}
+            />
           </div>
           <ul
             css={css`
