@@ -32,9 +32,18 @@ const Footer = () => {
           }
         `}
       >
-        <AiOutlineTwitter size={50} />
-        <AiFillLinkedin size={50} />
-        <MdEmail size={50} />
+        <AiOutlineTwitter
+          onClick={() => window.open('https://gauravthakur.in/social/twitter')}
+          size={50}
+        />
+        <AiFillLinkedin
+          onClick={() => window.open('https://gauravthakur.in/social/linkedin')}
+          size={50}
+        />
+        <MdEmail
+          onClick={() => window.open('https://gauravthakur.in/social/email')}
+          size={50}
+        />
       </div>
       <p
         css={css`

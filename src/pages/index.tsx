@@ -33,7 +33,7 @@ function Home({ posts }: HomeProps) {
         <meta property='og:image:width' content='3200' />
         <meta property='og:image:height' content='1800' />
         <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:creator' content='@thegauravthakur' />
+        <meta name='twitter:creator' content='@gauravcodes' />
         <meta name='twitter:title' content="Gaurav's Blog" />
         <meta name='twitter:description' content={MetaValues.description} />
         <meta
