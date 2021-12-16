@@ -7,6 +7,7 @@ import { Post } from '../components/post';
 import { useContext, useEffect } from 'react';
 import { Theme, ThemeContext } from '../styles/theme';
 import Footer from '../components/Footer';
+import Head from 'next/head';
 
 function Home({ finalData }: any) {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -27,7 +28,9 @@ function Home({ finalData }: any) {
 
   return (
     <div>
-      <Nav />
+      <Head>
+        <title>Gaurav's Blog</title>
+      </Head>
       <div
         css={(theme) => css`
           color: var(--text-main);

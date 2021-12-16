@@ -8,6 +8,7 @@ import { GlobalStyles } from '../styles/GlobalStyles';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { useEffect, useState } from 'react';
+import { Nav } from '../components/nav';
 
 NProgress.configure({ showSpinner: false });
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -20,6 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyles />
+      <Nav />
       <Component {...pageProps} />
     </>
   );

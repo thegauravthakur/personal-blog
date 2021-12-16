@@ -8,7 +8,10 @@ import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { menuAnimation } from '../styles/animation';
 import useDarkMode from 'use-dark-mode';
 import { RiMoonFill } from 'react-icons/ri';
+import { useRouter } from 'next/router';
+
 export function Nav() {
+  const router = useRouter();
   const { toggle, value } = useDarkMode();
   const [darkMode, setDarkMode] = useState(false);
   const [showMobileNav, setShowMobileNav] = useState(false);
@@ -245,10 +248,20 @@ export function Nav() {
               }
             `}
           >
-            <li>
-              <MdOutlineKeyboardArrowRight size={22} />
-              Home
-            </li>
+            <Link href={'/'}>
+              <li
+                css={[
+                  router.pathname === '/' &&
+                    css`
+                      color: var(--primary-main);
+                      font-weight: bold;
+                    `,
+                ]}
+              >
+                <MdOutlineKeyboardArrowRight size={22} />
+                Home
+              </li>
+            </Link>
             <li>
               <MdOutlineKeyboardArrowRight size={22} />
               Portfolio

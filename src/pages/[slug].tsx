@@ -7,6 +7,7 @@ import { BlogCanvas } from '../components/BlogCanvas';
 import { useContext, useEffect } from 'react';
 import { Theme, ThemeContext } from '../styles/theme';
 import Footer from '../components/Footer';
+import Head from 'next/head';
 
 interface HomeProps {
   code: string;
@@ -30,7 +31,9 @@ function Home({ code, frontmatter }: HomeProps) {
   }, [theme, setTheme]);
   return (
     <div className={''}>
-      <Nav />
+      <Head>
+        <title>{frontmatter.title}</title>
+      </Head>
       <BlogCanvas code={code} frontmatter={frontmatter} />
       <Footer />
     </div>

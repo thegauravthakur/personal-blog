@@ -125,44 +125,48 @@ export function Post({ slug, data, imagePath, date, isLast }: any) {
               text={description}
             />
           </div>
-          <button
-            onClick={() => router.push(`/${slug}`)}
-            css={(theme) => css`
-              position: absolute;
-              bottom: 10px;
-              left: 0;
-              padding: 10px 16px;
-              border-radius: 6px;
-              color: var(--text-light);
-              border: 0;
-              cursor: pointer;
-              background-color: var(--primary-main);
-              transition: background-color 0.5s, box-shadow 0.5s, transform 0.5s;
+          <Link href={`/${slug}`} passHref>
+            <a
+              css={(theme) => css`
+                position: absolute;
+                text-decoration: none;
+                font-size: 14px;
+                bottom: 10px;
+                left: 0;
+                padding: 6px 16px;
+                border-radius: 6px;
+                color: var(--text-light);
+                border: 0;
+                cursor: pointer;
+                background-color: var(--primary-main);
+                transition: background-color 0.5s, box-shadow 0.5s,
+                  transform 0.5s;
 
-              &:hover {
-                background-color: var(--primary-dark);
-                box-shadow: 0 10px 15px var(--shadow);
-                transform: translateY(-1px);
-              }
+                &:hover {
+                  background-color: var(--primary-dark);
+                  box-shadow: 0 10px 15px var(--shadow);
+                  transform: translateY(-1px);
+                }
 
-              &:active {
-                transform: translateY(1px);
-                box-shadow: 0 10px 10px var(--shadow);
-              }
+                &:active {
+                  transform: translateY(1px);
+                  box-shadow: 0 10px 10px var(--shadow);
+                }
 
-              &:focus {
-                outline: 1px solid var(--primary-main);
-                outline-offset: 2px;
-              }
+                &:focus {
+                  outline: 1px solid var(--primary-main);
+                  outline-offset: 2px;
+                }
 
-              @media (max-width: 600px) {
-                position: static;
-                display: block;
-              }
-            `}
-          >
-            Read More!
-          </button>
+                @media (max-width: 600px) {
+                  position: static;
+                  display: block;
+                }
+              `}
+            >
+              Read More!
+            </a>
+          </Link>
           {!isLast && (
             <hr
               css={(theme) => css`
