@@ -8,6 +8,7 @@ import { useContext, useEffect } from 'react';
 import { Theme, ThemeContext } from '../styles/theme';
 import Footer from '../components/Footer';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 interface HomeProps {
   code: string;
@@ -16,6 +17,8 @@ interface HomeProps {
 
 function Home({ code, frontmatter }: HomeProps) {
   const { theme, setTheme } = useContext(ThemeContext);
+  const router = useRouter();
+  console.log(router);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme') as Theme | null;

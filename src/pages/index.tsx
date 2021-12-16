@@ -5,14 +5,47 @@ import { Post as Article } from '../components/post';
 import Footer from '../components/Footer';
 import Head from 'next/head';
 import { Canvas, CanvasWrapper } from '../components/index';
-import { HomeProps, MetaData, Post } from '../components/index/Index.types';
+import {
+  HomeProps,
+  MetaData,
+  MetaValues,
+  Post,
+} from '../components/index/Index.types';
 import { comparator } from '../components/index/utils';
+import { useRouter } from 'next/router';
 
 function Home({ posts }: HomeProps) {
+  const router = useRouter();
+
   return (
     <div>
       <Head>
         <title>Gaurav's Blog</title>
+        <meta name='description' content={MetaValues.description} />
+        <meta property='og:title' content="Gaurav's Blog" />
+        <meta property='og:description' content={MetaValues.description} />
+        <meta property='og:type' content='website' />
+        <meta
+          property='og:image'
+          content='https://personal-blog-kohl-tau.vercel.app/images/who-is-gaurav-thakur.png'
+        />
+        <meta property='og:image:alt' content='Who is gaurav thakur' />
+        <meta property='og:image:width' content='3200' />
+        <meta property='og:image:height' content='1800' />
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:creator' content='@thegauravthakur' />
+        <meta name='twitter:title' content="Gaurav's Blog" />
+        <meta name='twitter:description' content={MetaValues.description} />
+        <meta
+          name='twitter:image'
+          content='https://personal-blog-kohl-tau.vercel.app/images/who-is-gaurav-thakur.png'
+        />
+        <link
+          rel='canonical'
+          href={`https://blog.gauravthakur.in${
+            router.asPath === '/' ? '' : router.asPath
+          }`}
+        />
       </Head>
       <CanvasWrapper>
         <Canvas>

@@ -15,3 +15,7 @@ export interface Post {
 export interface HomeProps {
   posts: Post[];
 }
+
+export enum MetaValues {
+  description = "Hi, welcome to my personal blog. I am a college student and a javascript enthusiast. In this blog, I'll share my knowledge related to various tech stack.",
+}
