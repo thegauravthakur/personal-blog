@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 import Image from 'next/image';
 import Truncate from 'react-text-truncate';
-import { useMediaQuery } from 'react-responsive';
 import { useRouter } from 'next/router';
 import { format } from 'date-fns';
 import { VscCalendar } from 'react-icons/vsc';
@@ -10,7 +9,7 @@ import { AiOutlineTags } from 'react-icons/ai';
 import { BsPencil } from 'react-icons/bs';
 import { GoCommentDiscussion } from 'react-icons/go';
 
-export function Post({ slug, data, imagePath, date, isLast }: any) {
+export function Post({ slug, data, imagePath, isLast }: any) {
   const { description, title, publishedDate, tags, author } = data;
 
   const [mainTag, ...rest] = tags.split(',');
@@ -160,7 +159,7 @@ export function Post({ slug, data, imagePath, date, isLast }: any) {
 
                 @media (max-width: 600px) {
                   position: static;
-                  display: block;
+                  display: inline-block;
                 }
               `}
             >

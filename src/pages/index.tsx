@@ -1,84 +1,32 @@
-import { css } from '@emotion/react';
-import { Nav } from '../components/nav';
-import fs from 'fs';
+import { readdirSync, readFileSync } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { Post } from '../components/post';
-import { useContext, useEffect } from 'react';
-import { Theme, ThemeContext } from '../styles/theme';
+import { Post as Article } from '../components/post';
 import Footer from '../components/Footer';
 import Head from 'next/head';
+import { Canvas, CanvasWrapper } from '../components/index';
+import { HomeProps, MetaData, Post } from '../components/index/Index.types';
+import { comparator } from '../components/index/utils';
 
-function Home({ finalData }: any) {
-  const { theme, setTheme } = useContext(ThemeContext);
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') as Theme | null;
-    if (!storedTheme) {
-      const isDarkTheme = window.matchMedia(
-        '(prefers-color-scheme: dark)'
-      ).matches;
-      if (isDarkTheme && theme !== 'dark') setTheme('dark');
-
-      if (!isDarkTheme && theme !== 'light') setTheme('light');
-    } else {
-      if (storedTheme !== theme) setTheme(storedTheme);
-    }
-  }, [theme, setTheme]);
-
+function Home({ posts }: HomeProps) {
   return (
     <div>
       <Head>
         <title>Gaurav's Blog</title>
       </Head>
-      <div
-        css={(theme) => css`
-          color: var(--text-main);
-          display: flex;
-          justify-content: center;
-          margin: 70px auto;
-          @media (max-width: 600px) {
-            margin: 40px auto;
-          }
-          @media (max-width: 500px) {
-            margin: 30px auto;
-          }
-        `}
-      >
-        <div
-          css={(theme) =>
-            css`
-              background-color: var(--background-main);
-              flex: 1;
-              padding: 40px;
-              border-radius: 10px;
-              max-width: 1200px;
-              margin: 30px;
-              @media (max-width: 900px) {
-                margin: 30px 20px;
-                padding: 40px 20px;
-              }
-              @media (max-width: 500px) {
-                margin: 30px 0;
-                padding: 40px 20px;
-              }
-            `
-          }
-        >
-          {finalData.map(({ slug, data, imagePath, date }: any, index: any) => {
-            return (
-              <Post
-                key={slug}
-                slug={slug}
-                data={data}
-                date={date}
-                imagePath={imagePath}
-                isLast={index === finalData.length - 1}
-              />
-            );
-          })}
-        </div>
-      </div>
+      <CanvasWrapper>
+        <Canvas>
+          {posts.map(({ slug, metaData, imagePath }: Post, index) => (
+            <Article
+              key={slug}
+              slug={slug}
+              data={metaData}
+              imagePath={imagePath}
+              isLast={index === posts.length - 1}
+            />
+          ))}
+        </Canvas>
+      </CanvasWrapper>
       <Footer />
     </div>
   );
@@ -86,38 +34,38 @@ function Home({ finalData }: any) {
 
 export default Home;
 
-export async function getStaticProps(context: any) {
-  const finalData: any = [];
-  const allFiles = fs.readdirSync('src/content/posts');
-  allFiles.forEach((file) => {
-    const files = fs.readFileSync(
-      path.join('src/content/posts', file),
+export async function getStaticProps() {
+  const posts: Post[] = [];
+  const filePaths = readdirSync('src/content/posts');
+
+  for (const filePath of filePaths) {
+    const [fileName] = filePath.split('.');
+
+    const file = readFileSync(
+      path.join('src/content/posts', filePath),
       'utf-8'
     );
-    const modifiedDate = fs.statSync(path.join('src/content/posts', file));
 
-    const { data } = matter(files);
-    const allImages = fs.readdirSync('public/images');
-    const getCorrectImage = allImages.find(
-      (image) => image.split('.')[0] === file.split('.')[0]
+    const { data: metaData } = matter(file) as unknown as { data: MetaData };
+
+    const imagePaths = readdirSync('public/images');
+
+    const targetImage = imagePaths.find(
+      (image) => image.split('.')[0] === fileName
     );
-    if (!getCorrectImage) throw new Error('No image found');
-    finalData.push({
-      slug: file.split('.')[0],
-      imagePath: getCorrectImage,
-      data,
+
+    if (!targetImage) throw new Error('No image found');
+
+    posts.push({
+      slug: fileName,
+      imagePath: targetImage,
+      metaData,
     });
-  });
+  }
 
   return {
     props: {
-      finalData: finalData.sort((data1: any, data2: any) => {
-        const date1 = new Date(data1.data.publishedDate);
-        const date2 = new Date(data2.data.publishedDate);
-        if (date1 < date2) return 1;
-        if (date1 > date2) return -1;
-        return 0;
-      }),
-    }, // will be passed to the page component as props
+      posts: posts.sort(comparator),
+    },
   };
 }
