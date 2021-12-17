@@ -10,3 +10,30 @@ export const menuAnimation = keyframes`
     opacity: 1;
   }
 `;
+
+export const sun = keyframes`
+   0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
+export const moon = keyframes`
+  0% {
+    transform: rotate(50deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+`;
+
+export const cross = keyframes`
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+`;

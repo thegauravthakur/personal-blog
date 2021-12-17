@@ -5,7 +5,7 @@ import useLayoutEffect from '../hooks/useIsomorphicLayoutEffect';
 import Link from 'next/link';
 import { BsFillMoonFill, BsSunFill } from 'react-icons/bs';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
-import { menuAnimation } from '../styles/animation';
+import { menuAnimation, sun, moon, cross } from '../styles/animation';
 import useDarkMode from 'use-dark-mode';
 import { RiMoonFill } from 'react-icons/ri';
 import { useRouter } from 'next/router';
@@ -159,6 +159,7 @@ export function Nav() {
                   align-self: center;
                   padding: 10px;
                   border-radius: 50%;
+                  animation: ease-out 0.3s ${moon};
                   cursor: pointer;
                   transition: background-color 0.3s ease-in;
                   &:hover {
@@ -178,6 +179,7 @@ export function Nav() {
                   }
                   color: var(--text-main);
                   align-self: center;
+                  animation: ease-out 0.3s ${sun};
                   padding: 10px;
                   border-radius: 50%;
                   cursor: pointer;
@@ -230,6 +232,7 @@ export function Nav() {
                 border-radius: 50%;
                 cursor: pointer;
                 transition: background-color 0.3s ease-in;
+                animation: ease-out 0.7s ${cross};
                 &:hover {
                   background-color: var(--information);
                 }

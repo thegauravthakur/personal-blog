@@ -26,6 +26,19 @@ export const GlobalStyles = () => {
           height: 3px;
         }
 
+        body::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        body::-webkit-scrollbar-track {
+          background-color: var(--background-light);
+        }
+
+        body::-webkit-scrollbar-thumb {
+          background-color: var(--text-dark);
+          border-radius: 10px;
+        }
+
         body.dark-mode {
           --background-dark: #000000;
           --background-main: #161b22;
@@ -49,7 +62,7 @@ export const GlobalStyles = () => {
         :root {
           --background-dark: #e5e7eb;
           --background-main: #ffffff;
-          --background-light: #000000;
+          --background-light: #94a3b8;
           --text-dim: #64748b;
           --text-dark: #6b7280;
           --text-main: #1e293b;
