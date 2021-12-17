@@ -1,3 +1,3 @@
 export enum Constant {
-  url = 'https://personal-blog-kohl-tau.vercel.app',
+  url = 'https://beta-blog.gauravthakur.in',
 }
