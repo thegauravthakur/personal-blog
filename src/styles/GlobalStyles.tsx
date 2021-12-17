@@ -8,6 +8,7 @@ export const GlobalStyles = () => {
           background-color: var(--background-dark);
           line-height: 1.8rem;
         }
+
         *,
         *::before,
         *::after {
@@ -15,19 +16,23 @@ export const GlobalStyles = () => {
           padding: 0;
           box-sizing: border-box;
         }
+
         code {
           font-family: 'Source Code Pro', monospace;
         }
+
         #nprogress .bar {
           background-color: var(--link-main);
           height: 3px;
         }
+
         body.dark-mode {
           --background-dark: #000000;
           --background-main: #161b22;
           --background-light: #000000;
           --text-dark: #6b7280;
-          --text-main: #b7bcbe;
+          --text-dim: #b7bcbe;
+          --text-main: rgba(203, 213, 225, 0.9);
           --text-light: #d1d5db;
           --link-dark: #111827;
           --link-main: #1b6fff;
@@ -45,6 +50,7 @@ export const GlobalStyles = () => {
           --background-dark: #e5e7eb;
           --background-main: #ffffff;
           --background-light: #000000;
+          --text-dim: #64748b;
           --text-dark: #6b7280;
           --text-main: #1e293b;
           --text-light: #ffffff;
@@ -52,7 +58,7 @@ export const GlobalStyles = () => {
           --link-main: #dc2626;
           --link-light: #d1d5db;
           --shadow: rgba(107, 114, 128, 0.6);
-          --primary-dark: #be123c;
+          --primary-dark: #dc2626;
           --primary-main: #e11d48;
           --primary-light: '';
           --information: rgba(220, 38, 38, 0.15);

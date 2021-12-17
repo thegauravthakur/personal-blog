@@ -26,6 +26,7 @@ export function Post({ slug, data, imagePath, isLast }: any) {
           display: grid;
           grid-template-columns: 170px 170px 170px 170px;
           place-items: center;
+          color: var(--text-dim);
           & > div {
             padding: 0 14px;
             border-radius: 12px;

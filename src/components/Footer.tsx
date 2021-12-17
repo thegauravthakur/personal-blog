@@ -20,6 +20,7 @@ const Footer = () => {
           display: flex;
           align-items: center;
           justify-content: center;
+          color: var(--text-dim);
           & > * {
             padding: 10px;
             border-radius: 50px;
@@ -52,7 +53,8 @@ const Footer = () => {
           font-size: 15px;
         `}
       >
-        © {getYear(new Date())} Copyright: Gaurav Thakur | Made with{' '}
+        © {getYear(new Date())} Copyright: <strong>Gaurav Thakur</strong> | Made
+        with{' '}
         <span
           css={(theme) => css`
             color: var(--primary-main);
