@@ -119,9 +119,18 @@ export function Nav() {
             >
               Theme
               {darkMode ? (
-                <BsFillMoonFill css={css``} />
+                <BsFillMoonFill
+                  css={css`
+                    animation: ease-out 0.3s ${moon};
+                  `}
+                />
               ) : (
-                <BsSunFill size={20} />
+                <BsSunFill
+                  css={css`
+                    animation: ease-out 0.3s ${sun};
+                  `}
+                  size={20}
+                />
               )}
             </li>
           </ul>

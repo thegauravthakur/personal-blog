@@ -58,11 +58,11 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
           }}
           text={children}
         >
-          <MdOutlineContentCopy
-            size={38}
-            css={(theme) => css`
+          <div
+            css={css`
               position: absolute;
               border-radius: 50px;
+              display: flex;
               bottom: 4px;
               right: 20px;
               padding: 10px;
@@ -72,7 +72,9 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
                 background-color: var(--information);
               }
             `}
-          />
+          >
+            <MdOutlineContentCopy css={(theme) => css``} />
+          </div>
         </CopyToClipboard>
       ) : (
         <BiCheck
