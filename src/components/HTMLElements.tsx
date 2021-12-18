@@ -1,8 +1,8 @@
-import SyntaxHighlighter from 'react-syntax-highlighter';
+import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
 // @ts-ignore //todo check this issue
 import style from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark-reasonable';
 import lightStyle from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light';
-import useLayoutEffect from '../hooks/useIsomorphicLayoutEffect';
+import JavaScript from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   DetailedHTMLProps,
@@ -17,11 +17,13 @@ import { MdOutlineContentCopy } from 'react-icons/md';
 import { BiCheck } from 'react-icons/bi';
 import { ThemeContext } from '../styles/theme';
 
+SyntaxHighlighter.registerLanguage('JavaScript', JavaScript);
+
 // todo avoid any here
 type HTMLElementProps = DetailedHTMLProps<HTMLAttributes<any>, any>;
 
 export const Pre = ({ children: code }: HTMLElementProps) => {
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const { children, className } = (code as ReactComponentElement<any>).props;
   const [showTick, setShowTick] = useState(false);
   const [, language] = className?.split('-');
@@ -69,7 +71,11 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
               }
             `}
           >
-            <MdOutlineContentCopy css={(theme) => css``} />
+            <MdOutlineContentCopy
+              css={() => css`
+                color: var(--text-dark);
+              `}
+            />
           </div>
         </CopyToClipboard>
       ) : (
@@ -99,7 +105,7 @@ export const Code = ({ className, ...rest }: any) => {
   if (language) return <code className={className} {...rest} />;
   return (
     <code
-      css={(theme) =>
+      css={() =>
         css`
           background-color: var(--information);
           padding: 0.125rem 0.25rem;
