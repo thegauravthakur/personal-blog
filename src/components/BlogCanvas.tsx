@@ -50,6 +50,7 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
         ul,
         ol {
           margin-left: 2rem;
+          font-size: 14px;
         }
       `}
     >

@@ -16,9 +16,9 @@ metaDescription:
 All JavaScript engine have their own implementation of the functions and methods
 but in this article, we'll consider the implementation of
 [Google's V8 engine](https://v8.dev/) which is one of the most famous JavaScript
-engines. Objects in JavaScript are responsible for holding the key-value pairs.
-These keys could be any random string. Even if we pass a numeric value as a key,
-JavaScript will first coerce it to string.
+engines. Objects in JavaScript are responsible for holding the mapping between
+key-value pairs. These keys could be any random string. Even if we pass a number
+as a key, JavaScript will first coerce it to string.
 
 ```JavaScript
 const foo = {
@@ -39,92 +39,110 @@ undefined.
 
 Arrays are also a type of object in JavaScript but with only numeric keys.
 JavaScript engine can optimize these special objects with purely numeric keys
-Google's V8 javascript engine's implementation of arrays is backed up by C++
-arrays underneath, but it is a little complex. Your javascript array of integers
-will be backed up by a c++ array of integers. There is no concept of `int`,
-`float` and `double` in JavaScript.
+Google's V8 javascript engine is entirely written in C++ but C++ arrays can only
+store a similar type of data. There is no concept of `int`, `float` and `double`
+in JavaScript. JavaScript categorizes them as `number` type but the underneath
+implementation cares a lot about type of elements being stored in the array. V8
+engine tries its best to optimize the array. The operations that are performant
+for `int` data type can't be as much performed for string or double data type.
+To keep the track of stored elements in a array, V8 assigns a `element kind` to
+each array.
 
-If your javascript array is a mixture of `int` and `float` then the underneath
-implementation will be an array of `doubles`. If you try to do something like,
+There are around 22 different `element kind` that V8 assigns to an array. Each
+of them comes with a different performance optimizations. In this article we
+will consider these main `element kind` and later will look at some of the
+performance mistakes that we can avoid when it comes to arrays in JavaScript.
 
-```javascript
-const a = [];
-a[10000] = 15;
+1. PACKED_SMI_ELEMENTS
+2. PACKED_DOUBLE_ELEMENTS
+3. PACKED_ELEMENTS
+4. HOLEY_SMI_ELEMENTS
+5. HOLEY_DOUBLE_ELEMENTS
+6. HOLEY_ELEMENTS
+
+## Packed Elements
+
+Packed elements means that there are no holes (which we'll see later) in the
+array. It is the most performant kind of array in V8. It is also the default
+kind of array in V8.
+
+```JavaScript
+const foo = [1, 2, 3];
+// Packed Element
 ```
 
-Then, the underneath implementation will be upgraded to the `hashmap`. Once the
-underneath implementation is upgraded it cannot be degraded even if you remove
-that element. So time and complexity can vary a lot by just your usage of the
+## Holey Elements
+
+Holey elements means that there are gaps in the array. It represents the sparse
+array. These type of array will not be as performant as the packed array.
+
+```JavaScript
+const foo = [1, 2, 3];
+foo[100] = 4;
+// Holey Element
+```
+
+### Packed/Holey SMI Elements
+
+`SMI` means that the array is of type `Smi` which is a signed 32-bit integer.
+
+```JavaScript
+const foo = [1, 2, 3]; // element kind: PACKED_SMI_ELEMENTS
+
+const bar = [];
+bar[100] = 4; // element kind: HOLEY_SMI_ELEMENTS
+```
+
+### Packed/Holey Double Elements
+
+`Double` means that there are one or more elements of type `Double` in the
 array.
 
-In this article, I would try to list down all the important array methods in
-JavaScript
+```JavaScript
+const foo = [1, 2.5, 3]; // element kind: PACKED_DOUBLE_ELEMENTS
 
-![JavaScript Array Methods + `{"width":3200,"height":1800}`](/images/javascript-array-methods.png 'JavaScript Array Methods')
-
-## Filter
-
-The filter method expects a callback function to be passed as an argument, and
-it will create and return a new array with all the elements that return true by
-the callback function.
-
-```javascript
-const array = [12, 67, 6, 11, 9, -2, 14, 18, 99];
-const result = array.filter((val) => val >= 10 && val <= 20);
-console.log(result); // [12, 11, 14, 18]
+const bar = [];
+bar[100] = 7.4 // element kind: HOLEY_DOUBLE_ELEMENTS
 ```
 
-## Map
+### Packed/Holey Elements
 
-The `map` method expects a callback function to be passed as an argument. It
-will run that callback method for each value and returns the new array of
-results
+The elements that are not of type `Smi` or `Double` are considered regular
+elements.
 
-```javascript
-const array = [2, 4, 6];
-const result = array.map((val) => val * 2);
-console.log(result); // [4, 8, 12]
+```JavaScript
+const foo = [1, 2.5, 3, 'bar']; // element kind: PACKED_ELEMENTS
+
+const bar = [1, 2, 2.5];
+bar[100] = 'foo' // element kind: HOLEY_ELEMENTS
 ```
 
-## Concat
+The `element kind` could also change dynamically as we add or remove elements
+from the array. Let's look at the below example for better understanding.
 
-The `concat` method is used to join two or more arrays. Instead of changing the
-current array, it will return a new array. If the arguments passed to the
-`concat` method are not of string type then they are first converted to string
-type.
+```JavaScript
+const foo = []; // element kind: PACKED_SMI_ELEMENTS
 
-```javascript
-const array1 = [1, 2, 3, 4, 5];
-const array2 = [11, 22, 33, 44, 55];
-const array3 = [111, 222, 333, 444, 555];
-const result = array1.concat(array2, array3);
-console.log(result); // 1 2 3 4 5 11 22 33 44 55 111 222 333 444 555
+foo.push(1); // element kind: PACKED_SMI_ELEMENTS
+foo[100] = 2; // element kind: HOLEY_SMI_ELEMENTS
+foo.push(5.2); // element kind: PACKED_DOUBLE_ELEMENTS
+foo.pop(); // element kind: PACKED_DOUBLE_ELEMENTS
+foo.push('bar') // element kind: HOLEY_ELEMENTS
 ```
 
-You can also use JavaScript's `spread` operator to concat two arrays.
+At the starting `PACKED_SMI_ELEMENTS` is the default element kind. When we push
+`1` to the array it still remains `PACKED_SMI_ELEMENTS`. After adding holes in
+the array, it changes `element kind` to `HOLEY_SMI_ELEMENTS`. In the same way,
+pushing `5.2` makes the `element kind` move to the `HOLEY_DOUBLE_ELEMENTS`.
 
-```javascript
-const array1 = [1, 2, 3];
-const array2 = [10, 20, 30];
-const result = [...array1, ...array2];
-console.log(result); // 1 2 3 10 20 30
-```
+One thing to notice here is that once the `element kind` is downgraded to
+`PACKED_DOUBLE_ELEMENTS` it stays there. Even after removing the only double
+element `5.2` from the array, `element kind` is still `PACKED_DOUBLE_ELEMENTS`
+At the end, adding `bar` to the array makes the `element kind` move to
+`HOLEY_ELEMENTS`.
 
-## ForEach
-
-The forEach method expects a function as an argument, and it will iterate
-through the array and run that the provided function on each value. It could be
-an alternative to the traditional `for loop` in some cases.
-
-```javascript
-const array = [1, 2, 3, 4, 5];
-function callback(value) {
-  console.log(value);
-}
-array.forEach(callback); //1 2 3 4 5
-```
-
-The callback function accepts three values, the current item, index (optional)
-and the array on which filter was called (optional).
-
-// to be continued!
+JavaScript internally uses C++ vectors to store the packed arrays. Once the
+holes are introduced, the underneath implementation will be upgraded to the
+`hashmap`. Once the underneath implementation is upgraded it cannot be degraded
+even if you remove that element. So time and complexity can vary a lot by just
+your usage of the array.

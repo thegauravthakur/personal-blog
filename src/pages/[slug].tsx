@@ -18,7 +18,6 @@ interface HomeProps {
 function Home({ code, frontmatter }: HomeProps) {
   const { theme, setTheme } = useContext(ThemeContext);
   const router = useRouter();
-  console.log(router);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme') as Theme | null;
