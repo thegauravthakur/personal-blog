@@ -127,7 +127,7 @@ foo.push(1); // element kind: PACKED_SMI_ELEMENTS
 foo[100] = 2; // element kind: HOLEY_SMI_ELEMENTS
 foo.push(5.2); // element kind: PACKED_DOUBLE_ELEMENTS
 foo.pop(); // element kind: PACKED_DOUBLE_ELEMENTS
-foo.push('bar') // element kind: HOLEY_ELEMENTS
+foo.push('bar'); // element kind: HOLEY_ELEMENTS
 ```
 
 At the starting `PACKED_SMI_ELEMENTS` is the default element kind. When we push
@@ -141,8 +141,55 @@ element `5.2` from the array, `element kind` is still `PACKED_DOUBLE_ELEMENTS`
 At the end, adding `bar` to the array makes the `element kind` move to
 `HOLEY_ELEMENTS`.
 
-JavaScript internally uses C++ vectors to store the packed arrays. Once the
-holes are introduced, the underneath implementation will be upgraded to the
-`hashmap`. Once the underneath implementation is upgraded it cannot be degraded
-even if you remove that element. So time and complexity can vary a lot by just
-your usage of the array.
+Here is the diagram of the `element kind` transitions for better understanding.
+
+![Element Kind Transition + `{"width":3200,"height":1800}`](/images/element-kind-transition-v8.png 'Element Kind Transition')
+
+JavaScript internally uses C++ vectors to store the packed arrays. It will grow
+dynamically. Once the holes are introduced, the underneath implementation will
+be upgraded to the `hashmap`. Once the underneath implementation is upgraded it
+cannot be degraded even if you remove that element. So time and complexity can
+vary a lot by just your usage of the array.
+
+## General Performance Tips
+
+### Never access the array with out of bounds index
+
+```JavaScript
+const foo = [1, 2, 3];
+
+console.log(foo[100] ?? 'some placeholder'); // 'some placeholder'
+```
+
+The above example is such a common practice followed by many JS developers, here
+we are accessing `100` index of the array.However, the length of array is `3` so
+the index is out of bounds. In this case, the V8 engine has to perform the
+expensive prototype chain lookup. This will affect the performance of V8 engine
+as V8 will be cautious about this situation and it will not remain as performant
+it was before accessing the out of bound key.
+
+### Avoid giving the initial capacity to the array
+
+```JavaScript
+const foo = new Array(3); // element kind: HOLEY_SMI_ELEMENTS
+
+foo[0] = 1;
+foo[1] = 2;
+foo[2] = 3;
+```
+
+This will create a `HOLEY_SMI_ELEMENTS` array with the initial capacity of 3.
+However, we are only storing `PACKED_SMI_ELEMENTS` elements. Why should we lose
+the optimizations of `PACKED_SMI_ELEMENTS`?
+
+```JavaScript
+const foo = []; // element kind: HOLEY_SMI_ELEMENTS
+
+foo[0] = 1;
+foo[1] = 2;
+foo[2] = 3; // element kind: PACKED_SMI_ELEMENTS
+```
+
+Instead of giving the initial capacity to the array we can just create a empty
+array and push the elements to it. This will ensure the `element kind` is the
+same

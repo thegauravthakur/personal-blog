@@ -14,20 +14,19 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import { BiCheck } from 'react-icons/bi';
-import useDarkMode from 'use-dark-mode';
 
 // todo avoid any here
 type HTMLElementProps = DetailedHTMLProps<HTMLAttributes<any>, any>;
 
 export const Pre = ({ children: code }: HTMLElementProps) => {
-  const { value } = useDarkMode();
   const [darkMode, setDarkMode] = useState(false);
   const { children, className } = (code as ReactComponentElement<any>).props;
   const [showTick, setShowTick] = useState(false);
 
   useLayoutEffect(() => {
-    setDarkMode(value);
-  }, [value]);
+    const { theme } = document.body.dataset;
+    setDarkMode(theme === 'dark');
+  }, []);
 
   const [, language] = className?.split('-');
   return (

@@ -6,23 +6,25 @@ import Link from 'next/link';
 import { BsFillMoonFill, BsSunFill } from 'react-icons/bs';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { menuAnimation, sun, moon, cross } from '../styles/animation';
-import useDarkMode from 'use-dark-mode';
 import { RiMoonFill } from 'react-icons/ri';
 import { useRouter } from 'next/router';
 
 export function Nav() {
   const router = useRouter();
-  const { toggle, value } = useDarkMode();
   const [darkMode, setDarkMode] = useState(false);
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [animate, setAnimate] = useState(false);
 
   const onThemeChange = () => {
-    toggle();
+    const updatedTheme = !darkMode ? 'dark' : 'light';
+    setDarkMode(!darkMode);
+    document.body.dataset.theme = updatedTheme;
+    localStorage.setItem('theme', updatedTheme);
   };
   useLayoutEffect(() => {
-    setDarkMode(value);
-  }, [value]);
+    const { theme } = document.body.dataset;
+    setDarkMode(theme === 'dark');
+  }, []);
 
   useEffect(() => {
     setAnimate(true);
@@ -63,6 +65,7 @@ export function Nav() {
             font-size: 20px;
             transition: color 0.2s ease-out;
             cursor: pointer;
+
             & a {
               color: var(--title-main);
               text-decoration: none;
@@ -92,6 +95,7 @@ export function Nav() {
               @media (max-width: 740px) {
                 display: none;
               }
+
               & > li {
                 min-width: 100px;
                 display: flex;
@@ -103,6 +107,7 @@ export function Nav() {
                 border-bottom: 5px solid transparent;
                 border-top: 5px solid transparent;
                 transition: border-bottom-color 0.2s ease-in;
+
                 &:hover {
                   border-bottom: 5px solid var(--link-main);
                 }
@@ -171,6 +176,7 @@ export function Nav() {
                   animation: ease-out 0.3s ${moon};
                   cursor: pointer;
                   transition: background-color 0.3s ease-in;
+
                   &:hover {
                     background-color: var(--information);
                   }
@@ -193,6 +199,7 @@ export function Nav() {
                   border-radius: 50%;
                   cursor: pointer;
                   transition: background-color 0.3s ease-in;
+
                   &:hover {
                     background-color: var(--information);
                   }
@@ -242,6 +249,7 @@ export function Nav() {
                 cursor: pointer;
                 transition: background-color 0.3s ease-in;
                 animation: ease-out 0.7s ${cross};
+
                 &:hover {
                   background-color: var(--information);
                 }
@@ -253,6 +261,7 @@ export function Nav() {
           <ul
             css={css`
               list-style: none;
+
               & > li {
                 display: flex;
                 align-items: center;

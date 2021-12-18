@@ -39,7 +39,7 @@ export const GlobalStyles = () => {
           border-radius: 10px;
         }
 
-        body.dark-mode {
+        body[data-theme='dark'] {
           --background-dark: #000000;
           --background-main: #161b22;
           --background-light: #000000;
@@ -58,7 +58,7 @@ export const GlobalStyles = () => {
           --title-main: #b7bcbe;
         }
 
-        body.light-mode,
+        body[data-theme='light'],
         :root {
           --background-dark: #e5e7eb;
           --background-main: #ffffff;
