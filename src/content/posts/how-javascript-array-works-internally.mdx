@@ -13,12 +13,18 @@ metaDescription:
   give you a clear idea of how I got into programming
 ---
 
+## Introduction
+
 All JavaScript engine have their own implementation of the functions and methods
 but in this article, we'll consider the implementation of
 [Google's V8 engine](https://v8.dev/) which is one of the most famous JavaScript
-engines. Objects in JavaScript are responsible for holding the mapping between
-key-value pairs. These keys could be any random string. Even if we pass a number
-as a key, JavaScript will first coerce it to string.
+engines.
+
+## Objects in JavaScript
+
+Objects in JavaScript are responsible for holding the mapping between key-value
+pairs. These keys could be any random string. Even if we pass a number as a key,
+JavaScript will first coerce it to string.
 
 ```JavaScript
 const foo = {
@@ -37,16 +43,23 @@ first be coerced to string and then foo will lookup for key `1200` and return
 result it was not able to find any value with such key and therefore returns
 undefined.
 
+## Arrays in JavaScript
+
 Arrays are also a type of object in JavaScript but with only numeric keys.
 JavaScript engine can optimize these special objects with purely numeric keys
 Google's V8 javascript engine is entirely written in C++ but C++ arrays can only
-store a similar type of data. There is no concept of `int`, `float` and `double`
-in JavaScript. JavaScript categorizes them as `number` type but the underneath
-implementation cares a lot about type of elements being stored in the array. V8
-engine tries its best to optimize the array. The operations that are performant
-for `int` data type can't be as much performed for string or double data type.
-To keep the track of stored elements in a array, V8 assigns a `element kind` to
-each array.
+store a similar type of data.
+
+### Element Kind in JavaScript
+
+There is no concept of `int`, `float` and `double` in JavaScript. JavaScript
+categorizes them as `number` type but the underneath implementation cares a lot
+about type of elements being stored in the array. V8 engine tries its best to
+optimize the array. The operations that are performant for `int` data type can't
+be as much performed for string or double data type. To keep the track of stored
+elements in a array, V8 assigns a `element kind` to each array. V8 uses these
+`element kind` just to internally distinguish between the different type of
+arrays
 
 There are around 22 different `element kind` that V8 assigns to an array. Each
 of them comes with a different performance optimizations. In this article we
@@ -60,7 +73,7 @@ performance mistakes that we can avoid when it comes to arrays in JavaScript.
 5. HOLEY_DOUBLE_ELEMENTS
 6. HOLEY_ELEMENTS
 
-## Packed Elements
+### Packed Elements
 
 Packed elements means that there are no holes (which we'll see later) in the
 array. It is the most performant kind of array in V8. It is also the default
@@ -71,7 +84,7 @@ const foo = [1, 2, 3];
 // Packed Element
 ```
 
-## Holey Elements
+### Holey Elements
 
 Holey elements means that there are gaps in the array. It represents the sparse
 array. These type of array will not be as performant as the packed array.
@@ -82,7 +95,7 @@ foo[100] = 4;
 // Holey Element
 ```
 
-### Packed/Holey SMI Elements
+#### Packed/Holey SMI Elements
 
 `SMI` means that the array is of type `Smi` which is a signed 32-bit integer.
 
@@ -93,7 +106,7 @@ const bar = [];
 bar[100] = 4; // element kind: HOLEY_SMI_ELEMENTS
 ```
 
-### Packed/Holey Double Elements
+#### Packed/Holey Double Elements
 
 `Double` means that there are one or more elements of type `Double` in the
 array.
@@ -105,7 +118,7 @@ const bar = [];
 bar[100] = 7.4 // element kind: HOLEY_DOUBLE_ELEMENTS
 ```
 
-### Packed/Holey Elements
+#### Packed/Holey Elements
 
 The elements that are not of type `Smi` or `Double` are considered regular
 elements.
