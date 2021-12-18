@@ -8,27 +8,24 @@ import {
   DetailedHTMLProps,
   HTMLAttributes,
   ReactComponentElement,
+  useContext,
   useState,
 } from 'react';
 import { css } from '@emotion/react';
 import Image from 'next/image';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import { BiCheck } from 'react-icons/bi';
+import { ThemeContext } from '../styles/theme';
 
 // todo avoid any here
 type HTMLElementProps = DetailedHTMLProps<HTMLAttributes<any>, any>;
 
 export const Pre = ({ children: code }: HTMLElementProps) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const { theme, setTheme } = useContext(ThemeContext);
   const { children, className } = (code as ReactComponentElement<any>).props;
   const [showTick, setShowTick] = useState(false);
-
-  useLayoutEffect(() => {
-    const { theme } = document.body.dataset;
-    setDarkMode(theme === 'dark');
-  }, []);
-
   const [, language] = className?.split('-');
+
   return (
     <div
       css={css`
@@ -36,7 +33,7 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
       `}
     >
       <SyntaxHighlighter
-        style={!darkMode ? lightStyle : style}
+        style={theme !== 'dark' ? lightStyle : style}
         showLineNumbers
         css={(theme) => css`
           margin: 0.5rem 0;

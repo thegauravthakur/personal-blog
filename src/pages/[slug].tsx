@@ -16,21 +16,6 @@ interface HomeProps {
 }
 
 function Home({ code, frontmatter }: HomeProps) {
-  const { theme, setTheme } = useContext(ThemeContext);
-  const router = useRouter();
-
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') as Theme | null;
-    if (!storedTheme) {
-      const isDarkTheme = window.matchMedia(
-        '(prefers-color-scheme: dark)'
-      ).matches;
-      if (isDarkTheme && theme !== 'dark') setTheme('dark');
-      if (!isDarkTheme && theme !== 'light') setTheme('light');
-    } else {
-      if (storedTheme !== theme) setTheme(storedTheme);
-    }
-  }, [theme, setTheme]);
   return (
     <div className={''}>
       <Head>

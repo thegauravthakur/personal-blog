@@ -8,27 +8,29 @@ import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { menuAnimation, sun, moon, cross } from '../styles/animation';
 import { RiMoonFill } from 'react-icons/ri';
 import { useRouter } from 'next/router';
+import { ThemeContext } from '../styles/theme';
 
 export function Nav() {
   const router = useRouter();
-  const [darkMode, setDarkMode] = useState(false);
+  const { theme, setTheme } = useContext(ThemeContext);
   const [showMobileNav, setShowMobileNav] = useState(false);
   const [animate, setAnimate] = useState(false);
 
   const onThemeChange = () => {
-    const updatedTheme = !darkMode ? 'dark' : 'light';
-    setDarkMode(!darkMode);
+    const updatedTheme = theme === 'dark' ? 'light' : 'dark';
     document.body.dataset.theme = updatedTheme;
     localStorage.setItem('theme', updatedTheme);
+    setTheme(updatedTheme);
   };
   useLayoutEffect(() => {
     const { theme } = document.body.dataset;
-    setDarkMode(theme === 'dark');
-  }, []);
+    if (theme) setTheme(theme as 'light' | 'dark');
+  }, [setTheme]);
 
   useEffect(() => {
     setAnimate(true);
   }, []);
+  console.log('render');
 
   return (
     <header>
@@ -123,7 +125,7 @@ export function Nav() {
               onClick={onThemeChange}
             >
               Theme
-              {darkMode ? (
+              {theme === 'dark' ? (
                 <BsFillMoonFill
                   css={css`
                     animation: ease-out 0.3s ${moon};
@@ -160,7 +162,7 @@ export function Nav() {
               `}
             />
           )}
-          {darkMode ? (
+          {theme === 'dark' ? (
             <RiMoonFill
               onClick={onThemeChange}
               size={40}

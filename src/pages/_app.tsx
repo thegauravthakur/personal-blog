@@ -19,11 +19,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState<Theme>('dark');
 
   return (
-    <>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       <GlobalStyles />
       <Nav />
       <Component {...pageProps} />
-    </>
+    </ThemeContext.Provider>
   );
 }
 
