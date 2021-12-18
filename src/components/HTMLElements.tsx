@@ -1,14 +1,14 @@
-import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 // @ts-ignore //todo check this issue
 import style from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark-reasonable';
 import lightStyle from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light';
-import JavaScript from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   DetailedHTMLProps,
   HTMLAttributes,
   ReactComponentElement,
   useContext,
+  useEffect,
   useState,
 } from 'react';
 import { css } from '@emotion/react';
@@ -16,8 +16,6 @@ import Image from 'next/image';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import { BiCheck } from 'react-icons/bi';
 import { ThemeContext } from '../styles/theme';
-
-SyntaxHighlighter.registerLanguage('JavaScript', JavaScript);
 
 // todo avoid any here
 type HTMLElementProps = DetailedHTMLProps<HTMLAttributes<any>, any>;

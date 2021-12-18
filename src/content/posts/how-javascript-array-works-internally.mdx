@@ -79,7 +79,7 @@ Packed elements means that there are no holes (which we'll see later) in the
 array. It is the most performant kind of array in V8. It is also the default
 kind of array in V8.
 
-```JavaScript
+```javascript
 const foo = [1, 2, 3];
 // Packed Element
 ```
@@ -89,7 +89,7 @@ const foo = [1, 2, 3];
 Holey elements means that there are gaps in the array. It represents the sparse
 array. These type of array will not be as performant as the packed array.
 
-```JavaScript
+```javascript
 const foo = [1, 2, 3];
 foo[100] = 4;
 // Holey Element
@@ -99,7 +99,7 @@ foo[100] = 4;
 
 `SMI` means that the array is of type `Smi` which is a signed 32-bit integer.
 
-```JavaScript
+```javascript
 const foo = [1, 2, 3]; // element kind: PACKED_SMI_ELEMENTS
 
 const bar = [];
@@ -111,7 +111,7 @@ bar[100] = 4; // element kind: HOLEY_SMI_ELEMENTS
 `Double` means that there are one or more elements of type `Double` in the
 array.
 
-```JavaScript
+```javascript
 const foo = [1, 2.5, 3]; // element kind: PACKED_DOUBLE_ELEMENTS
 
 const bar = [];
@@ -123,7 +123,7 @@ bar[100] = 7.4 // element kind: HOLEY_DOUBLE_ELEMENTS
 The elements that are not of type `Smi` or `Double` are considered regular
 elements.
 
-```JavaScript
+```javascript
 const foo = [1, 2.5, 3, 'bar']; // element kind: PACKED_ELEMENTS
 
 const bar = [1, 2, 2.5];
@@ -133,7 +133,7 @@ bar[100] = 'foo' // element kind: HOLEY_ELEMENTS
 The `element kind` could also change dynamically as we add or remove elements
 from the array. Let's look at the below example for better understanding.
 
-```JavaScript
+```javascript
 const foo = []; // element kind: PACKED_SMI_ELEMENTS
 
 foo.push(1); // element kind: PACKED_SMI_ELEMENTS
@@ -168,7 +168,7 @@ vary a lot by just your usage of the array.
 
 ### Never access the array with out of bounds index
 
-```JavaScript
+```javascript
 const foo = [1, 2, 3];
 
 console.log(foo[100] ?? 'some placeholder'); // 'some placeholder'
@@ -183,7 +183,7 @@ it was before accessing the out of bound key.
 
 ### Avoid giving the initial capacity to the array
 
-```JavaScript
+```javascript
 const foo = new Array(3); // element kind: HOLEY_SMI_ELEMENTS
 
 foo[0] = 1;
@@ -195,7 +195,7 @@ This will create a `HOLEY_SMI_ELEMENTS` array with the initial capacity of 3.
 However, we are only storing `PACKED_SMI_ELEMENTS` elements. Why should we lose
 the optimizations of `PACKED_SMI_ELEMENTS`?
 
-```JavaScript
+```javascript
 const foo = []; // element kind: HOLEY_SMI_ELEMENTS
 
 foo[0] = 1;
