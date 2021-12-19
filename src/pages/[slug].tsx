@@ -2,18 +2,13 @@ import * as fs from 'fs';
 
 import path from 'path';
 import { bundleMDX } from 'mdx-bundler';
-import { BlogCanvas } from '../components/BlogCanvas';
-import Footer from '../components/Footer';
-import CustomHead from '../components/shared/components/CustomHead';
+import Footer from '../page-components/Footer';
+import CustomHead from '../page-components/shared/components/CustomHead';
 import { readdirSync } from 'fs';
+import { SlugProps } from '../page-components/slug/slug.types';
+import { ArticleCanvas } from '../page-components/slug/components/ArticleCanvas';
 
-interface HomeProps {
-  code: string;
-  frontmatter: { [p: string]: any };
-  targetImage: string;
-}
-
-function Home({ code, frontmatter, targetImage }: HomeProps) {
+function Home({ code, frontmatter, targetImage }: SlugProps) {
   const { metaDescription, title } = frontmatter;
   return (
     <div className={''}>
@@ -23,7 +18,7 @@ function Home({ code, frontmatter, targetImage }: HomeProps) {
         ogImage={`/images/${targetImage}`}
         ogImageAlt={'Image for ' + title}
       />
-      <BlogCanvas code={code} frontmatter={frontmatter} />
+      <ArticleCanvas code={code} frontmatter={frontmatter} />
       <Footer />
     </div>
   );

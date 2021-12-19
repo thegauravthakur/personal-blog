@@ -6,14 +6,14 @@ export type MetaData = {
   tags: string;
 };
 
-export interface Post {
+export interface Article {
   slug: string;
   imagePath: string;
   metaData: MetaData;
 }
 
 export interface HomeProps {
-  posts: Post[];
+  articles: Article[];
 }
 
 export enum MetaValues {

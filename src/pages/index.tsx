@@ -1,19 +1,19 @@
 import { readdirSync, readFileSync } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { Post as Article } from '../components/post';
-import Footer from '../components/Footer';
-import { Canvas, CanvasWrapper } from '../components/index';
+import { Post } from '../page-components/post';
+import Footer from '../page-components/Footer';
+import { Canvas, CanvasWrapper } from '../page-components/index';
 import {
   HomeProps,
   MetaData,
   MetaValues,
-  Post,
-} from '../components/index/Index.types';
-import { comparator } from '../components/index/utils';
-import CustomHead from '../components/shared/components/CustomHead';
+  Article,
+} from '../page-components/index/Index.types';
+import { comparator } from '../page-components/index/utils';
+import CustomHead from '../page-components/shared/components/CustomHead';
 
-function Home({ posts }: HomeProps) {
+function Home({ articles }: HomeProps) {
   return (
     <div>
       <CustomHead
@@ -24,13 +24,13 @@ function Home({ posts }: HomeProps) {
       />
       <CanvasWrapper>
         <Canvas>
-          {posts.map(({ slug, metaData, imagePath }: Post, index) => (
-            <Article
+          {articles.map(({ slug, metaData, imagePath }: Article, index) => (
+            <Post
               key={slug}
               slug={slug}
               data={metaData}
               imagePath={imagePath}
-              isLast={index === posts.length - 1}
+              isLast={index === articles.length - 1}
             />
           ))}
         </Canvas>
@@ -43,7 +43,7 @@ function Home({ posts }: HomeProps) {
 export default Home;
 
 export async function getStaticProps() {
-  const posts: Post[] = [];
+  const articles: Article[] = [];
   const filePaths = readdirSync('src/content/posts');
 
   for (const filePath of filePaths) {
@@ -64,7 +64,7 @@ export async function getStaticProps() {
 
     if (!targetImage) throw new Error('No image found');
 
-    posts.push({
+    articles.push({
       slug: fileName,
       imagePath: targetImage,
       metaData,
@@ -73,7 +73,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: posts.sort(comparator),
+      articles: articles.sort(comparator),
     },
   };
 }
