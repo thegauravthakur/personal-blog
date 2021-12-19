@@ -6,6 +6,9 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          {/*todo add these*/}
+          {/*<link rel='alternate icon' href='/favicon.ico' />*/}
+          {/*<link rel='mask-icon' href='/safari-pinned-tab.svg' color='#ff8a01' />*/}
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link
             rel='preconnect'

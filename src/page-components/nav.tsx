@@ -9,6 +9,8 @@ import { menuAnimation, sun, moon, cross } from '../styles/animation';
 import { RiMoonFill } from 'react-icons/ri';
 import { useRouter } from 'next/router';
 import { ThemeContext } from '../styles/theme';
+import Logo from './shared/components/Logo';
+import Head from 'next/head';
 
 export function Nav() {
   const router = useRouter();
@@ -34,6 +36,13 @@ export function Nav() {
 
   return (
     <header>
+      <Head>
+        <link
+          rel='icon'
+          type='image/svg+xml'
+          href={theme === 'light' ? '/darkFavicon.svg' : '/lightFavicon.svg'}
+        />
+      </Head>
       {animate && (
         <Global
           styles={css`
@@ -64,6 +73,9 @@ export function Nav() {
       >
         <h1
           css={(theme) => css`
+            display: flex;
+            align-items: center;
+            column-gap: 8px;
             font-size: 20px;
             transition: color 0.2s ease-out;
             cursor: pointer;
@@ -74,6 +86,7 @@ export function Nav() {
             }
           `}
         >
+          <Logo height={22} width={22} />
           <Link href='/'>Gaurav's Blog</Link>
         </h1>
         <div
