@@ -3,8 +3,8 @@ export const updateThemeFromLocalStorage = `
 		// Change these if you use something different in your hook.
 		var storageKey = "theme";
 
-		function setClassOnDocumentBody(darkMode) {
-			document.body.dataset.theme = darkMode ? "dark" : "light";
+		function updateThemeDataset(theme) {
+			document.body.dataset.theme = theme;
 		}
 
 		var preferDarkQuery = "(prefers-color-scheme: dark)";
@@ -16,18 +16,15 @@ export const updateThemeFromLocalStorage = `
 		} catch (err) {}
 		var localStorageExists = localStorageTheme !== null;
 
-		// Determine the source of truth
 		if (localStorageExists) {
-			// source of truth from localStorage
-			setClassOnDocumentBody(localStorageTheme === "dark");
+			updateThemeDataset(localStorageTheme);
 		} else if (supportsColorSchemeQuery) {
-			// source of truth from system
-			setClassOnDocumentBody(mql.matches);
-			localStorage.setItem(storageKey, mql.matches);
+			var systemTheme = mql.matches ? "dark" : "light";
+			updateThemeDataset(systemTheme);
+			localStorage.setItem(storageKey, systemTheme);
 		} else {
-			// source of truth from document.body
-			var isDarkMode = document.body.classList.contains(classNameDark);
-			localStorage.setItem(storageKey, JSON.stringify(isDarkMode));
+			var themeFromDataset = document.body.dataset.theme;
+			localStorage.setItem(storageKey, themeFromDataset);
 		}
 	})();
 `;
