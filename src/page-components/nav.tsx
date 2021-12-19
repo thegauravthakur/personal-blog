@@ -36,13 +36,6 @@ export function Nav() {
 
   return (
     <header>
-      <Head>
-        <link
-          rel='icon'
-          type='image/svg+xml'
-          href={theme === 'light' ? '/darkFavicon.svg' : '/lightFavicon.svg'}
-        />
-      </Head>
       {animate && (
         <Global
           styles={css`
