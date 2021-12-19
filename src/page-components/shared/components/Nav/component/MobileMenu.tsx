@@ -42,23 +42,31 @@ const StyledMobileMenu = styled.ul`
 `;
 
 const MobileMenu = ({ setShowMobileNav }: MobileMenu) => {
+  const hideMobileNav = () => {
+    setShowMobileNav(false);
+    document.body.style.overflow = 'auto';
+  };
   return (
     <StyledNav>
       <div css={headerWrapper}>
         <StyledHeader>Gaurav's Blog</StyledHeader>
         <AiOutlineClose
           css={closeIconStyles}
-          onClick={() => setShowMobileNav(false)}
+          onClick={hideMobileNav}
           size={40}
         />
       </div>
       <StyledMobileMenu>
-        <MobileMenuItem path={'/'} name={'Home'} onClick={() => {}} />
-        <MobileMenuItem path={'/contact'} name={'Contact'} onClick={() => {}} />
+        <MobileMenuItem path={'/'} name={'Home'} onClick={hideMobileNav} />
+        <MobileMenuItem
+          path={'/contact'}
+          name={'Contact'}
+          onClick={hideMobileNav}
+        />
         <MobileMenuItem
           path={'https://google.com'}
           name={'Portfolio'}
-          onClick={() => {}}
+          onClick={hideMobileNav}
         />
       </StyledMobileMenu>
     </StyledNav>

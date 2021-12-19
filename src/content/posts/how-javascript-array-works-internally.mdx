@@ -25,7 +25,9 @@ engines.
 
 Objects in JavaScript are responsible for holding the mapping between key-value
 pairs. These keys could be any random string. Even if we pass a number as a key,
-JavaScript will first coerce it to string.
+JavaScript will first
+[coerce](https://developer.mozilla.org/en-US/docs/Glossary/Type_coercion) it to
+string.
 
 ```JavaScript
 const foo = {
@@ -42,7 +44,7 @@ is linked to it. Same thing happens while accessing the value also. `12e2` will
 first be coerced to string and then foo will lookup for key `1200` and return
 `bar` value. But in the case of string literal `12e2`, no coercion occurs as a
 result it was not able to find any value with such key and therefore returns
-undefined.
+`undefined`.
 
 ## Arrays in JavaScript
 
@@ -58,11 +60,11 @@ categorizes them as `number` type but the underneath implementation cares a lot
 about type of elements being stored in the array. V8 engine tries its best to
 optimize the array. The operations that are performant for `int` data type can't
 be as much performed for string or double data type. To keep the track of stored
-elements in a array, V8 assigns a `element kind` to each array. V8 uses these
-`element kind` just to internally distinguish between the different type of
-arrays
+elements in a array and apply specific optimizations, V8 assigns a
+`element kind` to each array. V8 uses these `element kind` just to internally
+distinguish between the different type of arrays
 
-There are around 22 different `element kind` that V8 assigns to an array. Each
+There are around 22 different `element kind` that V8 can assign to an array. Each
 of them comes with a different performance optimizations. In this article we
 will consider these main `element kind` and later will look at some of the
 performance mistakes that we can avoid when it comes to arrays in JavaScript.
@@ -78,7 +80,7 @@ performance mistakes that we can avoid when it comes to arrays in JavaScript.
 
 Packed elements means that there are no holes (which we'll see later) in the
 array. It is the most performant kind of array in V8. It is also the default
-kind of array in V8.
+kind when we initialize an empty array.
 
 ```javascript
 const foo = [1, 2, 3];

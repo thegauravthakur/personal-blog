@@ -107,7 +107,7 @@ export const Code = ({ className, ...rest }: any) => {
           background-color: var(--information);
           padding: 0.125rem 0.25rem;
           border-radius: 0.375rem;
-          font-size: 0.875rem;
+          font-size: calc(1em - 10%) !important;
         `
       }
       {...rest}

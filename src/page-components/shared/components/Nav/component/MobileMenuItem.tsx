@@ -19,6 +19,7 @@ export const MobileMenuItem = ({
   return (
     <Link href={path} passHref>
       <li
+        onClick={onClick}
         css={[
           router.pathname === path &&
             css`

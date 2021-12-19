@@ -80,7 +80,10 @@ export function Nav() {
           </StyledToolbox>
           {!showMobileNav && (
             <AiOutlineMenu
-              onClick={() => setShowMobileNav(!showMobileNav)}
+              onClick={() => {
+                setShowMobileNav(!showMobileNav);
+                document.body.style.overflow = 'hidden';
+              }}
               size={38}
               css={burgerMenuStyles}
             />
