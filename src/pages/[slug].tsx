@@ -2,25 +2,27 @@ import * as fs from 'fs';
 
 import path from 'path';
 import { bundleMDX } from 'mdx-bundler';
-import { Nav } from '../components/nav';
 import { BlogCanvas } from '../components/BlogCanvas';
-import { useContext, useEffect } from 'react';
-import { Theme, ThemeContext } from '../styles/theme';
 import Footer from '../components/Footer';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
+import CustomHead from '../components/shared/components/CustomHead';
+import { readdirSync } from 'fs';
 
 interface HomeProps {
   code: string;
   frontmatter: { [p: string]: any };
+  targetImage: string;
 }
 
-function Home({ code, frontmatter }: HomeProps) {
+function Home({ code, frontmatter, targetImage }: HomeProps) {
+  const { metaDescription, title } = frontmatter;
   return (
     <div className={''}>
-      <Head>
-        <title>{frontmatter.title}</title>
-      </Head>
+      <CustomHead
+        metaDescription={metaDescription}
+        metaTitle={title}
+        ogImage={`/images/${targetImage}`}
+        ogImageAlt={'Image for ' + title}
+      />
       <BlogCanvas code={code} frontmatter={frontmatter} />
       <Footer />
     </div>
@@ -33,10 +35,16 @@ export async function getStaticProps(context: any) {
     path.join('src/content/posts', `${slug}.mdx`),
     'utf-8'
   );
+  const imagePaths = readdirSync('public/images');
+
+  const targetImage = imagePaths.find((image) => image.split('.')[0] === slug);
+  if (!targetImage) {
+    throw new Error('No image found');
+  }
   const { code, frontmatter } = await bundleMDX({ source: files });
 
   return {
-    props: { code, frontmatter }, // will be passed to the page component as props
+    props: { code, frontmatter, targetImage }, // will be passed to the page component as props
   };
 }
 

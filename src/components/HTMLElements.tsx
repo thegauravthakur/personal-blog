@@ -8,7 +8,6 @@ import {
   HTMLAttributes,
   ReactComponentElement,
   useContext,
-  useEffect,
   useState,
 } from 'react';
 import { css } from '@emotion/react';
@@ -35,7 +34,7 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
       <SyntaxHighlighter
         style={theme !== 'dark' ? lightStyle : style}
         showLineNumbers
-        css={(theme) => css`
+        css={css`
           margin: 0.5rem 0;
           border-radius: 10px;
           border: 1px solid var(--information);
@@ -168,6 +167,30 @@ export const H3 = ({ children }: HTMLElementProps) => {
         #
       </a>
     </h3>
+  );
+};
+
+export const H4 = ({ children }: HTMLElementProps) => {
+  const anchor = getAnchor(children as string);
+  const link = `#${anchor}`;
+  return (
+    <h4
+      css={css`
+        scroll-margin-top: 1.2rem;
+      `}
+      id={anchor}
+    >
+      {children}
+      <a
+        css={css`
+          font-size: 15px;
+          margin: 0 10px;
+        `}
+        href={link}
+      >
+        #
+      </a>
+    </h4>
   );
 };
 

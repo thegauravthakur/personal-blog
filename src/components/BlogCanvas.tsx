@@ -1,13 +1,17 @@
 import { useMemo } from 'react';
-import Image from 'next/image';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { css, Global } from '@emotion/react';
-import { Code, H2, Pre, Img, H3 } from './HTMLElements';
-import fs from 'fs';
-import path from 'path';
+import { Code, H2, Pre, Img, H3, H4 } from './HTMLElements';
 import { bundleMDX } from 'mdx-bundler';
 import { format } from 'date-fns';
-import { HiMoon } from 'react-icons/hi';
+import {
+  FaCopy,
+  FaFacebookF,
+  FaHeart,
+  FaTwitter,
+  FaWhatsapp,
+} from 'react-icons/fa';
+import SocialShare from './shared/components/SocialShare';
 interface HomeProps {
   code: string;
   frontmatter: { [p: string]: any };
@@ -17,7 +21,7 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
   const Component = useMemo(() => getMDXComponent(code), [code]);
   return (
     <main
-      css={(theme) => css`
+      css={css`
         max-width: 800px;
         margin: 70px auto;
         padding: 30px;
@@ -113,9 +117,11 @@ export function BlogCanvas({ code, frontmatter }: HomeProps) {
           code: Code,
           h2: H2,
           h3: H3,
+          h4: H4,
           img: Img,
         }}
       />
+      <SocialShare title={frontmatter.title} />
     </main>
   );
 }

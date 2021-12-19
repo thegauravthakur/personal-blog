@@ -4,13 +4,14 @@ publishedDate: 12/17/2021
 author: Gaurav Thakur
 tags: JavaScript
 description:
-  JavaScript is a very flexible programming language. It provides you with many
-  pre-implemented helper methods which you can't find in any other language. In
-  this article, I would try to list down all the important array methods in
-  JavaScript
+  Objects in JavaScript are responsible for holding the mapping between
+  key-value pairs. Arrays are a type of object in JavaScript but with only
+  numeric keys. Let us see how JavaScript engine optimizes these special objects
+  with purely numeric keys
 metaDescription:
-  Who is Gaurav Thakur? Let me take you to the journey of my life. This will
-  give you a clear idea of how I got into programming
+  Arrays are a type of object in JavaScript but with only numeric keys. Let us
+  see how JavaScript engine optimizes these special objects with purely numeric
+  keys
 ---
 
 ## Introduction
@@ -115,7 +116,7 @@ array.
 const foo = [1, 2.5, 3]; // element kind: PACKED_DOUBLE_ELEMENTS
 
 const bar = [];
-bar[100] = 7.4 // element kind: HOLEY_DOUBLE_ELEMENTS
+bar[100] = 7.4; // element kind: HOLEY_DOUBLE_ELEMENTS
 ```
 
 #### Packed/Holey Elements
@@ -127,7 +128,7 @@ elements.
 const foo = [1, 2.5, 3, 'bar']; // element kind: PACKED_ELEMENTS
 
 const bar = [1, 2, 2.5];
-bar[100] = 'foo' // element kind: HOLEY_ELEMENTS
+bar[100] = 'foo'; // element kind: HOLEY_ELEMENTS
 ```
 
 The `element kind` could also change dynamically as we add or remove elements
@@ -206,3 +207,9 @@ foo[2] = 3; // element kind: PACKED_SMI_ELEMENTS
 Instead of giving the initial capacity to the array we can just create a empty
 array and push the elements to it. This will ensure the `element kind` is the
 same
+
+## Conclusion
+
+So this was the quick deep dive into how V8 engine internally handles arrays. At
+the end we also discuss some of the tips to make your array performant. If you
+like this article, please share it with your friends.

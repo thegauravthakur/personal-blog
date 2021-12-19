@@ -17,6 +17,7 @@ const CustomHead = ({
   metaTitle,
 }: CustomHeadProps) => {
   const router = useRouter();
+  const currentUrl = Constant.url + router.asPath === '/' ? '' : router.asPath;
   return (
     <Head>
       <title>Gaurav's Blog</title>
@@ -26,19 +27,20 @@ const CustomHead = ({
       <meta property='og:type' content='website' />
       <meta property='og:image' content={Constant.url + ogImage} />
       <meta property='og:image:alt' content={ogImageAlt} />
+      <meta property='og:site_name' content="Gaurav's Blog" />
       <meta property='og:image:width' content='3200' />
       <meta property='og:image:height' content='1800' />
+      <meta property='og:url' content={currentUrl} />
+      {/*twitter start*/}
       <meta name='twitter:card' content='summary_large_image' />
       <meta name='twitter:creator' content='@gauravcodes' />
       <meta name='twitter:title' content={metaTitle} />
       <meta name='twitter:description' content={MetaValues.description} />
       <meta name='twitter:image' content={Constant.url + ogImage} />
-      <link
-        rel='canonical'
-        href={`https://blog.gauravthakur.in${
-          router.asPath === '/' ? '' : router.asPath
-        }`}
-      />
+      <meta property='twitter:url' content={currentUrl} />
+      <meta name='twitter:image:alt' content={ogImageAlt} />
+      {/*twitter end*/}
+      <link rel='canonical' href={currentUrl} />
     </Head>
   );
 };
