@@ -24,11 +24,13 @@ export const MobileMenuItem = ({
           router.pathname === path &&
             css`
               color: var(--primary-main);
-              font-weight: bold;
-              display: flex;
-              align-items: center;
-              padding: 6px 0;
             `,
+          css`
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            padding: 6px 0;
+          `,
         ]}
       >
         <MdOutlineKeyboardArrowRight size={22} />

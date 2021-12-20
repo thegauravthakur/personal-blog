@@ -14,6 +14,7 @@ import {
   StyledNav,
   StyledToolbox,
   ToolboxItem,
+  ToolBoxItemLink,
 } from './component/StyledComponents';
 import {
   burgerMenuStyles,
@@ -47,14 +48,26 @@ export function Nav() {
     <header>
       {animate && <ThemeTransition />}
       <StyledNav>
-        <StyledHeader>
-          <Logo height={22} width={22} />
-          <Link href='/'>Gaurav's Blog</Link>
-        </StyledHeader>
+        <h1>
+          <Link href='/' passHref>
+            <StyledHeader>
+              <Logo height={22} width={22} />
+              Gaurav's Blog
+            </StyledHeader>
+          </Link>
+        </h1>
         <div css={ToolboxWrapper}>
           <StyledToolbox>
-            <ToolboxItem>Home</ToolboxItem>
-            <ToolboxItem>Portfolio</ToolboxItem>
+            <ToolboxItem>
+              <Link href={'/'} passHref>
+                <ToolBoxItemLink>Home</ToolBoxItemLink>
+              </Link>
+            </ToolboxItem>
+            <ToolboxItem>
+              <Link href={'https://gauravthakur.in'} passHref>
+                <ToolBoxItemLink>Portfolio</ToolBoxItemLink>
+              </Link>
+            </ToolboxItem>
             <ToolboxItem
               css={css`
                 column-gap: 10px;

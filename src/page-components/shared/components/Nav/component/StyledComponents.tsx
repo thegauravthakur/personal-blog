@@ -18,18 +18,16 @@ export const StyledNav = styled.nav`
   }
 `;
 
-export const StyledHeader = styled.h1`
+export const StyledHeader = styled.a`
   display: flex;
   align-items: center;
   column-gap: 8px;
+  font-weight: inherit;
+  color: var(--title-main);
+  text-decoration: none;
   font-size: 20px;
   transition: color 0.2s ease-out;
   cursor: pointer;
-
-  & a {
-    color: var(--title-main);
-    text-decoration: none;
-  }
 `;
 
 export const StyledToolbox = styled.ul`
@@ -58,4 +56,12 @@ export const ToolboxItem = styled.li`
   &:hover {
     border-bottom: 5px solid var(--link-main);
   }
+`;
+
+export const ToolBoxItemLink = styled.a`
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  display: flex;
+  align-items: center;
 `;
