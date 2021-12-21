@@ -3,6 +3,7 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import { format } from 'date-fns';
 import SocialShare from '../../../shared/components/SocialShare';
 import { ArticleCanvasProps } from './ArticleCanvas.types';
+import Image from 'next/image';
 import {
   articleCanvasStyles,
   defaultStyles,
@@ -12,6 +13,7 @@ import {
   gutterWrapperStyles,
 } from './ArticleCanvas.styles';
 import { elementComponentMapping } from './utils';
+import { css } from '@emotion/react';
 
 export function ArticleCanvas({ code, frontmatter }: ArticleCanvasProps) {
   const ArticleContent = useMemo(() => getMDXComponent(code), [code]);
@@ -20,18 +22,20 @@ export function ArticleCanvas({ code, frontmatter }: ArticleCanvasProps) {
     'LLL do, yyyy'
   );
   return (
-    <main css={[defaultStyles, articleCanvasStyles]}>
-      <header css={headerStyles}>
-        <h1 css={headingStyles}>{frontmatter.title}</h1>
-        <div css={gutterWrapperStyles}>
-          <StyledGutter>
-            <p>{publishedDate}</p>
-            <p>{frontmatter.author}</p>
-          </StyledGutter>
-        </div>
-      </header>
-      <ArticleContent components={elementComponentMapping} />
-      <SocialShare title={frontmatter.title} />
-    </main>
+    <div>
+      <main css={[defaultStyles, articleCanvasStyles]}>
+        <header css={headerStyles}>
+          <h1 css={headingStyles}>{frontmatter.title}</h1>
+          <div css={gutterWrapperStyles}>
+            <StyledGutter>
+              <p>{publishedDate}</p>
+              <p>{frontmatter.author}</p>
+            </StyledGutter>
+          </div>
+        </header>
+        <ArticleContent components={elementComponentMapping} />
+        <SocialShare title={frontmatter.title} />
+      </main>
+    </div>
   );
 }
