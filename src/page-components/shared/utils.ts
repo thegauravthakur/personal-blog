@@ -1,3 +1,4 @@
 export enum Constant {
-  url = 'https://beta-blog.gauravthakur.in',
+  url = 'https://blog.gauravthakur.in',
+  portfolio = 'https://gauravthakur.in',
 }

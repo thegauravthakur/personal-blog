@@ -5,6 +5,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { closeIconStyles } from '../Nav.styles';
 import styled from '@emotion/styled';
 import { MobileMenuItem } from './MobileMenuItem';
+import { Constant } from '../../../utils';
 
 interface MobileMenu {
   setShowMobileNav: Dispatch<React.SetStateAction<boolean>>;
@@ -64,7 +65,7 @@ const MobileMenu = ({ setShowMobileNav }: MobileMenu) => {
           onClick={hideMobileNav}
         />
         <MobileMenuItem
-          path={'https://gauravthakur.in'}
+          path={Constant.portfolio}
           name={'Portfolio'}
           onClick={hideMobileNav}
         />

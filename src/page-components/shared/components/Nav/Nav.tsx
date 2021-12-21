@@ -23,6 +23,7 @@ import {
   ToolboxWrapper,
 } from './Nav.styles';
 import MobileMenu from './component/MobileMenu';
+import { Constant } from '../../utils';
 
 export function Nav() {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -64,7 +65,7 @@ export function Nav() {
               </Link>
             </ToolboxItem>
             <ToolboxItem>
-              <Link href={'https://gauravthakur.in'} passHref>
+              <Link href={Constant.portfolio} passHref>
                 <ToolBoxItemLink>Portfolio</ToolBoxItemLink>
               </Link>
             </ToolboxItem>
