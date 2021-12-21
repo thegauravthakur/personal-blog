@@ -8,8 +8,11 @@ import {
   FaWhatsapp,
 } from 'react-icons/fa';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import { BiCheck } from 'react-icons/bi';
+import { fadeAnimation } from '../../../styles/animation';
 
 const SocialShare = ({ title }: { title: string }) => {
+  const [copySuccess, setCopySuccess] = useState(false);
   const [url, setUrl] = useState('');
   useEffect(() => {
     setUrl(window.location.href);
@@ -104,7 +107,15 @@ const SocialShare = ({ title }: { title: string }) => {
         >
           <FaWhatsapp />
         </button>
-        <CopyToClipboard text={url}>
+        <CopyToClipboard
+          onCopy={() => {
+            setCopySuccess(true);
+            setTimeout(() => {
+              setCopySuccess(false);
+            }, 2000);
+          }}
+          text={url}
+        >
           <button
             css={css`
               padding: 8px 0;
@@ -116,9 +127,22 @@ const SocialShare = ({ title }: { title: string }) => {
               display: flex;
               justify-content: center;
               align-items: center;
+              position: relative;
             `}
           >
-            <FaCopy />
+            {copySuccess ? (
+              <BiCheck
+                css={css`
+                  animation: ease-in ${fadeAnimation} 0.3s;
+                `}
+              />
+            ) : (
+              <FaCopy
+                css={css`
+                  animation: ease-in ${fadeAnimation} 0.3s;
+                `}
+              />
+            )}
           </button>
         </CopyToClipboard>
       </div>

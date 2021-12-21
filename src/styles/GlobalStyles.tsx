@@ -42,7 +42,7 @@ export const GlobalStyles = () => {
         body[data-theme='dark'] {
           --background-dark: #000000;
           --background-main: #161b22;
-          --background-light: #000000;
+          --background-light: #282c34;
           --text-dark: #6b7280;
           --text-dim: #b7bcbe;
           --text-main: rgba(203, 213, 225, 0.9);

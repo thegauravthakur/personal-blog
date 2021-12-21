@@ -15,6 +15,7 @@ import Image from 'next/image';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import { BiCheck } from 'react-icons/bi';
 import { ThemeContext } from '../styles/theme';
+import { fadeAnimation } from '../styles/animation';
 
 // todo avoid any here
 type HTMLElementProps = DetailedHTMLProps<HTMLAttributes<any>, any>;
@@ -71,6 +72,7 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
             <MdOutlineContentCopy
               css={() => css`
                 color: var(--text-dark);
+                animation: ease-in ${fadeAnimation} 0.3s;
               `}
             />
           </div>
@@ -85,6 +87,7 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
             padding: 6px;
             transition: background-color 0.5s ease-out;
             cursor: pointer;
+            animation: ease-in ${fadeAnimation} 0.3s;
             &:hover {
               background-color: var(--information);
             }

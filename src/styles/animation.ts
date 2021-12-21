@@ -46,3 +46,12 @@ export const headerIcon = keyframes`
     transform: rotate(360deg);
   }
 `;
+
+export const fadeAnimation = keyframes`
+    0% {
+      opacity: 0;
+    }
+       100% {
+      opacity: 1;
+    }
+`;
