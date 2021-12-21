@@ -64,7 +64,7 @@ const MobileMenu = ({ setShowMobileNav }: MobileMenu) => {
           onClick={hideMobileNav}
         />
         <MobileMenuItem
-          path={'https://google.com'}
+          path={'https://gauravthakur.in'}
           name={'Portfolio'}
           onClick={hideMobileNav}
         />

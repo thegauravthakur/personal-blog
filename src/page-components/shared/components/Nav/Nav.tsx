@@ -26,7 +26,7 @@ import MobileMenu from './component/MobileMenu';
 
 export function Nav() {
   const { theme, setTheme } = useContext(ThemeContext);
-  const [showMobileNav, setShowMobileNav] = useState(false);
+  const [showMobileNav, setShowMobileNav] = useState(true);
   const [animate, setAnimate] = useState(false);
 
   const onThemeChange = () => {
