@@ -97,6 +97,8 @@ export function Post({ slug, data, imagePath, isLast }: any) {
           `}
         >
           <Image
+            role={'presentation'}
+            onClick={undefined}
             css={css`
               border-radius: 10px;
             `}
