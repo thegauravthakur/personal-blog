@@ -117,6 +117,7 @@ const SocialShare = ({ title }: { title: string }) => {
           text={url}
         >
           <button
+            title='Copy!'
             css={css`
               padding: 8px 0;
               border-radius: 5px;
