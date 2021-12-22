@@ -28,21 +28,41 @@ const Footer = () => {
             transition: background-color 0.5s ease-out;
             margin: 10px 0;
           }
-          & > *:hover {
+          & > *:hover,
+          *:focus {
             background-color: var(--information);
+            outline: 0;
           }
         `}
       >
         <AiOutlineTwitter
+          tabIndex={0}
           onClick={() => window.open('https://gauravthakur.in/social/twitter')}
+          onKeyDown={({ key }) => {
+            if (key === 'Enter') {
+              window.open('https://gauravthakur.in/social/twitter');
+            }
+          }}
           size={50}
         />
         <AiFillLinkedin
+          tabIndex={0}
           onClick={() => window.open('https://gauravthakur.in/social/linkedin')}
+          onKeyDown={({ key }) => {
+            if (key === 'Enter') {
+              window.open('https://gauravthakur.in/social/linkedin');
+            }
+          }}
           size={50}
         />
         <MdEmail
+          tabIndex={0}
           onClick={() => window.open('https://gauravthakur.in/social/email')}
+          onKeyDown={({ key }) => {
+            if (key === 'Enter') {
+              window.open('https://gauravthakur.in/social/email');
+            }
+          }}
           size={50}
         />
       </div>

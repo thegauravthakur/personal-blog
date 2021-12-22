@@ -28,6 +28,10 @@ export const StyledHeader = styled.a`
   font-size: 20px;
   transition: color 0.2s ease-out;
   cursor: pointer;
+  &:focus-within {
+    outline: 3px dotted var(--primary-main);
+    outline-offset: 3px;
+  }
 `;
 
 export const StyledToolbox = styled.ul`
@@ -52,16 +56,20 @@ export const ToolboxItem = styled.li`
   border-bottom: 5px solid transparent;
   border-top: 5px solid transparent;
   transition: border-bottom-color 0.2s ease-in;
-
-  &:hover {
+  &:hover,
+  &:focus-within {
     border-bottom: 5px solid var(--link-main);
+    outline: none;
   }
 `;
 
 export const ToolBoxItemLink = styled.a`
   text-decoration: none;
   color: inherit;
+  outline: none;
   height: 100%;
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: center;
 `;

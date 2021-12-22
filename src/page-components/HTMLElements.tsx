@@ -54,9 +54,11 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
           }}
           text={children}
         >
-          <div
+          <button
             css={css`
               position: absolute;
+              background-color: transparent;
+              border: 0;
               border-radius: 50px;
               display: flex;
               bottom: 4px;
@@ -64,8 +66,10 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
               padding: 10px;
               transition: background-color 0.5s ease-out;
               cursor: pointer;
-              &:hover {
+              &:hover,
+              &:focus {
                 background-color: var(--information);
+                outline: none;
               }
             `}
           >
@@ -75,7 +79,7 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
                 animation: ease-in ${fadeAnimation} 0.3s;
               `}
             />
-          </div>
+          </button>
         </CopyToClipboard>
       ) : (
         <BiCheck

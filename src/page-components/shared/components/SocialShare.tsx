@@ -59,6 +59,11 @@ const SocialShare = ({ title }: { title: string }) => {
             display: flex;
             justify-content: center;
             align-items: center;
+            outline: 0;
+            &:focus {
+              outline: 2px solid var(--primary-main);
+              outline-offset: 3px;
+            }
           `}
         >
           <FaFacebookF />
@@ -81,6 +86,11 @@ const SocialShare = ({ title }: { title: string }) => {
             display: flex;
             justify-content: center;
             align-items: center;
+            outline: 0;
+            &:focus {
+              outline: 2px solid var(--primary-main);
+              outline-offset: 3px;
+            }
           `}
         >
           <FaTwitter />
@@ -103,6 +113,11 @@ const SocialShare = ({ title }: { title: string }) => {
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            outline: 0;
+            &:focus {
+              outline: 2px solid var(--primary-main);
+              outline-offset: 3px;
+            }
           `}
         >
           <FaWhatsapp />
@@ -129,6 +144,11 @@ const SocialShare = ({ title }: { title: string }) => {
               justify-content: center;
               align-items: center;
               position: relative;
+              outline: 0;
+              &:focus {
+                outline: 2px solid var(--primary-main);
+                outline-offset: 3px;
+              }
             `}
           >
             {copySuccess ? (

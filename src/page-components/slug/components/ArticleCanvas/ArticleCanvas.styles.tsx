@@ -20,6 +20,10 @@ export const defaultStyles = css`
     &:hover {
       text-decoration: var(--link-main);
     }
+    &:focus {
+      outline: 3px dotted var(--primary-main);
+      outline-offset: 3px;
+    }
   }
   ul,
   ol {

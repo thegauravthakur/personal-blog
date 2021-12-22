@@ -70,6 +70,12 @@ export function Nav() {
               </Link>
             </ToolboxItem>
             <ToolboxItem
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  onThemeChange();
+                }
+              }}
+              tabIndex={0}
               css={css`
                 column-gap: 10px;
               `}
