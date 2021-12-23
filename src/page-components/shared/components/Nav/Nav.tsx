@@ -24,6 +24,7 @@ import {
 } from './Nav.styles';
 import MobileMenu from './component/MobileMenu';
 import { Constant } from '../../utils';
+import tw from 'twin.macro';
 
 export function Nav() {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -33,6 +34,9 @@ export function Nav() {
   const onThemeChange = () => {
     const updatedTheme = theme === 'dark' ? 'light' : 'dark';
     document.body.dataset.theme = updatedTheme;
+    if (updatedTheme === 'light')
+      document.documentElement.classList.remove('dark');
+    else document.documentElement.classList.add('dark');
     localStorage.setItem('theme', updatedTheme);
     setTheme(updatedTheme);
   };
@@ -44,6 +48,9 @@ export function Nav() {
   useEffect(() => {
     setAnimate(true);
   }, []);
+  const focusStyles = css({
+    '&:focus-within': tw`outline-width[3px] outline-style[dotted] outline-offset[3px] outline-color[var(--primary-main)]`,
+  });
 
   return (
     <header>
@@ -51,10 +58,15 @@ export function Nav() {
       <StyledNav>
         <h1>
           <Link href='/' passHref>
-            <StyledHeader>
+            <a
+              css={[
+                tw`flex items-center gap-x-2 no-underline text-xl text-rose-700 dark:text-gray-300 transition-colors ease-in duration-100`,
+                focusStyles,
+              ]}
+            >
               <Logo height={22} width={22} />
               Gaurav's Blog
-            </StyledHeader>
+            </a>
           </Link>
         </h1>
         <div css={ToolboxWrapper}>

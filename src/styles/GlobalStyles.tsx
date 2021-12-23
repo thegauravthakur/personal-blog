@@ -1,4 +1,9 @@
 import { css, Global } from '@emotion/react';
+export const focusStyles = css`
+  &:focus {
+    outline: none;
+  }
+`;
 export const GlobalStyles = () => {
   return (
     <Global

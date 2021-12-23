@@ -5,6 +5,9 @@ export const updateThemeFromLocalStorage = `
 
 		function updateThemeDataset(theme) {
 			document.body.dataset.theme = theme;
+			if (theme === 'light')
+				document.documentElement.classList.remove('dark')
+				else document.documentElement.classList.add('dark')
 		}
 
 		var preferDarkQuery = "(prefers-color-scheme: dark)";
