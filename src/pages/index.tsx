@@ -12,6 +12,11 @@ import {
 } from '../page-components/index/Index.types';
 import { comparator } from '../page-components/index/utils';
 import CustomHead from '../page-components/shared/components/CustomHead';
+import tw from 'twin.macro';
+
+export const textStyle = tw`dark:text-gray-400 text-current`;
+export const backgroundStyle = tw`dark:bg-background-800 bg-gray-50`;
+export const hoverStyles = tw`cursor-pointer hocus:dark:bg-gray-800 hocus:bg-rose-100`;
 
 function Home({ articles }: HomeProps) {
   return (
@@ -22,8 +27,15 @@ function Home({ articles }: HomeProps) {
         ogImage={'/images/og-default.png'}
         ogImageAlt={"Banner Image for Gaurav's Blog"}
       />
-      <CanvasWrapper>
-        <Canvas>
+      <div
+        css={[textStyle, tw`flex justify-center my-6 md:my-8 lg:my-10 mx-auto`]}
+      >
+        <div
+          css={[
+            backgroundStyle,
+            tw`flex-1 rounded-lg max-w-[1200px] mx-0 py-10 px-5 my-7 md:(mx-5 px-5) lg:(m-7 p-10)`,
+          ]}
+        >
           {articles.map(({ slug, metaData, imagePath }: Article, index) => (
             <Post
               key={slug}
@@ -33,8 +45,8 @@ function Home({ articles }: HomeProps) {
               isLast={index === articles.length - 1}
             />
           ))}
-        </Canvas>
-      </CanvasWrapper>
+        </div>
+      </div>
       <Footer />
     </div>
   );
