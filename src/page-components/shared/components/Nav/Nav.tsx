@@ -94,15 +94,11 @@ export function Nav() {
               Theme
               {theme === 'dark' ? (
                 <BsFillMoonFill
-                  css={css`
-                    animation: ease-out 0.3s ${moon};
-                  `}
+                  css={[{ animation: `ease-out 0.3s ${moon}` }]}
                 />
               ) : (
                 <BsSunFill
-                  css={css`
-                    animation: ease-out 0.3s ${sun};
-                  `}
+                  css={[{ animation: `ease-out 0.3s ${sun}` }]}
                   size={20}
                 />
               )}
@@ -127,14 +123,14 @@ export function Nav() {
               tabIndex={0}
               onClick={onThemeChange}
               size={40}
-              css={[mobileIconStyles]}
+              css={[mobileIconStyles, { animation: 'ease-out 0.3s ' + moon }]}
             />
           ) : (
             <BsSunFill
               tabIndex={0}
               size={40}
               onClick={onThemeChange}
-              css={mobileIconStyles}
+              css={[mobileIconStyles, { animation: 'ease-out 0.3s ' + sun }]}
             />
           )}
         </div>

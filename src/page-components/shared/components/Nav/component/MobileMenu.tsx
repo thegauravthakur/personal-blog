@@ -1,11 +1,11 @@
 import React, { Dispatch } from 'react';
 import { css } from '@emotion/react';
-import { menuAnimation } from '../../../../../styles/animation';
+import { cross, menuAnimation } from '../../../../../styles/animation';
 import { AiOutlineClose } from 'react-icons/ai';
-import { closeIconStyles } from '../Nav.styles';
 import styled from '@emotion/styled';
 import { MobileMenuItem } from './MobileMenuItem';
 import { Constant } from '../../../utils';
+import tw from 'twin.macro';
 
 interface MobileMenu {
   setShowMobileNav: Dispatch<React.SetStateAction<boolean>>;
@@ -42,22 +42,33 @@ const StyledMobileMenu = styled.ul`
   list-style: none;
 `;
 
+const colorBackground = tw`dark:(bg-background-800 text-gray-400) bg-gray-50 text-current`;
+
 const MobileMenu = ({ setShowMobileNav }: MobileMenu) => {
   const hideMobileNav = () => {
     setShowMobileNav(false);
     document.body.style.overflow = 'auto';
   };
   return (
-    <StyledNav>
+    <nav
+      css={[
+        colorBackground,
+        tw`fixed top-2.5 left-0 right-0 width[98%] mx-auto border-2 border-solid border-gray-400 p-5 rounded-2xl z-10`,
+        { animation: '0.5s ' + menuAnimation },
+      ]}
+    >
       <div css={headerWrapper}>
-        <StyledHeader>Gaurav's Blog</StyledHeader>
+        <h1 css={tw`text-lg text-current dark:text-gray-400`}>Gaurav's Blog</h1>
         <AiOutlineClose
-          css={closeIconStyles}
+          css={[
+            tw`p-2.5 rounded-full cursor-pointer transition-colors ease-in duration-300 dark:hocus:bg-gray-800 hocus:(bg-rose-100)`,
+            { animation: `ease-out 0.7s ${cross}` },
+          ]}
           onClick={hideMobileNav}
           size={40}
         />
       </div>
-      <StyledMobileMenu>
+      <ul css={tw`list-none`}>
         <MobileMenuItem path={'/'} name={'Home'} onClick={hideMobileNav} />
         <MobileMenuItem
           path={'/contact'}
@@ -69,8 +80,8 @@ const MobileMenu = ({ setShowMobileNav }: MobileMenu) => {
           name={'Portfolio'}
           onClick={hideMobileNav}
         />
-      </StyledMobileMenu>
-    </StyledNav>
+      </ul>
+    </nav>
   );
 };
 

@@ -1,34 +1,13 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
-import styled from '@emotion/styled';
+import tw from 'twin.macro';
 
 interface MobileMenuItemProps {
   path: string;
   name: string;
   onClick: () => void;
 }
-
-const MobileNavLinkItem = styled.a`
-  display: flex;
-  align-items: center;
-  color: inherit;
-  text-decoration: none;
-`;
-
-interface MobileNavItemProps {
-  path: string;
-  pathname: string;
-}
-
-const MobileNavItem = styled.li`
-  color: ${(props: MobileNavItemProps) =>
-    props.pathname === props.path ? 'var(--primary-main)' : 'inherit'};
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  padding: 6px 0;
-`;
 
 export const MobileMenuItem = ({
   name,
@@ -38,13 +17,21 @@ export const MobileMenuItem = ({
   const { pathname } = useRouter();
 
   return (
-    <MobileNavItem path={path} pathname={pathname}>
+    <li
+      css={[
+        tw`flex items-center py-1.5 dark:text-gray-400 text-current`,
+        path === pathname && tw`dark:text-blue-600 text-rose-600 font-bold`,
+      ]}
+    >
       <Link href={path} passHref>
-        <MobileNavLinkItem onClick={onClick}>
+        <a
+          css={tw`flex items-center dark:text-gray-400 text-current no-underline`}
+          onClick={onClick}
+        >
           <MdOutlineKeyboardArrowRight size={22} />
           {name}
-        </MobileNavLinkItem>
+        </a>
       </Link>
-    </MobileNavItem>
+    </li>
   );
 };
