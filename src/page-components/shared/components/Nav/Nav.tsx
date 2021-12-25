@@ -16,7 +16,7 @@ import tw from 'twin.macro';
 export const focusStyles = css({
   '&:focus-within': tw`outline-width[3px] outline-style[dotted] outline-offset[3px] outline-color[var(--primary-main)]`,
 });
-const listStyle = tw`min-w-[100px] flex justify-center items-center h-full cursor-pointer text-center border-solid border-0 border-t-[5px] border-b-[5px] border-transparent hover:border-b-red-600 hover:dark:border-b-blue-600 transition-colors ease-in duration-100`;
+const listStyle = tw`min-w-[100px] flex justify-center items-center h-full cursor-pointer text-center border-solid border-0 border-t-[5px] border-b-[5px] border-transparent focus-within:(border-b-red-600 dark:border-b-blue-600) hocus:border-b-red-600 hocus:dark:border-b-blue-600 transition-colors ease-in duration-100`;
 const menuItemStyle = tw`no-underline text-current outline-none h-full flex items-center w-full justify-center`;
 const mobileIconStyles = tw`md:hidden dark:text-gray-400 inline-block text-current self-center p-2.5 rounded-full cursor-pointer transition-colors ease-in duration-300 dark:hocus:bg-gray-800 hocus:(bg-rose-100)`;
 
@@ -59,7 +59,7 @@ export function Nav() {
                 focusStyles,
               ]}
             >
-              <Logo height={22} width={22} />
+              <Logo theme={theme} height={22} width={22} />
               Gaurav's Blog
             </a>
           </Link>

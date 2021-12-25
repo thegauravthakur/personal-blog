@@ -3,41 +3,22 @@ import { css } from '@emotion/react';
 import { AiFillLinkedin, AiOutlineTwitter } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 import { getYear } from 'date-fns';
+import tw from 'twin.macro';
+import { backgroundStyle, hoverStyles } from '../styles/GlobalStyles';
+
+const contactIconStyles = css([hoverStyles, tw`p-2.5 rounded-full my-2.5`]);
 
 const Footer = () => {
   return (
     <div
       css={[
-        css`
-          background-color: var(--background-main);
-          color: var(--text-main);
-          padding: 0 10px;
-        `,
+        backgroundStyle,
+        tw`dark:text-gray-400 px-2.5 transition-colors duration-500 ease-out`,
       ]}
     >
-      <div
-        css={[
-          css`
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-dim);
-            & > * {
-              padding: 10px;
-              border-radius: 50px;
-              cursor: pointer;
-              transition: background-color 0.5s ease-out;
-              margin: 10px 0;
-            }
-            & > *:hover,
-            *:focus {
-              background-color: var(--information);
-              outline: 0;
-            }
-          `,
-        ]}
-      >
+      <div css={tw`flex items-center justify-center`}>
         <AiOutlineTwitter
+          css={contactIconStyles}
           tabIndex={0}
           onClick={() => window.open('https://gauravthakur.in/social/twitter')}
           onKeyDown={({ key }) => {
@@ -48,6 +29,7 @@ const Footer = () => {
           size={50}
         />
         <AiFillLinkedin
+          css={contactIconStyles}
           tabIndex={0}
           onClick={() => window.open('https://gauravthakur.in/social/linkedin')}
           onKeyDown={({ key }) => {
@@ -58,6 +40,7 @@ const Footer = () => {
           size={50}
         />
         <MdEmail
+          css={contactIconStyles}
           tabIndex={0}
           onClick={() => window.open('https://gauravthakur.in/social/email')}
           onKeyDown={({ key }) => {

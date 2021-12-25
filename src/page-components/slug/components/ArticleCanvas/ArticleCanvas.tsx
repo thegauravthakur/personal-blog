@@ -3,7 +3,6 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import { format } from 'date-fns';
 import SocialShare from '../../../shared/components/SocialShare';
 import { ArticleCanvasProps } from './ArticleCanvas.types';
-import Image from 'next/image';
 import {
   articleCanvasStyles,
   defaultStyles,
@@ -13,7 +12,6 @@ import {
   gutterWrapperStyles,
 } from './ArticleCanvas.styles';
 import { elementComponentMapping } from './utils';
-import { css } from '@emotion/react';
 
 export function ArticleCanvas({ code, frontmatter }: ArticleCanvasProps) {
   const ArticleContent = useMemo(() => getMDXComponent(code), [code]);

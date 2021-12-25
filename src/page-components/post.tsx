@@ -7,43 +7,7 @@ import { AiOutlineTags } from 'react-icons/ai';
 import { BsPencil } from 'react-icons/bs';
 import { GoCommentDiscussion } from 'react-icons/go';
 import tw from 'twin.macro';
-import { hoverStyles, textStyle } from '../pages';
-
-const buttonStyles = css`
-  position: absolute;
-  text-decoration: none;
-  font-size: 14px;
-  bottom: 10px;
-  left: 0;
-  padding: 6px 16px;
-  border-radius: 6px;
-  color: var(--text-light);
-  border: 0;
-  cursor: pointer;
-  background-color: var(--primary-main);
-  transition: background-color 0.5s, box-shadow 0.5s, transform 0.5s;
-
-  &:hover {
-    background-color: var(--primary-dark);
-    box-shadow: 0 10px 15px var(--shadow);
-    transform: translateY(-1px);
-  }
-
-  &:active {
-    transform: translateY(1px);
-    box-shadow: 0 10px 10px var(--shadow);
-  }
-
-  &:focus {
-    outline: 1px solid var(--primary-main);
-    outline-offset: 2px;
-  }
-
-  @media (max-width: 640px) {
-    position: static;
-    display: inline-block;
-  }
-`;
+import { hoverStyles, textStyle } from '../styles/GlobalStyles';
 
 const metaItemStyles = tw`rounded-2xl flex items-center space-x-2 w-full justify-center hocus:(text-rose-600 dark:text-blue-600) transition-colors duration-500 ease-in-out`;
 export function Post({ slug, data, imagePath, isLast }: any) {
@@ -52,7 +16,7 @@ export function Post({ slug, data, imagePath, isLast }: any) {
   const [mainTag, ...rest] = tags.split(',');
   return (
     <div css={tw``}>
-      <h2>{title}</h2>
+      <h2 css={tw``}>{title}</h2>
       <div
         css={[
           tw`grid grid-cols-2 sm:(grid-cols-4 max-w-2xl) place-items-center my-2`,
@@ -98,10 +62,20 @@ export function Post({ slug, data, imagePath, isLast }: any) {
         <div css={tw`relative space-y-5 my-3 sm:(space-y-0 my-0)`}>
           <p css={tw`line-clamp-4`}>{description}</p>
           <Link href={`/${slug}`} passHref>
-            <a css={[buttonStyles]}>Read More!</a>
+            <a
+              css={[
+                tw`static inline-block sm:absolute no-underline text-sm bottom-2.5 left-0 px-4 py-2 rounded-md border-0 cursor-pointer bg-rose-600 text-white  dark:(bg-blue-600 text-gray-200)`,
+                tw`hover:(-translate-y-0.5 dark:box-shadow[ 0 10px 15px rgba(37, 99, 235, 0.3)] box-shadow[ 0 10px 15px rgba(107, 114, 128, 0.6)]) active:(translate-y-0.5)`,
+                tw`active:(dark:box-shadow[ 0 10px 10px rgba(37, 99, 235, 0.3)] box-shadow[ 0 10px 10px rgba(107, 114, 128, 0.6)])`,
+                tw`focus:(outline-offset[2px]) transition-all duration-500 ease-in-out`,
+                tw`outline-width[1px] outline-style[solid] outline-color[#E11D48] dark:outline-color[#2563EB]`, //todo update this once tw 3 support is available
+              ]}
+            >
+              Read More!
+            </a>
           </Link>
           {!isLast && (
-            <hr css={[tw`mx-auto mb-5! mt-14! max-w-xs sm:hidden`]} />
+            <hr css={[tw`mx-auto mt-12! max-w-xs sm:hidden border-gray-400`]} />
           )}
         </div>
       </div>

@@ -3,7 +3,6 @@ import path from 'path';
 import matter from 'gray-matter';
 import { Post } from '../page-components/post';
 import Footer from '../page-components/Footer';
-import { Canvas, CanvasWrapper } from '../page-components/index';
 import {
   HomeProps,
   MetaData,
@@ -13,10 +12,7 @@ import {
 import { comparator } from '../page-components/index/utils';
 import CustomHead from '../page-components/shared/components/CustomHead';
 import tw from 'twin.macro';
-
-export const textStyle = tw`dark:text-gray-400 text-current`;
-export const backgroundStyle = tw`dark:bg-background-800 bg-gray-50`;
-export const hoverStyles = tw`cursor-pointer hocus:dark:bg-gray-800 hocus:bg-rose-100`;
+import { backgroundStyle, textStyle } from '../styles/GlobalStyles';
 
 function Home({ articles }: HomeProps) {
   return (

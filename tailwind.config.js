@@ -1,14 +1,15 @@
-const colors = require('tailwindcss/colors');
+const { rose } = require('tailwindcss/colors');
 module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        rose: colors.rose,
+        rose,
         slate: {
           800: '#1E293B',
         },
         background: {
+          200: '#e5e7eb',
           800: '#161b22',
         },
       },
