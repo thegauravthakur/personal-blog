@@ -33,7 +33,7 @@ function Home({ articles }: HomeProps) {
         <div
           css={[
             backgroundStyle,
-            tw`flex-1 rounded-lg max-w-[1200px] mx-0 py-10 px-5 my-7 md:(mx-5 px-5) lg:(m-7 p-10)`,
+            tw`flex-1 rounded-lg max-w-6xl mx-0 py-10 px-5 my-7 md:(mx-5 px-5) lg:(m-7 p-10)`,
           ]}
         >
           {articles.map(({ slug, metaData, imagePath }: Article, index) => (

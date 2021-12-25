@@ -7,33 +7,35 @@ import { getYear } from 'date-fns';
 const Footer = () => {
   return (
     <div
-      css={(theme) =>
+      css={[
         css`
           background-color: var(--background-main);
           color: var(--text-main);
           padding: 0 10px;
-        `
-      }
+        `,
+      ]}
     >
       <div
-        css={({ color }) => css`
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--text-dim);
-          & > * {
-            padding: 10px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: background-color 0.5s ease-out;
-            margin: 10px 0;
-          }
-          & > *:hover,
-          *:focus {
-            background-color: var(--information);
-            outline: 0;
-          }
-        `}
+        css={[
+          css`
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dim);
+            & > * {
+              padding: 10px;
+              border-radius: 50px;
+              cursor: pointer;
+              transition: background-color 0.5s ease-out;
+              margin: 10px 0;
+            }
+            & > *:hover,
+            *:focus {
+              background-color: var(--information);
+              outline: 0;
+            }
+          `,
+        ]}
       >
         <AiOutlineTwitter
           tabIndex={0}
@@ -76,9 +78,11 @@ const Footer = () => {
         © {getYear(new Date())} Copyright: <strong>Gaurav Thakur</strong> | Made
         with{' '}
         <span
-          css={(theme) => css`
-            color: var(--primary-main);
-          `}
+          css={[
+            css`
+              color: var(--primary-main);
+            `,
+          ]}
         >
           ❤
         </span>{' '}
