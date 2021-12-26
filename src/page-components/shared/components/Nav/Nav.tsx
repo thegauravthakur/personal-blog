@@ -11,14 +11,12 @@ import Logo from '../Logo';
 import ThemeTransition from './component/ThemeTransition';
 import MobileMenu from './component/MobileMenu';
 import { Constant } from '../../utils';
-import tw from 'twin.macro';
+import tw, { theme as baseTheme } from 'twin.macro';
+import { focusStyles } from '../../../../styles/GlobalStyles';
 
-export const focusStyles = css({
-  '&:focus-within': tw`outline-width[3px] outline-style[dotted] outline-offset[3px] outline-color[var(--primary-main)]`,
-});
 const listStyle = tw`min-w-[100px] flex justify-center items-center h-full cursor-pointer text-center border-solid border-0 border-t-[5px] border-b-[5px] border-transparent focus-within:(border-b-red-600 dark:border-b-blue-600) hocus:border-b-red-600 hocus:dark:border-b-blue-600 transition-colors ease-in duration-100`;
 const menuItemStyle = tw`no-underline text-current outline-none h-full flex items-center w-full justify-center`;
-const mobileIconStyles = tw`md:hidden dark:text-gray-400 inline-block text-current self-center p-2.5 rounded-full cursor-pointer transition-colors ease-in duration-300 dark:hocus:bg-gray-800 hocus:(bg-rose-100)`;
+const mobileIconStyles = tw`md:hidden dark:text-gray-400 inline-block text-current self-center p-2.5 rounded-full cursor-pointer transition-colors ease-in duration-300 dark:(hocus:bg-gray-800 outline-none) hocus:(bg-rose-100 outline-none)`;
 
 export function Nav() {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -27,12 +25,11 @@ export function Nav() {
 
   const onThemeChange = () => {
     const updatedTheme = theme === 'dark' ? 'light' : 'dark';
-    document.body.dataset.theme = updatedTheme;
+    setTheme(updatedTheme);
     if (updatedTheme === 'light')
       document.documentElement.classList.remove('dark');
     else document.documentElement.classList.add('dark');
     localStorage.setItem('theme', updatedTheme);
-    setTheme(updatedTheme);
   };
 
   useLayoutEffect(() => {
@@ -49,14 +46,14 @@ export function Nav() {
       {animate && <ThemeTransition />}
 
       <nav
-        css={tw`bg-gray-50 dark:bg-background-800 flex justify-between items-center py-0 px-3 sm:px-6 md:px-10 `}
+        css={tw`bg-gray-50 dark:bg-background-800 flex justify-between items-center py-0 px-3 sm:px-6 md:px-10`}
       >
         <h1>
           <Link href='/' passHref>
             <a
               css={[
                 tw`flex items-center gap-x-2 no-underline text-xl text-rose-700 dark:text-gray-400 transition-colors ease-in duration-100`,
-                focusStyles,
+                focusStyles(theme),
               ]}
             >
               <Logo theme={theme} height={22} width={22} />

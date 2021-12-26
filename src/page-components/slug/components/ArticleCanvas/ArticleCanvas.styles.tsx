@@ -1,47 +1,16 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-
-export const defaultStyles = css`
-  h1,
-  h2,
-  h3,
-  h4,
-  h6,
-  pre,
-  p,
-  ul,
-  ol,
-  img {
-    margin: 1.2rem 0;
-  }
-  a {
-    color: var(--link-main);
-    text-decoration: none;
-    &:hover {
-      text-decoration: var(--link-main);
-    }
-    &:focus {
-      outline: 3px dotted var(--primary-main);
-      outline-offset: 3px;
-    }
-  }
-  ul,
-  ol {
-    margin-left: 2rem;
-    font-size: 14px;
-  }
-  color: var(--text-main);
-`;
+import tw from 'twin.macro';
 
 export const articleCanvasStyles = css`
-  max-width: 800px;
-  margin: 70px auto;
-  padding: 30px;
-  @media (max-width: 780px) {
-    padding: 20px;
-  }
-  border-radius: 10px;
-  background-color: var(--background-main);
+  // max-width: 800px;
+  // margin: 70px auto;
+  // padding: 30px;
+  // // @media (max-width: 780px) {
+  // //   padding: 20px;
+  // // }
+  // border-radius: 10px;
+  // background-color: var(--background-main);
 `;
 
 export const headerStyles = css`

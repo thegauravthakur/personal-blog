@@ -61,7 +61,7 @@ const MobileMenu = ({ setShowMobileNav }: MobileMenu) => {
         <h1 css={tw`text-lg text-current dark:text-gray-400`}>Gaurav's Blog</h1>
         <AiOutlineClose
           css={[
-            tw`p-2.5 rounded-full cursor-pointer transition-colors ease-in duration-300 dark:hocus:bg-gray-800 hocus:(bg-rose-100)`,
+            tw`p-2.5 rounded-full cursor-pointer transition-colors ease-in duration-300 dark:hocus:(bg-gray-800 outline-none) hocus:(bg-rose-100 outline-none)`,
             { animation: `ease-out 0.7s ${cross}` },
           ]}
           onClick={hideMobileNav}

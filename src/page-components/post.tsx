@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import Image from 'next/image';
 import { format } from 'date-fns';
 import { VscCalendar } from 'react-icons/vsc';
