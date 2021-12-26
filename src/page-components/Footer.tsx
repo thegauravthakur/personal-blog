@@ -10,7 +10,10 @@ import {
   primaryColor,
 } from '../styles/GlobalStyles';
 
-const contactIconStyles = css([hoverStyles, tw`p-2.5 rounded-full my-2.5`]);
+const contactIconStyles = css([
+  hoverStyles,
+  tw`p-2.5 rounded-full my-2.5 outline-none`,
+]);
 
 const Footer = () => {
   return (

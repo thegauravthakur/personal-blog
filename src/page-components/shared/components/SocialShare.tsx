@@ -10,8 +10,16 @@ import {
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { BiCheck } from 'react-icons/bi';
 import { fadeAnimation } from '../../../styles/animation';
-import { theme as baseTheme } from 'twin.macro';
+import tw, { theme as baseTheme } from 'twin.macro';
 import { ThemeContext } from '../../../styles/theme';
+
+const platformBackgroundColor = {
+  facebook: tw`bg-facebook`,
+  twitter: tw`bg-twitter`,
+  whatsapp: tw`bg-whatsapp`,
+};
+
+const copyIconStyles = css({ animation: `ease-in ${fadeAnimation} 0.3s` });
 
 const SocialShare = ({ title }: { title: string }) => {
   const [copySuccess, setCopySuccess] = useState(false);
@@ -20,15 +28,21 @@ const SocialShare = ({ title }: { title: string }) => {
   useEffect(() => {
     setUrl(window.location.href);
   }, []);
+  const shareItemStyles = css([
+    tw`py-2 cursor-pointer rounded-md border-0 flex justify-center items-center text-white outline-none`,
+    {
+      '&:focus': {
+        outlineOffset: '3px',
+        outlineColor:
+          theme === 'light'
+            ? baseTheme`colors.rose.600`
+            : baseTheme`colors.blue.600`,
+      },
+    },
+  ]);
   return (
     <div>
-      <h3
-        css={css`
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        `}
-      >
+      <h3 css={tw`flex items-center gap-2.5`}>
         Sharing is Caring{' '}
         <FaHeart
           color={
@@ -38,19 +52,7 @@ const SocialShare = ({ title }: { title: string }) => {
           }
         />
       </h3>
-      <div
-        css={css`
-          display: grid;
-          grid-template-columns: repeat(4, 133px);
-          gap: 20px;
-          @media (max-width: 630px) {
-            gap: 5px;
-          }
-          @media (max-width: 600px) {
-            grid-template-columns: repeat(4, 1fr);
-          }
-        `}
-      >
+      <div css={tw`grid grid-cols-4 gap-1 sm:gap-2.5 max-w-xl`}>
         <button
           onClick={() => {
             window.open(
@@ -59,22 +61,7 @@ const SocialShare = ({ title }: { title: string }) => {
               'location=yes,  scrollbars=yes, status=yes, width=900, height=500 '
             );
           }}
-          css={css`
-            padding: 8px 0;
-            cursor: pointer;
-            border-radius: 5px;
-            background-color: #4267b2;
-            color: white;
-            border: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            outline: 0;
-            &:focus {
-              outline: 2px solid var(--primary-main);
-              outline-offset: 3px;
-            }
-          `}
+          css={[shareItemStyles, platformBackgroundColor.facebook]}
         >
           <FaFacebookF />
         </button>
@@ -86,22 +73,7 @@ const SocialShare = ({ title }: { title: string }) => {
               'location=yes,  scrollbars=yes, status=yes, width=900, height=500 '
             );
           }}
-          css={css`
-            padding: 8px 0;
-            color: white;
-            border: 0;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #1da1f2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            outline: 0;
-            &:focus {
-              outline: 2px solid var(--primary-main);
-              outline-offset: 3px;
-            }
-          `}
+          css={[shareItemStyles, platformBackgroundColor.twitter]}
         >
           <FaTwitter />
         </button>
@@ -113,22 +85,7 @@ const SocialShare = ({ title }: { title: string }) => {
               'location=yes,  scrollbars=yes, status=yes, width=900, height=500 '
             );
           }}
-          css={css`
-            padding: 8px 0;
-            border-radius: 5px;
-            background-color: #128c7e;
-            color: white;
-            border: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            outline: 0;
-            &:focus {
-              outline: 2px solid var(--primary-main);
-              outline-offset: 3px;
-            }
-          `}
+          css={[shareItemStyles, platformBackgroundColor.whatsapp]}
         >
           <FaWhatsapp />
         </button>
@@ -141,38 +98,11 @@ const SocialShare = ({ title }: { title: string }) => {
           }}
           text={url}
         >
-          <button
-            title='Copy!'
-            css={css`
-              padding: 8px 0;
-              border-radius: 5px;
-              background-color: rgb(50, 59, 67);
-              color: white;
-              border: 0;
-              cursor: pointer;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              position: relative;
-              outline: 0;
-              &:focus {
-                outline: 2px solid var(--primary-main);
-                outline-offset: 3px;
-              }
-            `}
-          >
+          <button title='Copy!' css={[shareItemStyles, tw`bg-gray-700`]}>
             {copySuccess ? (
-              <BiCheck
-                css={css`
-                  animation: ease-in ${fadeAnimation} 0.3s;
-                `}
-              />
+              <BiCheck css={copyIconStyles} />
             ) : (
-              <FaCopy
-                css={css`
-                  animation: ease-in ${fadeAnimation} 0.3s;
-                `}
-              />
+              <FaCopy css={copyIconStyles} />
             )}
           </button>
         </CopyToClipboard>

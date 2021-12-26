@@ -11,7 +11,7 @@ export const focusStyles = (
 ) =>
   css({
     '&:focus-within': {
-      ...tw`outline-width[3px] outline-style[dotted] outline-offset[3px]`,
+      ...tw`outline-width[2px] outline-style[dotted] outline-offset[3px] `,
       outlineColor:
         theme === 'light'
           ? baseTheme`colors.red.600`

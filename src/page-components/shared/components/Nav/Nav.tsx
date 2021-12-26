@@ -79,7 +79,7 @@ export function Nav() {
             </li>
 
             <li
-              css={[listStyle, tw`gap-x-2.5`]}
+              css={[listStyle, tw`gap-x-2.5 outline-none`]}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
                   onThemeChange();
