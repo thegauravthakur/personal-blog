@@ -1,14 +1,13 @@
 import React from 'react';
-import { css, Global } from '@emotion/react';
+import { Global } from '@emotion/react';
+import tw from 'twin.macro';
 
 const ThemeTransition = () => {
   return (
     <Global
-      styles={css`
-        * {
-          transition: background-color 0.3s ease-in-out;
-        }
-      `}
+      styles={[
+        { '*': tw`transition-[background-color] duration-500 ease-in-out` },
+      ]}
     />
   );
 };

@@ -10,7 +10,6 @@ import {
   useContext,
   useState,
 } from 'react';
-import { css } from '@emotion/react';
 import Image from 'next/image';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import { BiCheck } from 'react-icons/bi';
@@ -28,15 +27,11 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
   const [, language] = className?.split('-');
 
   return (
-    <div
-      css={css`
-        position: relative;
-      `}
-    >
+    <div css={tw`relative`}>
       <SyntaxHighlighter
         style={theme !== 'dark' ? lightStyle : style}
         showLineNumbers
-        css={tw`my-2 rounded-xl border dark:border-gray-800 border-rose-100 text-sm leading-6`}
+        css={tw`my-2 rounded-xl border dark:border-gray-700 border-rose-200 text-sm leading-6`}
         language={language}
       >
         {children}
@@ -50,7 +45,7 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
           text={children}
         >
           <button
-            css={tw`hocus:(dark:bg-gray-800 bg-rose-100 outline-none) absolute bg-transparent border-0 rounded-full flex bottom-1 right-5 cursor-pointer p-2.5 transition-colors duration-500 ease-out`}
+            css={tw`hocus:(dark:bg-gray-700 bg-rose-100 outline-none) absolute bg-transparent border-0 rounded-full flex bottom-1 right-5 cursor-pointer p-2.5 transition-colors duration-500 ease-out`}
           >
             <MdOutlineContentCopy
               css={[
@@ -62,7 +57,7 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
         </CopyToClipboard>
       ) : (
         <BiCheck
-          css={tw`hocus:(dark:bg-gray-800 bg-rose-100 outline-none) absolute bg-transparent border-0 rounded-full flex bottom-1 right-5 cursor-pointer p-1.5 transition-colors duration-500 ease-out`}
+          css={tw`hocus:(dark:bg-gray-700 bg-rose-100 outline-none) absolute bg-transparent border-0 rounded-full flex bottom-1 right-5 cursor-pointer p-1.5 transition-colors duration-500 ease-out`}
           color={baseTheme`colors.green.500`}
           size={38}
         />

@@ -26,7 +26,7 @@ const defaultStyles = css({
 });
 
 const articleCanvasStyles = css([
-  tw`max-w-[800px] my-16 mx-auto p-3 sm:p-5 md:p-8 rounded-xl`,
+  tw`max-w-[800px] my-16 mx-auto pt-5 pb-12 px-4 sm:(px-6 pt-7) md:(px-8 pt-12) rounded-xl`,
 ]);
 
 export function ArticleCanvas({ code, frontmatter }: ArticleCanvasProps) {
@@ -40,7 +40,7 @@ export function ArticleCanvas({ code, frontmatter }: ArticleCanvasProps) {
       <main
         css={[textStyle, backgroundStyle, defaultStyles, articleCanvasStyles]}
       >
-        <header css={tw`my-5`}>
+        <header css={tw`my-5 mb-8 md:mb-12 space-y-6`}>
           <h1 css={tw`leading-9 text-center`}>{frontmatter.title}</h1>
           <div css={tw`border-t  border-gray-500 border-b py-2 `}>
             <div css={tw`grid grid-cols-2 place-items-center max-w-xl mx-auto`}>

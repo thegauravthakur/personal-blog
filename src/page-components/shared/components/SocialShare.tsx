@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import {
   FaCopy,
@@ -10,10 +10,13 @@ import {
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { BiCheck } from 'react-icons/bi';
 import { fadeAnimation } from '../../../styles/animation';
+import { theme as baseTheme } from 'twin.macro';
+import { ThemeContext } from '../../../styles/theme';
 
 const SocialShare = ({ title }: { title: string }) => {
   const [copySuccess, setCopySuccess] = useState(false);
   const [url, setUrl] = useState('');
+  const { theme } = useContext(ThemeContext);
   useEffect(() => {
     setUrl(window.location.href);
   }, []);
@@ -26,7 +29,14 @@ const SocialShare = ({ title }: { title: string }) => {
           gap: 10px;
         `}
       >
-        Sharing is Caring <FaHeart />
+        Sharing is Caring{' '}
+        <FaHeart
+          color={
+            theme === 'dark'
+              ? baseTheme`colors.blue.600`
+              : baseTheme`colors.rose.600`
+          }
+        />
       </h3>
       <div
         css={css`

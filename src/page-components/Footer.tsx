@@ -4,7 +4,11 @@ import { AiFillLinkedin, AiOutlineTwitter } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 import { getYear } from 'date-fns';
 import tw from 'twin.macro';
-import { backgroundStyle, hoverStyles } from '../styles/GlobalStyles';
+import {
+  backgroundStyle,
+  hoverStyles,
+  primaryColor,
+} from '../styles/GlobalStyles';
 
 const contactIconStyles = css([hoverStyles, tw`p-2.5 rounded-full my-2.5`]);
 
@@ -59,17 +63,7 @@ const Footer = () => {
         `}
       >
         © {getYear(new Date())} Copyright: <strong>Gaurav Thakur</strong> | Made
-        with{' '}
-        <span
-          css={[
-            css`
-              color: var(--primary-main);
-            `,
-          ]}
-        >
-          ❤
-        </span>{' '}
-        in India
+        with <span css={primaryColor}>❤</span> in India
       </p>
     </div>
   );
