@@ -1,7 +1,7 @@
 import { css, Global } from '@emotion/react';
 import tw, { GlobalStyles as BaseStyles, theme as baseTheme } from 'twin.macro';
 
-export const textStyle = tw`dark:text-gray-400 text-current`;
+export const textStyle = tw`dark:text-text-dark text-current`;
 export const backgroundStyle = tw`dark:bg-background-800 bg-gray-50`;
 export const primaryColor = tw`text-rose-600 dark:text-blue-600`;
 export const hoverStyles = tw`cursor-pointer hocus:dark:bg-gray-800 hocus:bg-rose-100`;

@@ -42,7 +42,7 @@ const StyledMobileMenu = styled.ul`
   list-style: none;
 `;
 
-const colorBackground = tw`dark:(bg-background-800 text-gray-400) bg-gray-50 text-current`;
+const colorBackground = tw`dark:(bg-background-800 text-text-dark) bg-gray-50 text-current`;
 
 const MobileMenu = ({ setShowMobileNav }: MobileMenu) => {
   const hideMobileNav = () => {
@@ -58,7 +58,9 @@ const MobileMenu = ({ setShowMobileNav }: MobileMenu) => {
       ]}
     >
       <div css={headerWrapper}>
-        <h1 css={tw`text-lg text-current dark:text-gray-400`}>Gaurav's Blog</h1>
+        <h1 css={tw`text-lg text-current dark:text-text-dark`}>
+          Gaurav's Blog
+        </h1>
         <AiOutlineClose
           css={[
             tw`p-2.5 rounded-full cursor-pointer transition-colors ease-in duration-300 dark:hocus:(bg-gray-800 outline-none) hocus:(bg-rose-100 outline-none)`,

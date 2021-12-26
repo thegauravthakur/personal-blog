@@ -16,7 +16,7 @@ import { focusStyles } from '../../../../styles/GlobalStyles';
 
 const listStyle = tw`min-w-[100px] flex justify-center items-center h-full cursor-pointer text-center border-solid border-0 border-t-[5px] border-b-[5px] border-transparent focus-within:(border-b-red-600 dark:border-b-blue-600) hocus:border-b-red-600 hocus:dark:border-b-blue-600 transition-colors ease-in duration-100`;
 const menuItemStyle = tw`no-underline text-current outline-none h-full flex items-center w-full justify-center`;
-const mobileIconStyles = tw`md:hidden dark:text-gray-400 inline-block text-current self-center p-2.5 rounded-full cursor-pointer transition-colors ease-in duration-300 dark:(hocus:bg-gray-800 outline-none) hocus:(bg-rose-100 outline-none)`;
+const mobileIconStyles = tw`md:hidden dark:text-text-dark inline-block text-current self-center p-2.5 rounded-full cursor-pointer transition-colors ease-in duration-300 dark:(hocus:bg-gray-800 outline-none) hocus:(bg-rose-100 outline-none)`;
 
 export function Nav() {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -52,7 +52,7 @@ export function Nav() {
           <Link href='/' passHref>
             <a
               css={[
-                tw`flex items-center gap-x-2 no-underline text-xl text-rose-700 dark:text-gray-400 transition-colors ease-in duration-100`,
+                tw`flex items-center gap-x-2 no-underline text-xl text-rose-700 dark:text-text-dark transition-colors ease-in duration-100`,
                 focusStyles(theme),
               ]}
             >
@@ -64,7 +64,7 @@ export function Nav() {
 
         <div css={tw`h-[60px] flex justify-center self-center`}>
           <ul
-            css={tw`list-none h-full items-center text-slate-800 dark:text-gray-400 hidden md:flex`}
+            css={tw`list-none h-full items-center text-slate-800 dark:text-text-dark hidden md:flex`}
           >
             <li css={listStyle}>
               <Link href={'/'} passHref>

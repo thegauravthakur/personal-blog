@@ -49,7 +49,7 @@ export const Pre = ({ children: code }: HTMLElementProps) => {
           >
             <MdOutlineContentCopy
               css={[
-                tw`dark:text-gray-400 text-gray-500`,
+                tw`dark:text-text-dark text-gray-500`,
                 { animation: `ease-in ${fadeAnimation} 0.3s` },
               ]}
             />

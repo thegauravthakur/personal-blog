@@ -20,7 +20,7 @@ const Footer = () => {
     <div
       css={[
         backgroundStyle,
-        tw`dark:text-gray-400 px-2.5 transition-colors duration-500 ease-out`,
+        tw`dark:text-text-dark px-2.5 transition-colors duration-500 ease-out`,
       ]}
     >
       <div css={tw`flex items-center justify-center`}>

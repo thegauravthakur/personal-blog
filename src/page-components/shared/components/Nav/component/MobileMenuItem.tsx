@@ -19,13 +19,13 @@ export const MobileMenuItem = ({
   return (
     <li
       css={[
-        tw`flex items-center py-1.5 dark:text-gray-400 text-current`,
+        tw`flex items-center py-1.5 dark:text-text-dark text-current`,
         path === pathname && tw`dark:text-blue-600 text-rose-600 font-bold`,
       ]}
     >
       <Link href={path} passHref>
         <a
-          css={tw`flex items-center dark:text-gray-400 text-current no-underline`}
+          css={tw`flex items-center dark:text-text-dark text-current no-underline`}
           onClick={onClick}
         >
           <MdOutlineKeyboardArrowRight size={22} />
