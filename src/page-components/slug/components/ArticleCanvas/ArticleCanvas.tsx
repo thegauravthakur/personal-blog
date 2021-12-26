@@ -40,9 +40,9 @@ export function ArticleCanvas({ code, frontmatter }: ArticleCanvasProps) {
       <main
         css={[textStyle, backgroundStyle, defaultStyles, articleCanvasStyles]}
       >
-        <header css={tw`my-5 mb-8 md:mb-12 space-y-6`}>
+        <header css={tw`my-5`}>
           <h1 css={tw`leading-9 text-center`}>{frontmatter.title}</h1>
-          <div css={tw`border-t  border-gray-500 border-b py-2 `}>
+          <div css={tw`border-t  border-gray-500 border-b py-2 my-8 `}>
             <div css={tw`grid grid-cols-2 place-items-center max-w-xl mx-auto`}>
               <p css={tw`m-0!`}>{publishedDate}</p>
               <p css={tw`m-0!`}>{frontmatter.author}</p>
