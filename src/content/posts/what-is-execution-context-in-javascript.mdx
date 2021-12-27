@@ -98,3 +98,20 @@ the top of the call stack will always represent the current execution context.
 The bottom of this stack will always represent the global execution context.
 Once the whole code is executed, JavaScript will pop the global execution
 context from the call stack.
+
+## Quick Recap
+
+Let's quickly recap what we have learned so far.
+
+1. Everything in JavaScript happens inside an execution context.
+2. By default, JavaScript creates a global execution context.
+3. JavaScript uses the concept of call stack to keep track of the execution
+   contexts.
+4. Each execution will have a memory component and a code component.
+5. In the first phase, JavaScript will allocate memory for each variable and in
+   case of function, it will copy whole function.
+6. In the second phase, JavaScript will execute the code line by line.
+7. Once it encounters a function invocation, it will create a new execution
+   context and will push it to the top of the call stack.
+8. After the function is executed, it will pop the execution context from the
+   call stack.

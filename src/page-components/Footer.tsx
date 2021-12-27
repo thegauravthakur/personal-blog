@@ -20,11 +20,13 @@ const Footer = () => {
     <div
       css={[
         backgroundStyle,
-        tw`dark:text-text-dark px-2.5 transition-colors duration-500 ease-out`,
+        tw`dark:text-text-dark text-gray-600 px-2.5 transition-colors duration-500 ease-out`,
       ]}
     >
       <div css={tw`flex items-center justify-center`}>
         <AiOutlineTwitter
+          role='button'
+          aria-label='Twitter Icon'
           css={contactIconStyles}
           tabIndex={0}
           onClick={() => window.open('https://gauravthakur.in/social/twitter')}
@@ -36,6 +38,8 @@ const Footer = () => {
           size={50}
         />
         <AiFillLinkedin
+          role='button'
+          aria-label='Linkedin Icon'
           css={contactIconStyles}
           tabIndex={0}
           onClick={() => window.open('https://gauravthakur.in/social/linkedin')}
@@ -47,6 +51,8 @@ const Footer = () => {
           size={50}
         />
         <MdEmail
+          role='button'
+          aria-label='Email Icon'
           css={contactIconStyles}
           tabIndex={0}
           onClick={() => window.open('https://gauravthakur.in/social/email')}
@@ -66,7 +72,7 @@ const Footer = () => {
         `}
       >
         © {getYear(new Date())} Copyright: <strong>Gaurav Thakur</strong> | Made
-        with <span css={primaryColor}>❤</span> in India
+        with <span>❤</span> in India
       </p>
     </div>
   );

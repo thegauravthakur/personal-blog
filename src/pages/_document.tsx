@@ -4,7 +4,7 @@ import { updateThemeFromLocalStorage } from '../page-components/document/utils';
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang='en'>
         <Head>
           {/*todo add these*/}
           {/*<link rel='alternate icon' href='/favicon.ico' />*/}

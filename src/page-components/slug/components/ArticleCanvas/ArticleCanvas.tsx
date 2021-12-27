@@ -20,7 +20,7 @@ import { ThemeContext } from '../../../../styles/theme';
 
 const defaultStyles = css({
   a: tw`text-rose-600 dark:text-blue-600 focus:(outline-width[3px] outline-style[dotted] outline-offset[3px] outline-color[currentColor])`,
-  'ul, ol': tw`ml-8 text-[15px]`,
+  'ul, ol': tw`ml-8`,
   'h1, h2, h3, h4, h5, h6, pre, p, ul, ol, img': tw`my-5`,
   li: tw`list-style[decimal] p-1.5`,
 });
