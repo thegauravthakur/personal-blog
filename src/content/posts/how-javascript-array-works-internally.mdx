@@ -201,9 +201,9 @@ the optimizations of `PACKED_SMI_ELEMENTS`?
 ```javascript
 const foo = []; // element kind: HOLEY_SMI_ELEMENTS
 
-foo[0] = 1;
-foo[1] = 2;
-foo[2] = 3; // element kind: PACKED_SMI_ELEMENTS
+foo.push(1);
+foo.push(2);
+foo.push(3); // element kind: PACKED_SMI_ELEMENTS
 ```
 
 Instead of giving the initial capacity to the array we can just create a empty

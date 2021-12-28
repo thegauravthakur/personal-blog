@@ -1,22 +1,11 @@
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { format } from 'date-fns';
 import SocialShare from '../../../shared/components/SocialShare';
 import { ArticleCanvasProps } from './ArticleCanvas.types';
-import {
-  headerStyles,
-  headingStyles,
-  StyledGutter,
-  gutterWrapperStyles,
-} from './ArticleCanvas.styles';
 import { elementComponentMapping } from './utils';
 import tw, { css } from 'twin.macro';
-import {
-  backgroundStyle,
-  textStyle,
-  focusStyles,
-} from '../../../../styles/GlobalStyles';
-import { ThemeContext } from '../../../../styles/theme';
+import { backgroundStyle, textStyle } from '../../../../styles/GlobalStyles';
 
 const defaultStyles = css({
   a: tw`text-rose-600 dark:text-blue-600 focus:(outline-width[3px] outline-style[dotted] outline-offset[3px] outline-color[currentColor])`,
