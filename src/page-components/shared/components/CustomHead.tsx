@@ -40,7 +40,7 @@ const CustomHead = ({
       <meta property='twitter:url' content={currentUrl} />
       <meta name='twitter:image:alt' content={ogImageAlt} />
       {/*twitter end*/}
-      <link rel='canonical' href={currentUrl} />
+      <link rel='canonical' href={Constant.url + currentUrl} />
     </Head>
   );
 };
