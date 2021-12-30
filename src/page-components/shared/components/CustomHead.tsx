@@ -20,7 +20,7 @@ const CustomHead = ({
   const currentUrl = Constant.url + router.asPath === '/' ? '' : router.asPath;
   return (
     <Head>
-      <title>Gaurav's Blog</title>
+      <title>{metaTitle ?? "Gaurav's Blog"}</title>
       <meta name='description' content={metaDescription} />
       <meta property='og:title' content={metaTitle} />
       <meta property='og:description' content={metaDescription} />

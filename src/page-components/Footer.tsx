@@ -4,11 +4,8 @@ import { AiFillLinkedin, AiOutlineTwitter } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 import { getYear } from 'date-fns';
 import tw from 'twin.macro';
-import {
-  backgroundStyle,
-  hoverStyles,
-  primaryColor,
-} from '../styles/GlobalStyles';
+import { backgroundStyle, hoverStyles } from '../styles/GlobalStyles';
+import { Constant } from './shared/utils';
 
 const contactIconStyles = css([
   hoverStyles,
@@ -71,8 +68,11 @@ const Footer = () => {
           font-size: 15px;
         `}
       >
-        © {getYear(new Date())} Copyright: <strong>Gaurav Thakur</strong> | Made
-        with <span>❤</span> in India
+        © {getYear(new Date())} Copyright:{' '}
+        <a href={Constant.portfolio}>
+          <strong>Gaurav Thakur</strong>
+        </a>{' '}
+        | Made with <span>❤</span> in India
       </p>
     </div>
   );
