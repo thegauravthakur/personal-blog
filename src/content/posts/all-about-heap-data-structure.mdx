@@ -1,0 +1,46 @@
+---
+title: All About Heap Data Structures
+publishedDate: 12/31/2021
+author: Gaurav Thakur
+tags: JavaScript
+description:
+  Objects in JavaScript are responsible for holding the mapping between
+  key-value pairs. Arrays are a type of object in JavaScript but with only
+  numeric keys. Let us see how JavaScript engine optimizes these special objects
+  with purely numeric keys
+metaDescription:
+  Arrays are a type of object in JavaScript but with only numeric keys. Let us
+  see how JavaScript engine optimizes these special objects with purely numeric
+  keys
+---
+
+A heap is a special type of tree like data structure that will always provide
+the maximum or minimum value at the root depending on the type of heap. We will
+cover all about heap data structure in this article. Before going into the
+details of heap data structure, let us quickly go over the basic concepts of
+binary tree and its array representation.
+
+## Binary Tree
+
+A binary tree is a tree data structure in which each node has at most two child
+nodes.
+
+![binary tree + `{"width":3200,"height":1800}`](/images/binary-tree.png 'Binary Tree')
+
+### Array Representation of Binary Tree
+
+We can easily visualize the binary tree as an array. The array representation of
+a binary tree must follow the following rules:
+
+1. The root node must be at index 0.
+2. The left child of a node must be at index 2 \* i + 1.
+3. The right child of a node must be at index 2 \* i + 2.
+4. The parent of a node must be at index floor((i - 1) / 2).
+
+![Array Representation of binary tree + `{"width":3200,"height":1800}`](/images/array-representation-of-binary-tree.png 'Array Representation of Binary Tree')
+
+Even if a node is not present in the binary tree, it must follow the
+above-mentioned rules. For example, in case of below tree, the child of node B
+is not present. So, the array representation of the tree must be:
+
+![Array Representation of binary tree with holes + `{"width":3200,"height":1800}`](/images/binary-tree-with-holes.png 'Array Representation of Binary Tree with Holes')
