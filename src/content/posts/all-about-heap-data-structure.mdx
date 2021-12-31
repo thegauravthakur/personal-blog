@@ -44,3 +44,119 @@ above-mentioned rules. For example, in case of below tree, the child of node B
 is not present. So, the array representation of the tree must be:
 
 ![Array Representation of binary tree with holes + `{"width":3200,"height":1800}`](/images/binary-tree-with-holes.png 'Array Representation of Binary Tree with Holes')
+
+### Full Binary Tree
+
+A full binary tree is a binary tree with maximum number of nodes at each level.
+
+![binary tree + `{"width":3200,"height":1800}`](/images/binary-tree.png 'Binary Tree')
+
+### Complete Binary Tree
+
+If you represent a binary tree as an array, then there shouldn’t be any empty
+gaps in between the first and last elements. Every full binary tree is also a
+complete binary tree. A complete binary tree is a full binary tree upto height =
+height - 1. Height of a complete binary tree will always be equal to log(n)
+
+![complete binary tree + `{"width":3200,"height":1800}`](/images/complete-binary-tree.png 'Complete Binary Tree')
+
+## Heaps
+
+A heap is a complete binary tree. There are two types of heaps:
+
+1. Max Heap
+2. Min Heap
+
+### Max Heap
+
+![Max Heaps + `{"width":3200,"height":1800}`](/images/max-heaps.png 'Max Heaps')
+
+A max heap is a complete binary tree in which every node is having a value
+greater than or equal to all its descendants.
+
+### Min Heap
+
+![Min Heaps + `{"width":3200,"height":1800}`](/images/min-heap.png 'Min Heaps')
+
+Min heap is a complete binary tree in which every node is having a value less
+than or equal to all its descendants.
+
+### Insertion in Heap
+
+To insert a new element in a heap, we need to add it as the last element in the
+array and move it upwards until it satisfies the heap property. The main thing
+to notice is that the adjustment is done from the last element to the root. Here
+is the code to insert a new element in a heap, we are considering it to be a max
+heap.
+
+```cpp
+void Heap::insert(int value) {
+    // a complete binary tree with one node is always a binary tree
+    if (size == 0)
+        heap[size++] = value;
+    else {
+        // add element to the leaf
+        heap[size++] = value;
+        // get the index of last item
+        int index = size - 1;
+        // get the parent index
+        int parent = (int) index / 2;
+        // push the value upwards till it satisfies heap property
+        while (index > 0 && heap[parent] < heap[index]) {
+            swap(heap[parent], heap[index]);
+            index = parent;
+            parent = (int) index / 2;
+        }
+    }
+}
+
+// time complexity: O(log n)
+```
+
+### Deletion in Heap
+
+We can't delete any random element from the heap. We can only delete the root
+node. After deleting the root node, we need to move the last element in the heap
+to the root and then move it downwards until it satisfies the heap property. The
+main thing to notice is that the adjustment is done from root towards the leaf.
+Here is the code to delete root in a heap, we are considering it to be a max
+heap.
+
+```cpp
+void Heap::heapify(int index) {
+    int leftChildIndex = index * 1 + 1;
+    int rightChildIndex = index * 1 + 2;
+    int maxChildIndex = index;
+
+    if (leftChildIndex < size && heap[leftChildIndex] > heap[maxChildIndex]) {
+        maxChildIndex = leftChildIndex;
+    }
+
+    if (rightChildIndex < size && heap[rightChildIndex] > heap[maxChildIndex]) {
+        maxChildIndex = rightChildIndex;
+    }
+
+    if (maxChildIndex != index) {
+        swap(heap[maxChildIndex], heap[index]);
+        heapify(maxChildIndex);
+    }
+}
+
+int Heap::pop() {
+    if (size > 0) {
+        int poppedElement = heap[0];
+        heap[0] = heap[size - 1];
+        size--;
+        heapify(0);
+        return poppedElement;
+    }
+    return -1;
+}
+
+// time complexity: O(log n)
+```
+
+In max heap, whenever we delete an element, we get the largest element. We can
+keep the deleted elements in the free space in the array. So, after deleting all
+the elements, we will get the sorted array. This is the idea behind the heap
+sort.

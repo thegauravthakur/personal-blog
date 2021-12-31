@@ -13,6 +13,7 @@ import { comparator } from '../page-components/index/utils';
 import CustomHead from '../page-components/shared/components/CustomHead';
 import tw from 'twin.macro';
 import { backgroundStyle, textStyle } from '../styles/GlobalStyles';
+import Test from '../../public/images/test.svg';
 
 function Home({ articles }: HomeProps) {
   return (
@@ -41,6 +42,7 @@ function Home({ articles }: HomeProps) {
               isLast={index === articles.length - 1}
             />
           ))}
+          <img src={Test} />
         </div>
       </div>
       <Footer />
