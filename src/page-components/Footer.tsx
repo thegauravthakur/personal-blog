@@ -61,15 +61,12 @@ const Footer = () => {
           size={50}
         />
       </div>
-      <p
-        css={css`
-          text-align: center;
-          padding-bottom: 10px;
-          font-size: 15px;
-        `}
-      >
+      <p css={tw`text-center pb-2.5 text-[15px]`}>
         © {getYear(new Date())} Copyright:{' '}
-        <a href={Constant.portfolio}>
+        <a
+          css={tw`dark:focus:outline-white focus:outline-black`}
+          href={Constant.portfolio}
+        >
           <strong>Gaurav Thakur</strong>
         </a>{' '}
         | Made with <span>❤</span> in India
