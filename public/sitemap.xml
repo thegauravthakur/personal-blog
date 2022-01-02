@@ -22,12 +22,17 @@
    </url>
    <url>
       <loc>https://blog.gauravthakur.in/javascript-array-methods</loc>
-      <lastmod>2004-12-17</lastmod>
+      <lastmod>2021-12-17</lastmod>
       <changefreq>monthly</changefreq>
    </url>
    <url>
       <loc>https://blog.gauravthakur.in/who-is-gaurav-thakur</loc>
-      <lastmod>2004-12-15</lastmod>
+      <lastmod>2021-12-15</lastmod>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>https://blog.gauravthakur.in/how-hoisting-works-in-javascript</loc>
+      <lastmod>2022-01-02</lastmod>
       <changefreq>monthly</changefreq>
    </url>
 </urlset>
