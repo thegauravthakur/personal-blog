@@ -1,5 +1,5 @@
 import { MDXComponents } from 'mdx/types';
-import { Code, H2, H3, H4, Img, Pre } from '../../../HTMLElements';
+import { A, Code, H2, H3, H4, Img, Pre } from '../../../HTMLElements';
 
 export const elementComponentMapping: MDXComponents = {
   pre: Pre,
@@ -8,4 +8,5 @@ export const elementComponentMapping: MDXComponents = {
   h3: H3,
   h4: H4,
   img: Img,
+  a: A,
 };

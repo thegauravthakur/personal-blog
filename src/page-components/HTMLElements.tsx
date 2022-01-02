@@ -2,6 +2,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 // @ts-ignore //todo check this issue
 import style from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark-reasonable';
 import lightStyle from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light';
+import Link from 'next/link';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   DetailedHTMLProps,
@@ -134,5 +135,14 @@ export const Img = ({ alt, src }: any) => {
       src={src}
       alt={altText}
     />
+  );
+};
+
+export const A = (props: any) => {
+  const { href, children } = props;
+  return (
+    <Link href={href}>
+      <a>{children}</a>
+    </Link>
   );
 };

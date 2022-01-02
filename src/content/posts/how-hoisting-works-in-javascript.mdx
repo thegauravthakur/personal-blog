@@ -1,0 +1,53 @@
+---
+title: How Hoisting Works in JavaScript?
+publishedDate: 12/02/2022
+author: Gaurav Thakur
+description:
+  The execution context is one of the very essential component of a JavaScript
+  engine. The execution context is the environment in which the code is
+  executed. In this article we will discuss the working of execution context in
+  great details
+metaDescription:
+  What is an execution context in JavaScript? In this article we will discuss
+  the working of execution context in great details
+tags: JavaScript
+---
+
+I highly recommend you to read this article about the
+[working of execution context in JavaScript](/what-is-execution-context-in-javascript)
+so that you can relate the concepts better. I hope you have read the
+above-mentioned article. Now, let's see how hoisting works in JavaScript.
+
+Hoisting in JavaScript is a phenomenon where we can access the variables and
+functions before they are initialized. For example,
+
+```javascript
+console.log(sayHello); // whole function copied
+console.log(name); // undefined
+
+var name = 'Gaurav Thakur';
+function sayHello() {
+  console.log('hello');
+}
+```
+
+In the above example, we are able to access the variable `name` and the function
+`sayHello` before they are initialized. In most of the languages, this action
+will throw an error. But in JavaScript, things works a bit differently.
+
+Every code in JavaScript is executed in an execution context. The execution
+context will allocate memory for the variables and functions. In case of
+variables, it will assign `undefined` as the initial value. But in case of
+functions, it will copy the whole function code in the memory.
+
+This is the sole reason why we are able to access the variables before
+initialization and why their initial value is `undefined` and function code in
+case of functions.
+
+If a variable is not defined, and we try to access it, it will throw a
+`ReferenceError` because the memory is not allocated for the variable in the
+phase 1 of the execution context.
+
+```javascript
+console.log(name); // ReferenceError
+```
