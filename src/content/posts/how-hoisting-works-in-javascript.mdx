@@ -49,22 +49,26 @@ An execution context is created in two phases:
 In memory creation phase, JavaScript will parse the code line by line and will
 allocate memory for each variable and function. For the variables, it will
 assign a special value called `undefined` as the value of the key. In case of
-functions, whole function will be copy-pasted in the value of the key. Let's
-understand this with the help of a simple example.
+functions, whole function will be copy-pasted in the value of the key.
+
+So, when JavaScript encounters a variable or function before it is initialized,
+it will check if the variable or function has been allocated in the memory. If
+so it will return the value of the key which is `undefined` in case of variables
+and function code in case of functions.
+
+If a variable is not defined, and we try to access it, it will throw a
+`ReferenceError` because the memory is not allocated for the variable in the
+phase 1 of the execution context.
+
+```javascript
+console.log(name); // ReferenceError
+```
 
 In many books and articles on Hoisting, they mention that the variables
 declarations and functions are copied to the top of the code. This is completely
 wrong. The way execution context is created, is only the sole reason why we are
 able to access the variables before initialization and why their initial value
 is `undefined` and function code in case of functions.
-
-```javascript
-console.log(name); // ReferenceError
-```
-
-If a variable is not defined, and we try to access it, it will throw a
-`ReferenceError` because the memory is not allocated for the variable in the
-phase 1 of the execution context.
 
 ## Quick Recap
 
