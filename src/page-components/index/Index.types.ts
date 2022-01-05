@@ -18,4 +18,5 @@ export interface HomeProps {
 
 export enum MetaValues {
   description = "Hi, welcome to my personal blog. I am a college student and a JavaScript enthusiast. In this blog, I'll share my knowledge related to various tech stack.",
+  title = "Gaurav's Blog",
 }

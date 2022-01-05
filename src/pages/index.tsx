@@ -19,7 +19,7 @@ function Home({ articles }: HomeProps) {
     <div>
       <CustomHead
         metaDescription={MetaValues.description}
-        metaTitle={"Gaurav's Blog"}
+        metaTitle={MetaValues.title}
         ogImage={'/images/og-default.png'}
         ogImageAlt={"Banner Image for Gaurav's Blog"}
       />

@@ -22,6 +22,7 @@ const CustomHead = ({
     <Head>
       <title>{metaTitle ?? "Gaurav's Blog"}</title>
       <meta name='description' content={metaDescription} />
+      <meta name='title' content={metaTitle} />
       <meta property='og:title' content={metaTitle} />
       <meta property='og:description' content={metaDescription} />
       <meta property='og:type' content='website' />
