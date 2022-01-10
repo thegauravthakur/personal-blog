@@ -18,12 +18,13 @@ const CustomHead = ({
 }: CustomHeadProps) => {
   const router = useRouter();
   const currentUrl = Constant.url + router.asPath === '/' ? '' : router.asPath;
+  const title = metaTitle ?? "Gaurav's Blog";
   return (
     <Head>
-      <title>{metaTitle ?? "Gaurav's Blog"}</title>
+      <title>{title}</title>
       <meta name='description' content={metaDescription} />
-      <meta name='title' content={metaTitle} />
-      <meta property='og:title' content={metaTitle} />
+      <meta name='title' content={title} />
+      <meta property='og:title' content={title} />
       <meta property='og:description' content={metaDescription} />
       <meta property='og:type' content='website' />
       <meta property='og:image' content={Constant.url + ogImage} />
@@ -35,7 +36,7 @@ const CustomHead = ({
       {/*twitter start*/}
       <meta name='twitter:card' content='summary_large_image' />
       <meta name='twitter:creator' content='@gauravcodes' />
-      <meta name='twitter:title' content={metaTitle} />
+      <meta name='twitter:title' content={title} />
       <meta name='twitter:description' content={MetaValues.description} />
       <meta name='twitter:image' content={Constant.url + ogImage} />
       <meta property='twitter:url' content={currentUrl} />
