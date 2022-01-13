@@ -4,15 +4,15 @@ import { AiFillLinkedin, AiOutlineTwitter } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 import { getYear } from 'date-fns';
 import tw from 'twin.macro';
-import { backgroundStyle, hoverStyles } from '../styles/GlobalStyles';
-import { Constant } from './shared/utils';
+import { backgroundStyle, hoverStyles } from '../../../../styles/GlobalStyles';
+import { Constant } from '../../utils';
 
 const contactIconStyles = css([
   hoverStyles,
   tw`p-2.5 rounded-full my-2.5 outline-none`,
 ]);
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <div
       css={[
@@ -74,5 +74,3 @@ const Footer = () => {
     </div>
   );
 };
-
-export default Footer;

@@ -2,7 +2,8 @@ import * as fs from 'fs';
 
 import path from 'path';
 import { bundleMDX } from 'mdx-bundler';
-import Footer from '../page-components/Footer';
+import { Footer } from '../page-components/shared/components/Footer';
+
 import CustomHead from '../page-components/shared/components/CustomHead';
 import { readdirSync } from 'fs';
 import { SlugProps } from '../page-components/slug/slug.types';
@@ -11,7 +12,7 @@ import { ArticleCanvas } from '../page-components/slug/components/ArticleCanvas'
 function Home({ code, frontmatter, targetImage }: SlugProps) {
   const { metaDescription, title } = frontmatter;
   return (
-    <div className={''}>
+    <>
       <CustomHead
         metaDescription={metaDescription}
         metaTitle={title}
@@ -20,7 +21,7 @@ function Home({ code, frontmatter, targetImage }: SlugProps) {
       />
       <ArticleCanvas code={code} frontmatter={frontmatter} />
       <Footer />
-    </div>
+    </>
   );
 }
 

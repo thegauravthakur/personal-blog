@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { Post } from '../page-components/post';
-import Footer from '../page-components/Footer';
+import { Footer } from '../page-components/shared/components/Footer';
 import {
   HomeProps,
   MetaData,
