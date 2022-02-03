@@ -1,6 +1,6 @@
 import React from 'react';
-import { MetaValues } from '../../index/Index.types';
-import { Constant } from '../utils';
+import { MetaValues } from './index/Index.types';
+import { Constant } from './shared/utils';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 

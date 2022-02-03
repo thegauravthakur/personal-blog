@@ -4,8 +4,8 @@ import { AiFillLinkedin, AiOutlineTwitter } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 import { getYear } from 'date-fns';
 import tw from 'twin.macro';
-import { backgroundStyle, hoverStyles } from '../../../../styles/GlobalStyles';
-import { Constant } from '../../utils';
+import { backgroundStyle, hoverStyles } from '../../styles/GlobalStyles';
+import { Constant } from '../shared/utils';
 
 const contactIconStyles = css([
   hoverStyles,
