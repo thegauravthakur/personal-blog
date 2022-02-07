@@ -1,11 +1,12 @@
-import Image from 'next/image';
 import { format } from 'date-fns';
-import { VscCalendar } from 'react-icons/vsc';
+import Image from 'next/image';
 import Link from 'next/link';
 import { AiOutlineTags } from 'react-icons/ai';
 import { BsPencil } from 'react-icons/bs';
 import { GoCommentDiscussion } from 'react-icons/go';
+import { VscCalendar } from 'react-icons/vsc';
 import tw from 'twin.macro';
+
 import { hoverStyles, textStyle } from '../styles/GlobalStyles';
 
 const metaItemStyles = tw`rounded-2xl flex items-center space-x-2 w-full justify-center hocus:(text-rose-600 dark:text-blue-600) transition-colors duration-500 ease-in-out`;
@@ -22,25 +23,25 @@ export function Post({ slug, data, imagePath, isLast }: any) {
           textStyle,
         ]}
       >
-        <Link href='/'>
+        <Link passHref href='/'>
           <a css={[metaItemStyles, hoverStyles]}>
             <VscCalendar />
             <p>{format(new Date(publishedDate), 'MMM do, yyyy')}</p>
           </a>
         </Link>
-        <Link href='/'>
+        <Link passHref href='/'>
           <a css={[metaItemStyles, hoverStyles]}>
             <AiOutlineTags />
             <p>{mainTag}</p>
           </a>
         </Link>
-        <Link href='/'>
+        <Link passHref href='/'>
           <a css={[metaItemStyles, hoverStyles]}>
             <BsPencil />
             <p>{author}</p>
           </a>
         </Link>
-        <Link href='/'>
+        <Link passHref href='/'>
           <a css={[metaItemStyles, hoverStyles]}>
             <GoCommentDiscussion />
             <p>0 Comments</p>
