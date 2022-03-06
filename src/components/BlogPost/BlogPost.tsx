@@ -7,13 +7,13 @@ import { GoCommentDiscussion } from 'react-icons/go';
 import { VscCalendar } from 'react-icons/vsc';
 import tw from 'twin.macro';
 
-import { hoverStyles, textStyle } from '../styles/GlobalStyles';
+import { hoverStyles, textStyle } from '../../styles/GlobalStyles';
 
 const metaItemStyles = tw`rounded-2xl flex items-center space-x-2 w-full justify-center hocus:(text-rose-600 dark:text-blue-600) transition-colors duration-500 ease-in-out`;
-export function Post({ slug, data, imagePath, isLast }: any) {
+export function BlogPost({ slug, data, imagePath, isLast }: any) {
     const { description, title, publishedDate, tags, author } = data;
 
-    const [mainTag, ...rest] = tags.split(',');
+    const [mainTag] = tags.split(',');
     return (
         <div css={tw``}>
             <h2 css={tw``}>{title}</h2>
@@ -68,7 +68,7 @@ export function Post({ slug, data, imagePath, isLast }: any) {
                                 tw`hover:(-translate-y-0.5 dark:box-shadow[ 0 10px 15px rgba(37, 99, 235, 0.3)] box-shadow[ 0 10px 15px rgba(107, 114, 128, 0.6)]) active:(translate-y-0.5)`,
                                 tw`active:(dark:box-shadow[ 0 10px 10px rgba(37, 99, 235, 0.3)] box-shadow[ 0 10px 10px rgba(107, 114, 128, 0.6)])`,
                                 tw`focus:(outline-offset[2px]) transition-all duration-500 ease-in-out`,
-                                tw`outline-width[1px] outline-style[solid] outline-color[#E11D48] dark:outline-color[#2563EB]`, //todo update this once tw 3 support is available
+                                tw`outline-width[1px] outline-style[solid] outline-color[#E11D48] dark:outline-color[#2563EB]`, // todo update this once tw 3 support is available
                             ]}
                         >
                             Read More!

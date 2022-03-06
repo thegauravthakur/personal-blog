@@ -1,12 +1,10 @@
-import matter from 'gray-matter';
-import { readdirSync, readFileSync } from 'node:fs';
-import path from 'node:path';
 import tw from 'twin.macro';
 
-import CustomHead from '../page-components/CustomHead';
-import { Footer } from '../page-components/Footer';
-import { Post } from '../page-components/post';
+import { BlogPost } from '../components/BlogPost';
+import { CustomHead } from '../components/CustomHead';
+import { Footer } from '../components/Footer';
 import { backgroundStyle, textStyle } from '../styles/GlobalStyles';
+import { getAllArticles } from '../utils/articleHelper';
 
 export type MetaData = {
     title: string;
@@ -59,7 +57,7 @@ function Home({ articles }: HomeProperties) {
                 >
                     {articles.map(
                         ({ slug, metaData, imagePath }: Article, index) => (
-                            <Post
+                            <BlogPost
                                 key={slug}
                                 slug={slug}
                                 data={metaData}
@@ -78,29 +76,7 @@ function Home({ articles }: HomeProperties) {
 export default Home;
 
 export async function getStaticProps() {
-    const articles: Article[] = [];
-    const filePaths = readdirSync('src/content/posts');
-
-    for (const filePath of filePaths) {
-        const [fileName] = filePath.split('.');
-        const file = readFileSync(
-            path.join('src/content/posts', filePath),
-            'utf-8'
-        );
-        const { data: metaData } = matter(file) as unknown as {
-            data: MetaData;
-        };
-        const imagePaths = readdirSync('public/images');
-        const targetImage = imagePaths.find(
-            (image) => image.split('.')[0] === fileName
-        );
-        if (!targetImage) throw new Error('No image found');
-        articles.push({
-            slug: fileName,
-            imagePath: targetImage,
-            metaData,
-        });
-    }
+    const articles = getAllArticles();
 
     return {
         props: {

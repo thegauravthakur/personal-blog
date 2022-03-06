@@ -3,8 +3,8 @@ import * as fs from 'node:fs';
 import { readdirSync } from 'node:fs';
 import path from 'node:path';
 
-import CustomHead from '../page-components/CustomHead';
-import { Footer } from '../page-components/Footer';
+import { CustomHead } from '../components/CustomHead';
+import { Footer } from '../components/Footer';
 import { ArticleCanvas } from '../page-components/slug/components/ArticleCanvas';
 import { SlugProps as SlugProperties } from '../page-components/slug/slug.types';
 
@@ -16,7 +16,7 @@ function Home({ code, frontmatter, targetImage }: SlugProperties) {
                 metaDescription={metaDescription}
                 metaTitle={title}
                 ogImage={`/images/${targetImage}`}
-                ogImageAlt={'Image for ' + title}
+                ogImageAlt={`Image for ${title}`}
             />
             <ArticleCanvas code={code} frontmatter={frontmatter} />
 

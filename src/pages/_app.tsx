@@ -1,17 +1,16 @@
-import 'modern-normalize/modern-normalize.css';
-import 'nprogress/nprogress.css';
-
 import type { AppProps } from 'next/app';
 import Router, { useRouter } from 'next/router';
 import Script from 'next/script';
 import NProgress from 'nprogress';
 import { useEffect, useState } from 'react';
 
+import { NavBar } from '../components/Navbar';
 import * as gtag from '../lib/gtag';
-import CustomHead from '../page-components/app/components/CustomHead';
-import { Nav } from '../page-components/shared/components/Nav';
 import { GlobalStyles } from '../styles/GlobalStyles';
 import { Theme, ThemeContext } from '../styles/theme';
+
+import 'modern-normalize/modern-normalize.css';
+import 'nprogress/nprogress.css';
 
 NProgress.configure({ showSpinner: false });
 
@@ -54,9 +53,8 @@ function MyApp({ Component, pageProps }: AppProps) {
                 }}
             />
             <ThemeContext.Provider value={{ theme, setTheme }}>
-                <CustomHead theme={theme} />
                 <GlobalStyles />
-                <Nav />
+                <NavBar />
                 <Component {...pageProps} />
             </ThemeContext.Provider>
         </>
