@@ -51,14 +51,7 @@ module.exports = {
                 tsx: 'never',
             },
         ],
-        'import/no-unresolved': [
-            'error',
-            {
-                commonjs: true,
-                caseSensitive: true,
-                ignore: ['^:[a-z]'],
-            },
-        ],
+        'import/no-unresolved': 'off',
         'import/no-deprecated': 'error',
         'import/no-amd': 'error',
         'import/prefer-default-export': 'off',
@@ -81,6 +74,9 @@ module.exports = {
         ],
     },
     settings: {
+        'import/parsers': {
+            '@typescript-eslint/parser': ['.ts', '.tsx'],
+        },
         'import/extensions': ['.ts', '.tsx', '.js', '.mjs'],
         'import/resolver': {
             node: {
