@@ -3,11 +3,12 @@ import tw from 'twin.macro';
 
 import { HTMLElementProps } from './ModifiedHTMLElements.types';
 
-interface ImageElementProps extends HTMLElementProps<HTMLImageElement> {
-    alt: string;
-    src: string;
-}
-export const ImageElement = ({ alt, src }: ImageElementProps) => {
+type ImageElementProps = HTMLElementProps<HTMLImageElement>;
+export const ImageElement = (props: ImageElementProps) => {
+    const { alt, src } = props as ImageElementProps & {
+        alt: string;
+        src: string;
+    };
     const [altText, dimension] = alt.split('+');
     const { width, height } = JSON.parse(dimension ?? '{}');
 

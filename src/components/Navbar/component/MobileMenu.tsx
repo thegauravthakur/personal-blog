@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 import React, { Dispatch } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import tw from 'twin.macro';
@@ -8,30 +7,9 @@ import { Constant } from '../../../page-components/shared/utils';
 import { cross, menuAnimation } from '../../../styles/animation';
 import { MobileMenuItem } from './MobileMenuItem';
 
-interface MobileMenu {
+interface MobileMenuProps {
     setShowMobileNav: Dispatch<React.SetStateAction<boolean>>;
 }
-
-const StyledNav = styled.nav`
-    position: fixed;
-    top: 10px;
-    left: 0;
-    right: 0;
-    width: 98%;
-    margin: 0 auto;
-    color: var(--text-main);
-    background-color: var(--background-main);
-    border: 2px solid var(--text-main);
-    padding: 20px;
-    border-radius: 18px;
-    z-index: 2;
-    animation: 0.5s ${menuAnimation};
-`;
-
-const StyledHeader = styled.h1`
-    font-size: 18px;
-    color: var(--title-main);
-`;
 
 const headerWrapper = css`
     display: flex;
@@ -39,13 +17,9 @@ const headerWrapper = css`
     align-items: center;
 `;
 
-const StyledMobileMenu = styled.ul`
-    list-style: none;
-`;
-
 const colorBackground = tw`dark:(bg-background-800 text-text-dark) bg-gray-50 text-current`;
 
-const MobileMenu = ({ setShowMobileNav }: MobileMenu) => {
+const MobileMenu = ({ setShowMobileNav }: MobileMenuProps) => {
     const hideMobileNav = () => {
         setShowMobileNav(false);
         document.body.style.overflow = 'auto';

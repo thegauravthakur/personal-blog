@@ -3,12 +3,9 @@ import React from 'react';
 
 import { HTMLElementProps } from './ModifiedHTMLElements.types';
 
-interface AnchorElementProps extends HTMLElementProps<HTMLAnchorElement> {
-    href: string;
-}
-
+type AnchorElementProps = HTMLElementProps<HTMLAnchorElement>;
 export const AnchorElement = (props: AnchorElementProps) => {
-    const { href, children } = props;
+    const { href, children } = props as AnchorElementProps & { href: string };
     return (
         <Link href={href}>
             <a>{children}</a>

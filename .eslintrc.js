@@ -25,6 +25,7 @@ module.exports = {
     },
     rules: {
         'react-hooks/rules-of-hooks': 'error',
+        'class-methods-use-this': 'off',
         'react-hooks/exhaustive-deps': 'error',
         'prettier/prettier': 'error',
         'import/no-commonjs': 'off',
