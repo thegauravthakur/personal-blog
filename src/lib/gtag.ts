@@ -14,7 +14,7 @@ interface EventProps {
 }
 
 export const event = ({ action, category, label, value }: EventProps) => {
-    (window as any).gtag('event', action, {
+    window.gtag('event', action, {
         event_category: category,
         event_label: label,
         value,
