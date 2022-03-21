@@ -1,5 +1,4 @@
-export interface SlugProps {
+export interface ArticleCanvasProps {
     code: string;
     frontmatter: { [p: string]: any };
-    targetImage: string;
 }

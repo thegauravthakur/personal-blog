@@ -8,7 +8,7 @@ import {
     H4Element,
     ImageElement,
     PreElement,
-} from '../../../../components/ModifiedHTMLElements';
+} from '../ModifiedHTMLElements';
 
 export const elementComponentMapping: MDXComponents = {
     pre: PreElement,

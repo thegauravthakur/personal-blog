@@ -3,10 +3,10 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import { useMemo } from 'react';
 import tw, { css } from 'twin.macro';
 
-import { backgroundStyle, textStyle } from '../../../../styles/GlobalStyles';
-import SocialShare from '../../../shared/components/SocialShare';
+import SocialShare from '../../page-components/shared/components/SocialShare';
+import { backgroundStyle, textStyle } from '../../styles/GlobalStyles';
 import { ArticleCanvasProps as ArticleCanvasProperties } from './ArticleCanvas.types';
-import { elementComponentMapping } from './utils';
+import { elementComponentMapping } from './ArticleCanvas.utils';
 
 const defaultStyles = css({
     a: tw`text-rose-600 dark:text-blue-600 focus:(outline-width[3px] outline-style[dotted] outline-offset[3px] outline-color[currentColor])`,

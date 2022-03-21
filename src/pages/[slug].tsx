@@ -3,12 +3,17 @@ import * as fs from 'node:fs';
 import { readdirSync } from 'node:fs';
 import path from 'node:path';
 
+import { ArticleCanvas } from '../components/ArticleCanvas';
 import { CustomHead } from '../components/CustomHead';
 import { Footer } from '../components/Footer';
-import { ArticleCanvas } from '../page-components/slug/components/ArticleCanvas';
-import { SlugProps as SlugProperties } from '../page-components/slug/slug.types';
 
-function Home({ code, frontmatter, targetImage }: SlugProperties) {
+export interface HomeProps {
+    code: string;
+    frontmatter: { [p: string]: any };
+    targetImage: string;
+}
+
+function Home({ code, frontmatter, targetImage }: HomeProps) {
     const { metaDescription, title } = frontmatter;
     return (
         <>

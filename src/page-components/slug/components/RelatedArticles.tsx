@@ -1,69 +1,68 @@
-import React from 'react';
-import { articleCanvasStyles } from './ArticleCanvas/ArticleCanvas.styles';
 import { css } from '@emotion/react';
 import Image from 'next/image';
+import React from 'react';
 
-const RelatedArticles = () => {
-  return (
+import { articleCanvasStyles } from '../../../components/ArticleCanvas/ArticleCanvas.styles';
+
+const RelatedArticles = () => (
     <section css={articleCanvasStyles}>
-      <h2
-        css={css`
-          color: var(--text-main);
-          margin: 10px 0 20px 0;
-        `}
-      >
-        Related Articles
-      </h2>
-      <div
-        css={css`
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-column-gap: 2rem;
-          @media (max-width: 600px) {
-            grid-template-columns: 1fr;
-            grid-row-gap: 2rem;
-          }
-        `}
-      >
-        <div>
-          <Image
+        <h2
             css={css`
-              border-radius: 10px;
+                color: var(--text-main);
+                margin: 10px 0 20px 0;
             `}
-            src='/images/javascript-array-methods.png'
-            height={1800}
-            width={3200}
-            alt=''
-          />
-          <h4
+        >
+            Related Articles
+        </h2>
+        <div
             css={css`
-              color: var(--text-main);
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-column-gap: 2rem;
+                @media (max-width: 600px) {
+                    grid-template-columns: 1fr;
+                    grid-row-gap: 2rem;
+                }
             `}
-          >
-            JavaScript Array Methods
-          </h4>
+        >
+            <div>
+                <Image
+                    css={css`
+                        border-radius: 10px;
+                    `}
+                    src='/images/javascript-array-methods.png'
+                    height={1800}
+                    width={3200}
+                    alt=''
+                />
+                <h4
+                    css={css`
+                        color: var(--text-main);
+                    `}
+                >
+                    JavaScript Array Methods
+                </h4>
+            </div>
+            <div>
+                <Image
+                    css={css`
+                        border-radius: 10px;
+                    `}
+                    src='/images/javascript-array-methods.png'
+                    height={1800}
+                    width={3200}
+                    alt=''
+                />
+                <h4
+                    css={css`
+                        color: var(--text-main);
+                    `}
+                >
+                    JavaScript Array Methods
+                </h4>
+            </div>
         </div>
-        <div>
-          <Image
-            css={css`
-              border-radius: 10px;
-            `}
-            src='/images/javascript-array-methods.png'
-            height={1800}
-            width={3200}
-            alt=''
-          />
-          <h4
-            css={css`
-              color: var(--text-main);
-            `}
-          >
-            JavaScript Array Methods
-          </h4>
-        </div>
-      </div>
     </section>
-  );
-};
+);
 
 export default RelatedArticles;
