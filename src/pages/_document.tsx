@@ -1,6 +1,6 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 
-import { updateThemeFromLocalStorage } from '../page-components/document/utils';
+import { updateThemeFromLocalStorage } from '../utils/documentHelper';
 
 class MyDocument extends Document {
     render() {

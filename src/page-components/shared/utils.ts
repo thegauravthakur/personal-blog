@@ -1,4 +1,4 @@
-export enum Constant {
-  url = 'https://blog.gauravthakur.in',
-  portfolio = 'https://gauravthakur.in',
-}
+export const Constant = {
+    url: 'https://blog.gauravthakur.in',
+    portfolio: 'https://gauravthakur.in',
+} as const;

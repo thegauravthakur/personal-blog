@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 
-import { MetaValues } from '../../page-components/index/Index.types';
 import { Constant } from '../../page-components/shared/utils';
 import { ThemeContext } from '../../styles/theme';
 
@@ -12,6 +11,12 @@ interface CustomHeadProperties {
     ogImage: string;
     ogImageAlt: string;
 }
+
+const MetaValues = {
+    description:
+        "Hi, welcome to my personal blog. I am a college student and a JavaScript enthusiast. In this blog, I'll share my knowledge related to various tech stack.",
+    title: "Gaurav's Blog",
+} as const;
 
 export const CustomHead = ({
     ogImage,
