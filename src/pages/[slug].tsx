@@ -7,7 +7,7 @@ import tw, { css } from 'twin.macro';
 import { ArticleCanvas } from '../components/ArticleCanvas';
 import { CustomHead } from '../components/CustomHead';
 import { Footer } from '../components/Footer';
-import { WrittenBySection } from '../components/WrittenBySection/WrittenBySection';
+import { WrittenBySection } from '../components/WrittenBySection';
 import { backgroundStyle, textStyle } from '../styles/GlobalStyles';
 
 export interface HomeProps {
