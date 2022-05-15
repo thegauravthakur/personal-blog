@@ -14,7 +14,7 @@ metaDescription:
 
 It is quite common for JavaScript developers to find `this` keyword to be confusing and understand it incorrectly.
 To get the expected results, developers make random guesses and do hit and trial. They often assume that `this` refers 
-to the lexical scope of the current function, which is definitely not true
+to the lexical scope of the current function, which is definitely not true.
 
 To begin with, we must understand that the `this` keyword is a runtime binding whose value is determined at function 
 invocation (where function is being called), not where it will be used. In order to determine what `this` is, we should 
@@ -25,7 +25,7 @@ look at how the function is called. There are different ways by which we can ass
 Default binding is applied whenever a function is invoked without using `call`, `bind`, and `apply` methods.
 Furthermore, no `new` keyword is used and there is no additional context provided. We will cover all these in later 
 part of the blog. In such scenario, default binding is applied and the `this` keyword will point to the 
-global execution context
+global execution context.
 
 ```javascript
 function foo() {
