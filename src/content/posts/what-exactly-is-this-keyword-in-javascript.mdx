@@ -1,0 +1,41 @@
+﻿---
+title: What Exactly is "this" Keyword in JavaScript
+publishedDate: 05/14/2022
+author: Gaurav Thakur
+tags: JavaScript
+description:
+    JavaScript is a very flexible programming language. It provides you with many
+    pre-implemented helper methods which you can't find in any other language. In
+    this article, I would try to list down all the important array methods in
+    JavaScript
+metaDescription:
+    Who is Gaurav Thakur? Let me take you to the journey of my life. This will
+    give you a clear idea of how I got into programming
+---
+
+It is quite common for JavaScript developers to find `this` keyword to be confusing and understand it incorrectly.
+To get the expected results, developers make random guesses and do hit and trial. They often assume that `this` refers 
+to the lexical scope of the current function, which is definitely not true
+
+To begin with, we must understand that the `this` keyword is a runtime binding whose value is determined at function 
+invocation (where function is being called), not where it will be used. In order to determine what `this` is, we should 
+look at how the function is called. There are different ways by which we can assign the value of `this` keyword.
+
+## Default Binding
+Default binding is applied whenever a function is invoked without using `call`, `bind`, and `apply` methods.
+Furthermore, no `new` keyword is used and there is no additional context provided. We will cover all these in later 
+part of the blog. In such scenario, default binding is applied and the `this` keyword will point to the 
+global execution context
+
+```javascript
+function foo() {
+    var name = 'Tom';
+    console.log(this.name);
+}
+var name = 'Andy';
+foo(); // Andy';
+```
+
+In the above example, the value of `this` inside foo will point to the global context resulting in "Andy" as the output.
+The behavior changes when we execute the same function in the strict mode. With the strict mode and the default binding,
+the `this` keyword will point to `undefined`.
