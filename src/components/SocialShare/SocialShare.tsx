@@ -11,8 +11,8 @@ import {
 } from 'react-icons/fa';
 import tw, { theme as baseTheme } from 'twin.macro';
 
-import { fadeAnimation } from '../../../styles/animation';
-import { ThemeContext } from '../../../styles/theme';
+import { fadeAnimation } from '../../styles/animation';
+import { ThemeContext } from '../../styles/theme';
 
 const platformBackgroundColor = {
     facebook: tw`bg-facebook`,
@@ -22,7 +22,7 @@ const platformBackgroundColor = {
 
 const copyIconStyles = css({ animation: `ease-in ${fadeAnimation} 0.3s` });
 
-const SocialShare = ({ title }: { title: string }) => {
+export const SocialShare = ({ title }: { title: string }) => {
     const [copySuccess, setCopySuccess] = useState(false);
     const [url, setUrl] = useState('');
     const { theme } = useContext(ThemeContext);
@@ -114,5 +114,3 @@ const SocialShare = ({ title }: { title: string }) => {
         </div>
     );
 };
-
-export default SocialShare;

@@ -6,11 +6,10 @@ import { RiMoonFill } from 'react-icons/ri';
 import tw from 'twin.macro';
 
 import useLayoutEffect from '../../hooks/useIsomorphicLayoutEffect';
-import Logo from '../../page-components/shared/components/Logo';
-import { Constant } from '../../page-components/shared/utils';
 import { moon, sun } from '../../styles/animation';
 import { focusStyles } from '../../styles/GlobalStyles';
 import { ThemeContext } from '../../styles/theme';
+import { Logo } from '../Logo';
 import MobileMenu from './component/MobileMenu';
 import ThemeTransition from './component/ThemeTransition';
 
@@ -73,7 +72,7 @@ export function NavBar() {
                         </li>
 
                         <li css={listStyle}>
-                            <Link href={Constant.portfolio} passHref>
+                            <Link href='https://gauravthakur.in' passHref>
                                 <a css={menuItemStyle}>Portfolio</a>
                             </Link>
                         </li>

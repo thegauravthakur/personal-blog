@@ -3,7 +3,6 @@ import React, { Dispatch } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import tw from 'twin.macro';
 
-import { Constant } from '../../../page-components/shared/utils';
 import { cross, menuAnimation } from '../../../styles/animation';
 import { MobileMenuItem } from './MobileMenuItem';
 
@@ -57,7 +56,7 @@ const MobileMenu = ({ setShowMobileNav }: MobileMenuProps) => {
                     onClick={hideMobileNav}
                 />
                 <MobileMenuItem
-                    path={Constant.portfolio}
+                    path={'https://gauravthakur.in'}
                     name={'Portfolio'}
                     onClick={hideMobileNav}
                 />

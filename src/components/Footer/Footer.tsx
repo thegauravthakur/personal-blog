@@ -5,7 +5,6 @@ import { AiFillLinkedin, AiOutlineTwitter } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 import tw from 'twin.macro';
 
-import { Constant } from '../../page-components/shared/utils';
 import { backgroundStyle, hoverStyles } from '../../styles/GlobalStyles';
 
 const contactIconStyles = css([
@@ -71,7 +70,7 @@ export const Footer = () => (
             © {getYear(new Date())} Copyright:{' '}
             <a
                 css={tw`dark:focus:outline-white focus:outline-black`}
-                href={Constant.portfolio}
+                href={'https://gauravthakur.in'}
             >
                 <strong>Gaurav Thakur</strong>
             </a>{' '}

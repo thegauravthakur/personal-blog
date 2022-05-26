@@ -6,7 +6,7 @@ interface LogoProps {
     height: number;
     theme: string;
 }
-const Logo = ({ width, height, theme: activeTheme }: LogoProps) => (
+export const Logo = ({ width, height, theme: activeTheme }: LogoProps) => (
     <svg
         width={width}
         height={height}
@@ -33,5 +33,3 @@ const Logo = ({ width, height, theme: activeTheme }: LogoProps) => (
         />
     </svg>
 );
-
-export default Logo;

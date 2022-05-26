@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
 
-import { Constant } from '../../page-components/shared/utils';
 import { ThemeContext } from '../../styles/theme';
 
 interface CustomHeadProperties {
@@ -28,7 +27,9 @@ export const CustomHead = ({
     const { theme } = useContext(ThemeContext);
     const favicon = theme === 'dark' ? '/darkFavicon.svg' : '/lightFavicon.svg';
     const currentUrl =
-        Constant.url + router.asPath === '/' ? '' : router.asPath;
+        `https://blog.gauravthakur.in${router.asPath}` === '/'
+            ? ''
+            : router.asPath;
     const title = metaTitle ?? "Gaurav's Blog";
     return (
         <Head>
@@ -38,7 +39,10 @@ export const CustomHead = ({
             <meta property='og:title' content={title} />
             <meta property='og:description' content={metaDescription} />
             <meta property='og:type' content='website' />
-            <meta property='og:image' content={Constant.url + ogImage} />
+            <meta
+                property='og:image'
+                content={`https://blog.gauravthakur.in${ogImage}`}
+            />
             <meta property='og:image:alt' content={ogImageAlt} />
             <meta property='og:site_name' content="Gaurav's Blog" />
             <meta property='og:image:width' content='3200' />
@@ -49,11 +53,17 @@ export const CustomHead = ({
             <meta name='twitter:creator' content='@gauravcodes' />
             <meta name='twitter:title' content={title} />
             <meta name='twitter:description' content={MetaValues.description} />
-            <meta name='twitter:image' content={Constant.url + ogImage} />
+            <meta
+                name='twitter:image'
+                content={`https://blog.gauravthakur.in${ogImage}`}
+            />
             <meta property='twitter:url' content={currentUrl} />
             <meta name='twitter:image:alt' content={ogImageAlt} />
             {/* twitter end */}
-            <link rel='canonical' href={Constant.url + currentUrl} />
+            <link
+                rel='canonical'
+                href={`https://blog.gauravthakur.in${currentUrl}`}
+            />
         </Head>
     );
 };

@@ -3,7 +3,7 @@ import { getMDXComponent } from 'mdx-bundler/client';
 import { useMemo } from 'react';
 import tw from 'twin.macro';
 
-import SocialShare from '../../page-components/shared/components/SocialShare';
+import { SocialShare } from '../SocialShare';
 import { ArticleCanvasProps as ArticleCanvasProperties } from './ArticleCanvas.types';
 import { elementComponentMapping } from './ArticleCanvas.utils';
 
