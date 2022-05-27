@@ -14,11 +14,11 @@ export const ImageElement = (props: ImageElementProps) => {
 
     return (
         <Image
+            alt={altText}
             css={tw`rounded-xl`}
-            width={width ?? 3200}
             height={height ?? 1800}
             src={src}
-            alt={altText}
+            width={width ?? 3200}
         />
     );
 };

@@ -40,24 +40,20 @@ const MobileMenu = ({ setShowMobileNav }: MobileMenuProps) => {
                         tw`p-2.5 rounded-full cursor-pointer transition-colors ease-in duration-300 dark:hocus:(bg-gray-800 outline-none) hocus:(bg-rose-100 outline-none)`,
                         { animation: `ease-out 0.7s ${cross}` },
                     ]}
-                    onClick={hideMobileNav}
                     size={40}
+                    onClick={hideMobileNav}
                 />
             </div>
             <ul css={tw`list-none`}>
+                <MobileMenuItem name='Home' path='/' onClick={hideMobileNav} />
                 <MobileMenuItem
-                    path={'/'}
-                    name={'Home'}
+                    name='Contact'
+                    path='/contact'
                     onClick={hideMobileNav}
                 />
                 <MobileMenuItem
-                    path={'/contact'}
-                    name={'Contact'}
-                    onClick={hideMobileNav}
-                />
-                <MobileMenuItem
-                    path={'https://gauravthakur.in'}
-                    name={'Portfolio'}
+                    name='Portfolio'
+                    path='https://gauravthakur.in'
                     onClick={hideMobileNav}
                 />
             </ul>

@@ -1,4 +1,4 @@
-﻿import Image from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import tw from 'twin.macro';
 
@@ -7,11 +7,11 @@ export function WrittenBySection() {
         <div css={tw`sm:flex items-start space-x-6`}>
             <div css={tw`w-full`}>
                 <Image
-                    src={'/images/author.png'}
-                    width={797 / 4}
+                    css={tw`p-4! block!`}
                     height={676 / 4}
                     layout='fixed'
-                    css={tw`p-4! block!`}
+                    src='/images/author.png'
+                    width={797 / 4}
                 />
             </div>
             <div>
@@ -24,7 +24,7 @@ export function WrittenBySection() {
                     learns or experiences in his daily life. His roots are from
                     Kullu in Himachal Pradesh, but he now resides in Hyderabad
                     because of his job.
-                    <Link href={'/who-is-gaurav-thakur'}>
+                    <Link href='/who-is-gaurav-thakur'>
                         <a> Learn more about Gaurav.</a>
                     </Link>
                 </p>

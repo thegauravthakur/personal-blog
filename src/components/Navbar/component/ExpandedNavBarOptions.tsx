@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import { BsFillMoonFill, BsSunFill } from 'react-icons/bs';
 import tw from 'twin.macro';
 
@@ -25,28 +25,28 @@ export function ExpandedNavBarOptions({
             css={tw`list-none h-full items-center text-slate-800 dark:text-text-dark hidden md:flex`}
         >
             <li css={listStyle}>
-                <Link href={'/'} passHref>
+                <Link passHref href='/'>
                     <a css={menuItemStyle}>Home</a>
                 </Link>
             </li>
 
             <li css={listStyle}>
-                <Link href='https://gauravthakur.in' passHref>
+                <Link passHref href='https://gauravthakur.in'>
                     <a css={menuItemStyle}>Portfolio</a>
                 </Link>
             </li>
 
             <li
                 aria-label={toggleThemeText}
-                title={toggleThemeText}
                 css={[listStyle, tw`gap-x-2.5 outline-none`]}
+                tabIndex={0}
+                title={toggleThemeText}
+                onClick={onThemeChange}
                 onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                         onThemeChange();
                     }
                 }}
-                tabIndex={0}
-                onClick={onThemeChange}
             >
                 Theme
                 {theme === 'dark' ? (

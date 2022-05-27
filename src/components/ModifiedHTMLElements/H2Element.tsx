@@ -6,7 +6,7 @@ import { getAnchor } from './ModifiedHTMLElements.utils';
 export const H2Element = ({
     children,
 }: HTMLElementProps<HTMLHeadingElement>) => {
-    const readableText = `link to this heading`;
+    const readableText = 'link to this heading';
     const anchor = getAnchor(children as string);
     const link = `#${anchor}`;
 

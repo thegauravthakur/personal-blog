@@ -8,14 +8,14 @@ class MyDocument extends Document {
             <Html lang='en'>
                 <Head>
                     <link
-                        rel='preconnect'
                         href='https://fonts.googleapis.com'
+                        rel='preconnect'
                     />
 
                     <link
-                        rel='preconnect'
-                        href='https://fonts.gstatic.com'
                         crossOrigin='true'
+                        href='https://fonts.gstatic.com'
+                        rel='preconnect'
                     />
                     <link
                         href='https://fonts.googleapis.com/css2?family=Inter&family=Source+Code+Pro&display=swap'

@@ -1,45 +1,35 @@
 module.exports = {
-    root: true,
-    extends: ['airbnb-base', 'prettier'],
     parser: '@typescript-eslint/parser',
-    plugins: [
-        '@typescript-eslint',
-        'import',
-        'simple-import-sort',
-        'prettier',
-        'react-hooks',
-    ],
-    overrides: [
-        {
-            files: ['*.ts', '*.tsx'],
-            rules: {
-                '@typescript-eslint/no-shadow': ['error'],
-                'no-shadow': 'off',
-                'no-undef': 'off',
-            },
-        },
-    ],
-    parserOptions: {
-        sourceType: 'module',
-        ecmaVersion: 2020,
-    },
+    extends: ['prettier', 'airbnb-base'],
+    plugins: ['prettier', 'react', 'react-hooks'],
     rules: {
+        'object-curly-spacing': 'off',
         'react-hooks/rules-of-hooks': 'error',
-        'class-methods-use-this': 'off',
         'react-hooks/exhaustive-deps': 'error',
+        'linebreak-style': 'off',
+        'comma-dangle': 'off',
+        indent: 'off',
         'prettier/prettier': 'error',
-        'import/no-commonjs': 'off',
-        'no-use-before-define': 'off',
-        // 'import/default': 'off',
-        'import/no-cycle': 'off',
-        'import/no-relative-parent-imports': 'off',
-        'import/no-useless-path-segments': [
+        'import/prefer-default-export': 'off',
+        'no-undef': 'off',
+        'react/jsx-curly-brace-presence': [
             'error',
             {
-                noUselessIndex: true,
-                commonjs: false,
+                props: 'never',
+                children: 'never',
             },
         ],
+        'react/jsx-sort-props': [
+            'error',
+            {
+                noSortAlphabetically: false,
+                callbacksLast: true,
+                shorthandLast: false,
+                shorthandFirst: true,
+                reservedFirst: true,
+            },
+        ],
+        'import/no-unresolved': 'off',
         'import/extensions': [
             'error',
             'ignorePackages',
@@ -52,37 +42,27 @@ module.exports = {
                 tsx: 'never',
             },
         ],
-        'import/no-unresolved': 'off',
-        'import/no-deprecated': 'error',
-        'import/no-amd': 'error',
-        'import/prefer-default-export': 'off',
-        'sort-imports': 'off',
-        'import/order': 'off',
-        'simple-import-sort/exports': 'error',
-        'simple-import-sort/imports': [
-            'error',
-            {
-                groups: [
-                    ['^\\u0000'],
-                    ['^@?\\w'],
-                    ['^components/'],
-                    ['^models/'],
-                    ['^util/'],
-                    ['^\\.'],
-                    ['^\\u0000.*\\.s?css$'],
-                ],
-            },
-        ],
     },
     settings: {
-        'import/parsers': {
-            '@typescript-eslint/parser': ['.ts', '.tsx'],
-        },
         'import/extensions': ['.ts', '.tsx', '.js', '.mjs'],
+        'import/ignore': [
+            'node_modules/',
+            'build/',
+            'cjs/',
+            'coverage/',
+            'dist/',
+            'esm/',
+            'lib/',
+            'mjs/',
+            '\\.{css,sass,scss,less,gif,png,jpg,jpeg,svg,gql,graphql,yml,yaml}$',
+        ],
         'import/resolver': {
             node: {
                 extensions: ['.ts', '.tsx', '.js', '.mjs', '.cjs', '.json'],
             },
+        },
+        'import/parsers': {
+            '@typescript-eslint/parser': ['.ts', '.tsx'],
         },
     },
 };

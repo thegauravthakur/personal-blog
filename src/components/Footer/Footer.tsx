@@ -21,56 +21,53 @@ export const Footer = () => (
     >
         <div css={tw`flex items-center justify-center`}>
             <AiOutlineTwitter
-                role='button'
                 aria-label='Twitter Icon'
                 css={contactIconStyles}
+                role='button'
+                size={50}
                 tabIndex={0}
-                onClick={() =>
-                    window.open('https://gauravthakur.in/social/twitter')
+                onClick={() => window.open('https://gauravthakur.in/social/twitter')
                 }
                 onKeyDown={({ key }) => {
                     if (key === 'Enter') {
                         window.open('https://gauravthakur.in/social/twitter');
                     }
                 }}
-                size={50}
             />
             <AiFillLinkedin
-                role='button'
                 aria-label='Linkedin Icon'
                 css={contactIconStyles}
+                role='button'
+                size={50}
                 tabIndex={0}
-                onClick={() =>
-                    window.open('https://gauravthakur.in/social/linkedin')
+                onClick={() => window.open('https://gauravthakur.in/social/linkedin')
                 }
                 onKeyDown={({ key }) => {
                     if (key === 'Enter') {
                         window.open('https://gauravthakur.in/social/linkedin');
                     }
                 }}
-                size={50}
             />
             <MdEmail
-                role='button'
                 aria-label='Email Icon'
                 css={contactIconStyles}
+                role='button'
+                size={50}
                 tabIndex={0}
-                onClick={() =>
-                    window.open('https://gauravthakur.in/social/email')
+                onClick={() => window.open('https://gauravthakur.in/social/email')
                 }
                 onKeyDown={({ key }) => {
                     if (key === 'Enter') {
                         window.open('https://gauravthakur.in/social/email');
                     }
                 }}
-                size={50}
             />
         </div>
         <p css={tw`text-center pb-2.5 text-[15px]`}>
             © {getYear(new Date())} Copyright:{' '}
             <a
                 css={tw`dark:focus:outline-white focus:outline-black`}
-                href={'https://gauravthakur.in'}
+                href='https://gauravthakur.in'
             >
                 <strong>Gaurav Thakur</strong>
             </a>{' '}

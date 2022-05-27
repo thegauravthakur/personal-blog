@@ -24,7 +24,7 @@ export const MobileMenuItem = ({
                     tw`dark:text-blue-600 text-rose-600 font-bold`,
             ]}
         >
-            <Link href={path} passHref>
+            <Link passHref href={path}>
                 <a
                     css={tw`flex items-center dark:text-text-dark text-current no-underline`}
                     onClick={onClick}

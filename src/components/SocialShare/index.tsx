@@ -1,1 +1,1 @@
-﻿export * from './SocialShare';
+export * from './SocialShare';

@@ -55,6 +55,7 @@ export const SocialShare = ({ title }: { title: string }) => {
             </h3>
             <div css={tw`grid grid-cols-4 gap-1 sm:gap-2.5 max-w-xl`}>
                 <button
+                    css={[shareItemStyles, platformBackgroundColor.facebook]}
                     onClick={() => {
                         window.open(
                             `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`,
@@ -62,11 +63,11 @@ export const SocialShare = ({ title }: { title: string }) => {
                             'location=yes,  scrollbars=yes, status=yes, width=900, height=500 '
                         );
                     }}
-                    css={[shareItemStyles, platformBackgroundColor.facebook]}
                 >
                     <FaFacebookF />
                 </button>
                 <button
+                    css={[shareItemStyles, platformBackgroundColor.twitter]}
                     onClick={() => {
                         window.open(
                             `https://twitter.com/intent/tweet?text=${title} via @gauravcodes&url=${window.location.href}`,
@@ -74,11 +75,11 @@ export const SocialShare = ({ title }: { title: string }) => {
                             'location=yes,  scrollbars=yes, status=yes, width=900, height=500 '
                         );
                     }}
-                    css={[shareItemStyles, platformBackgroundColor.twitter]}
                 >
                     <FaTwitter />
                 </button>
                 <button
+                    css={[shareItemStyles, platformBackgroundColor.whatsapp]}
                     onClick={() => {
                         window.open(
                             `https://api.whatsapp.com/send?text=${window.location.href}`,
@@ -86,22 +87,21 @@ export const SocialShare = ({ title }: { title: string }) => {
                             'location=yes,  scrollbars=yes, status=yes, width=900, height=500 '
                         );
                     }}
-                    css={[shareItemStyles, platformBackgroundColor.whatsapp]}
                 >
                     <FaWhatsapp />
                 </button>
                 <CopyToClipboard
+                    text={url}
                     onCopy={() => {
                         setCopySuccess(true);
                         setTimeout(() => {
                             setCopySuccess(false);
                         }, 2000);
                     }}
-                    text={url}
                 >
                     <button
-                        title='Copy!'
                         css={[shareItemStyles, tw`bg-gray-700`]}
+                        title='Copy!'
                     >
                         {copySuccess ? (
                             <BiCheck css={copyIconStyles} />
