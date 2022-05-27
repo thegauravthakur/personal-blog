@@ -1,4 +1,5 @@
-﻿import { Dispatch, SetStateAction } from 'react';
+﻿import styled from '@emotion/styled';
+import { Dispatch, SetStateAction } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BsSunFill } from 'react-icons/bs';
 import { RiMoonFill } from 'react-icons/ri';
@@ -12,7 +13,11 @@ interface CollapsedNavBarOptionsProps {
     showMobileNav: boolean;
     setShowMobileNav: Dispatch<SetStateAction<boolean>>;
 }
-const mobileIconStyles = tw`md:hidden dark:text-text-dark inline-block text-current self-center p-2.5 rounded-full cursor-pointer transition-colors ease-in duration-300 dark:(hocus:bg-gray-800 outline-none) hocus:(bg-rose-100 outline-none)`;
+const mobileIconStyles = tw`dark:text-text-dark`;
+
+const MenuButton = styled.button([
+    tw`md:hidden p-2.5 rounded-full text-current dark:(hocus:bg-gray-800 outline-none) hocus:(bg-rose-100 outline-none) transition-colors ease-in duration-300`,
+]);
 
 export function CollapsedNavBarOptions({
     theme,
@@ -23,47 +28,45 @@ export function CollapsedNavBarOptions({
     const toggleThemeText = `activate ${
         theme === 'dark' ? 'light' : 'dark'
     } theme`;
+
     return (
         <div css={tw`md:hidden flex justify-center self-center`}>
             {!showMobileNav && (
-                <AiOutlineMenu
-                    title='expand menu'
-                    aria-label='expand menu'
-                    tabIndex={0}
+                <MenuButton
                     onClick={() => {
                         setShowMobileNav(!showMobileNav);
                         document.body.style.overflow = 'hidden';
                     }}
-                    size={38}
-                    css={mobileIconStyles}
-                />
+                    title='expand menu'
+                    aria-label='expand menu'
+                >
+                    <AiOutlineMenu size={20} css={mobileIconStyles} />
+                </MenuButton>
             )}
-
-            {theme === 'dark' ? (
-                <RiMoonFill
-                    aria-label={toggleThemeText}
-                    title={toggleThemeText}
-                    tabIndex={0}
-                    onClick={onThemeChange}
-                    size={40}
-                    css={[
-                        mobileIconStyles,
-                        { animation: `ease-out 0.3s ${moon}` },
-                    ]}
-                />
-            ) : (
-                <BsSunFill
-                    aria-label={toggleThemeText}
-                    title={toggleThemeText}
-                    tabIndex={0}
-                    size={40}
-                    onClick={onThemeChange}
-                    css={[
-                        mobileIconStyles,
-                        { animation: `ease-out 0.3s ${sun}` },
-                    ]}
-                />
-            )}
+            <MenuButton
+                title={toggleThemeText}
+                aria-label={toggleThemeText}
+                css={tw`md:hidden p-2.5 rounded-full inline-block text-current self-center dark:(hocus:bg-gray-800 outline-none) hocus:(bg-rose-100 outline-none) transition-colors ease-in duration-300 `}
+                onClick={onThemeChange}
+            >
+                {theme === 'dark' ? (
+                    <RiMoonFill
+                        size={20}
+                        css={[
+                            mobileIconStyles,
+                            { animation: `ease-out 0.3s ${moon}` },
+                        ]}
+                    />
+                ) : (
+                    <BsSunFill
+                        size={20}
+                        css={[
+                            mobileIconStyles,
+                            { animation: `ease-out 0.3s ${sun}` },
+                        ]}
+                    />
+                )}
+            </MenuButton>
         </div>
     );
 }
