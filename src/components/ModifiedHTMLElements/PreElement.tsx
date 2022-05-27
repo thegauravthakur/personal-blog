@@ -39,6 +39,8 @@ export const PreElement = ({
                 >
                     <button
                         css={tw`hocus:(dark:bg-gray-700 bg-rose-100 outline-none) absolute bg-transparent border-0 rounded-full flex bottom-1 right-5 cursor-pointer p-2.5 transition-colors duration-500 ease-out`}
+                        aria-label='copy code content'
+                        title='copy code content'
                     >
                         <MdOutlineContentCopy
                             css={[
