@@ -8,10 +8,10 @@ interface LogoProps {
 }
 export const Logo = ({ width, height, theme: activeTheme }: LogoProps) => (
     <svg
-        width={width}
+        fill='none'
         height={height}
         viewBox='0 0 218 248'
-        fill='none'
+        width={width}
         xmlns='http://www.w3.org/2000/svg'
     >
         <path

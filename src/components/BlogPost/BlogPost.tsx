@@ -51,17 +51,17 @@ export function BlogPost({ slug, data, imagePath, isLast }: any) {
             <div css={tw`flex my-7 gap-x-7 flex-col sm:flex-row`}>
                 <div css={tw`max-w-full sm:max-w-xs md:max-w-sm`}>
                     <Image
-                        role={'presentation'}
-                        css={tw`rounded-xl`}
                         alt=''
-                        src={`/images/${imagePath}`}
+                        css={tw`rounded-xl`}
                         height={1800}
+                        role='presentation'
+                        src={`/images/${imagePath}`}
                         width={3200}
                     />
                 </div>
                 <div css={tw`relative space-y-5 my-3 sm:(space-y-0 my-0)`}>
                     <p css={tw`line-clamp-4`}>{description}</p>
-                    <Link href={`/${slug}`} passHref>
+                    <Link passHref href={`/${slug}`}>
                         <a
                             css={[
                                 tw`static inline-block sm:absolute no-underline text-sm bottom-2.5 left-0 px-4 py-2 rounded-md border-0 cursor-pointer bg-rose-600 text-white  dark:(bg-blue-600 text-gray-200)`,

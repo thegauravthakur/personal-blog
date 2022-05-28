@@ -7,11 +7,12 @@ export function WrittenBySection() {
         <div css={tw`sm:flex items-start space-x-6`}>
             <div css={tw`w-full`}>
                 <Image
-                    src={'/images/author.png'}
-                    width={797 / 4}
-                    height={676 / 4}
-                    layout='fixed'
+                    alt="Author's profile picture"
                     css={tw`p-4! block!`}
+                    height={169}
+                    layout='fixed'
+                    src='/images/author.png'
+                    width={200}
                 />
             </div>
             <div>
@@ -24,7 +25,7 @@ export function WrittenBySection() {
                     learns or experiences in his daily life. His roots are from
                     Kullu in Himachal Pradesh, but he now resides in Hyderabad
                     because of his job.
-                    <Link href={'/who-is-gaurav-thakur'}>
+                    <Link href='/who-is-gaurav-thakur'>
                         <a> Learn more about Gaurav.</a>
                     </Link>
                 </p>

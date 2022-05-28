@@ -8,8 +8,6 @@ export function getAllArticles() {
     const articles: Article[] = [];
     const filePaths = readdirSync('src/content/posts');
 
-    // todo check this
-    // eslint-disable-next-line no-restricted-syntax
     for (const filePath of filePaths) {
         const [fileName] = filePath.split('.');
         const file = readFileSync(

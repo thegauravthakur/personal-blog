@@ -33,37 +33,37 @@ export function CollapsedNavBarOptions({
         <div css={tw`md:hidden flex justify-center self-center`}>
             {!showMobileNav && (
                 <MenuButton
+                    aria-label='expand menu'
+                    title='expand menu'
                     onClick={() => {
                         setShowMobileNav(!showMobileNav);
                         document.body.style.overflow = 'hidden';
                     }}
-                    title='expand menu'
-                    aria-label='expand menu'
                 >
-                    <AiOutlineMenu size={20} css={mobileIconStyles} />
+                    <AiOutlineMenu css={mobileIconStyles} size={20} />
                 </MenuButton>
             )}
             <MenuButton
-                title={toggleThemeText}
                 aria-label={toggleThemeText}
                 css={tw`md:hidden p-2.5 rounded-full inline-block text-current self-center dark:(hocus:bg-gray-800 outline-none) hocus:(bg-rose-100 outline-none) transition-colors ease-in duration-300 `}
+                title={toggleThemeText}
                 onClick={onThemeChange}
             >
                 {theme === 'dark' ? (
                     <RiMoonFill
-                        size={20}
                         css={[
                             mobileIconStyles,
                             { animation: `ease-out 0.3s ${moon}` },
                         ]}
+                        size={20}
                     />
                 ) : (
                     <BsSunFill
-                        size={20}
                         css={[
                             mobileIconStyles,
                             { animation: `ease-out 0.3s ${sun}` },
                         ]}
+                        size={20}
                     />
                 )}
             </MenuButton>
