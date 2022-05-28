@@ -33,31 +33,27 @@ const MobileMenu = ({ setShowMobileNav }: MobileMenuProps) => {
         >
             <div css={headerWrapper}>
                 <h1 css={tw`text-lg text-current dark:text-text-dark`}>
-                    Gaurav's Blog
+                    Gaurav&apos;s Blog
                 </h1>
                 <AiOutlineClose
                     css={[
                         tw`p-2.5 rounded-full cursor-pointer transition-colors ease-in duration-300 dark:hocus:(bg-gray-800 outline-none) hocus:(bg-rose-100 outline-none)`,
                         { animation: `ease-out 0.7s ${cross}` },
                     ]}
-                    onClick={hideMobileNav}
                     size={40}
+                    onClick={hideMobileNav}
                 />
             </div>
             <ul css={tw`list-none`}>
+                <MobileMenuItem name='Home' path='/' onClick={hideMobileNav} />
                 <MobileMenuItem
-                    path={'/'}
-                    name={'Home'}
+                    name='Contact'
+                    path='/contact'
                     onClick={hideMobileNav}
                 />
                 <MobileMenuItem
-                    path={'/contact'}
-                    name={'Contact'}
-                    onClick={hideMobileNav}
-                />
-                <MobileMenuItem
-                    path={'https://gauravthakur.in'}
-                    name={'Portfolio'}
+                    name='Portfolio'
+                    path='https://gauravthakur.in'
                     onClick={hideMobileNav}
                 />
             </ul>

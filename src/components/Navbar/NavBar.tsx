@@ -41,15 +41,15 @@ export function NavBar() {
                 css={tw`h-[60px] bg-gray-50 dark:bg-background-800 flex justify-between items-center py-0 px-3 sm:px-6 md:px-10`}
             >
                 <h1>
-                    <Link href='/' passHref>
+                    <Link passHref href='/'>
                         <a
                             css={[
                                 tw`flex items-center gap-x-2 no-underline text-xl text-rose-700 dark:text-text-dark transition-colors ease-in duration-100`,
                                 focusStyles(theme),
                             ]}
                         >
-                            <Logo theme={theme} height={22} width={22} />
-                            Gaurav's Blog
+                            <Logo height={22} theme={theme} width={22} />
+                            Gaurav&apos;s Blog
                         </a>
                     </Link>
                 </h1>
@@ -58,10 +58,10 @@ export function NavBar() {
                     onThemeChange={onThemeChange}
                 />
                 <CollapsedNavBarOptions
+                    setShowMobileNav={setShowMobileNav}
+                    showMobileNav={showMobileNav}
                     theme={theme}
                     onThemeChange={onThemeChange}
-                    showMobileNav={showMobileNav}
-                    setShowMobileNav={setShowMobileNav}
                 />
             </nav>
             {showMobileNav && (

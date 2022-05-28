@@ -22,24 +22,24 @@ export const PreElement = ({
     return (
         <div css={tw`relative`}>
             <SyntaxHighlighter
-                style={theme !== 'dark' ? lightStyle : style}
                 showLineNumbers
                 css={tw`my-2 rounded-xl border dark:border-gray-700 border-rose-200 text-sm leading-6`}
                 language={language}
+                style={theme !== 'dark' ? lightStyle : style}
             >
                 {children}
             </SyntaxHighlighter>
             {!showTick ? (
                 <CopyToClipboard
+                    text={children}
                     onCopy={() => {
                         setShowTick(true);
                         setTimeout(() => setShowTick(false), 6000);
                     }}
-                    text={children}
                 >
                     <button
-                        css={tw`hocus:(dark:bg-gray-700 bg-rose-100 outline-none) absolute bg-transparent border-0 rounded-full flex bottom-1 right-5 cursor-pointer p-2.5 transition-colors duration-500 ease-out`}
                         aria-label='copy code content'
+                        css={tw`hocus:(dark:bg-gray-700 bg-rose-100 outline-none) absolute bg-transparent border-0 rounded-full flex bottom-1 right-5 cursor-pointer p-2.5 transition-colors duration-500 ease-out`}
                         title='copy code content'
                     >
                         <MdOutlineContentCopy
@@ -52,8 +52,8 @@ export const PreElement = ({
                 </CopyToClipboard>
             ) : (
                 <BiCheck
-                    css={tw`hocus:(dark:bg-gray-700 bg-rose-100 outline-none) absolute bg-transparent border-0 rounded-full flex bottom-1 right-5 cursor-pointer p-1.5 transition-colors duration-500 ease-out`}
                     color={baseTheme`colors.green.500`}
+                    css={tw`hocus:(dark:bg-gray-700 bg-rose-100 outline-none) absolute bg-transparent border-0 rounded-full flex bottom-1 right-5 cursor-pointer p-1.5 transition-colors duration-500 ease-out`}
                     size={38}
                 />
             )}

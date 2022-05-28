@@ -35,12 +35,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Script
-                strategy='afterInteractive'
                 src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+                strategy='afterInteractive'
             />
             <Script
-                id='gtag-init'
-                strategy='afterInteractive'
                 dangerouslySetInnerHTML={{
                     __html: `
             window.dataLayer = window.dataLayer || [];
@@ -51,6 +49,8 @@ function MyApp({ Component, pageProps }: AppProps) {
             });
           `,
                 }}
+                id='gtag-init'
+                strategy='afterInteractive'
             />
             <ThemeContext.Provider value={{ theme, setTheme }}>
                 <GlobalStyles />

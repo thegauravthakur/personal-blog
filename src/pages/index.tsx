@@ -40,7 +40,7 @@ function Home({ articles }: HomeProperties) {
                     "Hi, welcome to my personal blog. I am a college student and a JavaScript enthusiast. In this blog, I'll share my knowledge related to various tech stack."
                 }
                 metaTitle={"Gaurav's Blog"}
-                ogImage={'/images/og-default.png'}
+                ogImage='/images/og-default.png'
                 ogImageAlt={"Banner Image for Gaurav's Blog"}
             />
             <div
@@ -59,10 +59,10 @@ function Home({ articles }: HomeProperties) {
                         ({ slug, metaData, imagePath }: Article, index) => (
                             <BlogPost
                                 key={slug}
-                                slug={slug}
                                 data={metaData}
                                 imagePath={imagePath}
                                 isLast={index === articles.length - 1}
+                                slug={slug}
                             />
                         )
                     )}

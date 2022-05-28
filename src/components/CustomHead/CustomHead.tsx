@@ -34,35 +34,35 @@ export const CustomHead = ({
     return (
         <Head>
             <title>{title}</title>
-            <link rel='icon' type='image/svg+xml' href={favicon} />
-            <meta name='description' content={metaDescription} />
-            <meta property='og:title' content={title} />
-            <meta property='og:description' content={metaDescription} />
-            <meta property='og:type' content='website' />
+            <link href={favicon} rel='icon' type='image/svg+xml' />
+            <meta content={metaDescription} name='description' />
+            <meta content={title} property='og:title' />
+            <meta content={metaDescription} property='og:description' />
+            <meta content='website' property='og:type' />
             <meta
+                content={`https://blog.gauravthakur.in${ogImage}`}
                 property='og:image'
-                content={`https://blog.gauravthakur.in${ogImage}`}
             />
-            <meta property='og:image:alt' content={ogImageAlt} />
-            <meta property='og:site_name' content="Gaurav's Blog" />
-            <meta property='og:image:width' content='3200' />
-            <meta property='og:image:height' content='1800' />
-            <meta property='og:url' content={currentUrl} />
+            <meta content={ogImageAlt} property='og:image:alt' />
+            <meta content="Gaurav's Blog" property='og:site_name' />
+            <meta content='3200' property='og:image:width' />
+            <meta content='1800' property='og:image:height' />
+            <meta content={currentUrl} property='og:url' />
             {/* twitter start */}
-            <meta name='twitter:card' content='summary_large_image' />
-            <meta name='twitter:creator' content='@gauravcodes' />
-            <meta name='twitter:title' content={title} />
-            <meta name='twitter:description' content={MetaValues.description} />
+            <meta content='summary_large_image' name='twitter:card' />
+            <meta content='@gauravcodes' name='twitter:creator' />
+            <meta content={title} name='twitter:title' />
+            <meta content={MetaValues.description} name='twitter:description' />
             <meta
-                name='twitter:image'
                 content={`https://blog.gauravthakur.in${ogImage}`}
+                name='twitter:image'
             />
-            <meta property='twitter:url' content={currentUrl} />
-            <meta name='twitter:image:alt' content={ogImageAlt} />
+            <meta content={currentUrl} property='twitter:url' />
+            <meta content={ogImageAlt} name='twitter:image:alt' />
             {/* twitter end */}
             <link
-                rel='canonical'
                 href={`https://blog.gauravthakur.in${currentUrl}`}
+                rel='canonical'
             />
         </Head>
     );
