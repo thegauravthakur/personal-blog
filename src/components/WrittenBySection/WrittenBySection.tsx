@@ -17,7 +17,6 @@ export function WrittenBySection() {
             </div>
             <div>
                 <h4>Written By Gaurav Thakur</h4>
-
                 <p>
                     Gaurav is a software engineer and JavaScript enthusiast. He
                     is a full stack developer, more inclined to frontend
