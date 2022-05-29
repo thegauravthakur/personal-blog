@@ -1,5 +1,6 @@
 import { css, Global } from '@emotion/react';
 import tw, { GlobalStyles as BaseStyles, theme as baseTheme } from 'twin.macro';
+import { codeBlockStyles } from './theme';
 
 export const textStyle = tw`dark:text-text-dark text-current`;
 export const backgroundStyle = tw`dark:bg-background-800 bg-gray-50`;
@@ -24,19 +25,22 @@ export const GlobalStyles = () => (
         <Global
             styles={[
                 tw``,
-                css({
-                    body: {
-                        ...tw`dark:bg-black bg-background-200`,
-                        '&::-webkit-scrollbar': tw`w-2`,
-                        '&::-webkit-scrollbar-track': tw`bg-gray-500 dark:bg-gray-800`,
-                        '&::-webkit-scrollbar-thumb': tw`rounded-lg bg-gray-400 dark:bg-gray-500`,
+                css([
+                    {
+                        body: {
+                            ...tw`dark:bg-black bg-background-200`,
+                            '&::-webkit-scrollbar': tw`w-2`,
+                            '&::-webkit-scrollbar-track': tw`bg-gray-500 dark:bg-gray-800`,
+                            '&::-webkit-scrollbar-thumb': tw`rounded-lg bg-gray-400 dark:bg-gray-500`,
+                        },
+                        h1: tw`text-3xl font-bold`,
+                        h2: tw`text-2xl font-bold`,
+                        h3: tw`text-xl font-bold`,
+                        h4: tw`text-lg font-bold`,
+                        '#nprogress .bar': tw`dark:bg-blue-600 bg-rose-600 h-1`,
                     },
-                    h1: tw`text-3xl font-bold`,
-                    h2: tw`text-2xl font-bold`,
-                    h3: tw`text-xl font-bold`,
-                    h4: tw`text-lg font-bold`,
-                    '#nprogress .bar': tw`dark:bg-blue-600 bg-rose-600 h-1`,
-                }),
+                    codeBlockStyles,
+                ]),
 
                 css`
                     body {

@@ -3,8 +3,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { BiCheck } from 'react-icons/bi';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import style from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-dark-reasonable';
-import lightStyle from 'react-syntax-highlighter/dist/cjs/styles/hljs/atom-one-light';
 import tw, { theme as baseTheme } from 'twin.macro';
 
 import { fadeAnimation } from '../../styles/animation';
@@ -25,7 +23,7 @@ export const PreElement = ({
                 showLineNumbers
                 css={tw`my-2 rounded-xl border dark:border-gray-700 border-rose-200 text-sm leading-6`}
                 language={language}
-                style={theme !== 'dark' ? lightStyle : style}
+                useInlineStyles={false}
             >
                 {children}
             </SyntaxHighlighter>
