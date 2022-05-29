@@ -6,6 +6,11 @@
       <changefreq>weekly</changefreq>
    </url>
    <url>
+      <loc>https://blog.gauravthakur.in/embrace-the-effects-running-twice-in-react</loc>
+      <lastmod>2022-05-29</lastmod>
+      <changefreq>monthly</changefreq>
+   </url>
+   <url>
       <loc>https://blog.gauravthakur.in/what-exactly-is-this-keyword-in-javascript</loc>
       <lastmod>2022-05-15</lastmod>
       <changefreq>monthly</changefreq>
