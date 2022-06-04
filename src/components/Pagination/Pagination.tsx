@@ -1,7 +1,5 @@
 ﻿import tw from 'twin.macro';
-import { ReactNode } from 'react';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
-import Link from 'next/link';
 import { PaginationItem } from './components/PaginationItem';
 
 function createRange(length: number) {
@@ -14,12 +12,11 @@ interface PaginationProps {
 }
 export function Pagination({ totalPages, currentPage }: PaginationProps) {
     const range = createRange(totalPages);
-    console.log({ currentPage, totalPages });
 
     return (
         <ul css={tw`space-x-2 flex justify-center my-4`}>
             <PaginationItem
-                href={`/page/${currentPage - 1}`}
+                href={currentPage === 2 ? '/' : `/page/${currentPage - 1}`}
                 isDisabled={currentPage === 1}
                 title='Go Back'
             >
@@ -28,7 +25,7 @@ export function Pagination({ totalPages, currentPage }: PaginationProps) {
             {range.map((pageIndex) => (
                 <PaginationItem
                     key={pageIndex}
-                    href={`/page/${pageIndex + 1}`}
+                    href={pageIndex === 0 ? '/' : `/page/${pageIndex + 1}`}
                     isActivePage={pageIndex + 1 === currentPage}
                     isDisabled={pageIndex + 1 === currentPage}
                     title={`Go to ${pageIndex + 1} page`}

@@ -19,7 +19,6 @@ export default function HomeWithPagination({
     totalPages,
     pageIndex,
 }: HomeWithPaginationProps) {
-    console.log(totalPages, pageIndex);
     return (
         <>
             <CustomHead
@@ -65,14 +64,6 @@ export async function getStaticProps(context: any) {
     const { pageIndex } = context.params;
     const articles = getAllArticles().sort(comparator);
     const totalPages = Math.ceil(articles.length / 5); // article per page
-
-    if (Number(pageIndex) === 1)
-        return {
-            redirect: {
-                source: '/page/1',
-                destination: '/',
-            },
-        };
 
     return {
         props: {
