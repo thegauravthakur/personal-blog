@@ -23,6 +23,7 @@ export interface Article {
 
 export interface HomeProperties {
     articles: Article[];
+    totalPages: number;
 }
 
 export const comparator = (articleA: Article, articleB: Article) => {
@@ -33,7 +34,7 @@ export const comparator = (articleA: Article, articleB: Article) => {
     return 0;
 };
 
-function Home({ articles }: HomeProperties) {
+function Home({ articles, totalPages }: HomeProperties) {
     return (
         <>
             <CustomHead
@@ -68,7 +69,7 @@ function Home({ articles }: HomeProperties) {
                         )
                     )}
                 </main>
-                <Pagination currentPage='' totalPages='' />
+                <Pagination currentPage={1} totalPages={totalPages} />
             </div>
             <Footer />
         </>
@@ -83,6 +84,7 @@ export async function getStaticProps() {
     return {
         props: {
             articles: articles.sort(comparator).slice(0, 1),
+            totalPages: Math.ceil(articles.length / 5),
         },
     };
 }

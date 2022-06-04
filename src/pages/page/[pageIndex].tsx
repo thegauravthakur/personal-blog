@@ -11,8 +11,8 @@ import { Pagination } from '../../components/Pagination';
 
 interface HomeWithPaginationProps {
     articles: Article[];
-    totalPages: string;
-    pageIndex: string;
+    totalPages: number;
+    pageIndex: number;
 }
 export default function HomeWithPagination({
     articles,
@@ -64,7 +64,7 @@ export default function HomeWithPagination({
 export async function getStaticProps(context: any) {
     const { pageIndex } = context.params;
     const articles = getAllArticles().sort(comparator);
-    const totalPages = String(Math.ceil(articles.length / 5)); // article per page
+    const totalPages = Math.ceil(articles.length / 5); // article per page
 
     if (Number(pageIndex) === 1)
         return {
@@ -76,7 +76,7 @@ export async function getStaticProps(context: any) {
 
     return {
         props: {
-            pageIndex,
+            pageIndex: Number(pageIndex),
             articles: articles.slice(5 * (pageIndex - 1), pageIndex * 5),
             totalPages,
         },
