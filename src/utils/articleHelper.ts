@@ -30,3 +30,7 @@ export function getAllArticles() {
     }
     return articles;
 }
+
+export function createRange(length: number) {
+    return Array.from({ length }, (x, i) => i);
+}

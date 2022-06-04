@@ -5,6 +5,7 @@ import { CustomHead } from '../components/CustomHead';
 import { Footer } from '../components/Footer';
 import { backgroundStyle, textStyle } from '../styles/GlobalStyles';
 import { getAllArticles } from '../utils/articleHelper';
+import { Pagination } from '../components/Pagination';
 
 export type MetaData = {
     title: string;
@@ -46,7 +47,7 @@ function Home({ articles }: HomeProperties) {
             <div
                 css={[
                     textStyle,
-                    tw`flex justify-center my-6 md:my-8 lg:my-10 mx-auto`,
+                    tw`flex flex-col items-center my-6 md:my-8 lg:my-10 mx-auto`,
                 ]}
             >
                 <main
@@ -67,6 +68,7 @@ function Home({ articles }: HomeProperties) {
                         )
                     )}
                 </main>
+                <Pagination currentPage='' totalPages='' />
             </div>
             <Footer />
         </>
@@ -80,7 +82,7 @@ export async function getStaticProps() {
 
     return {
         props: {
-            articles: articles.sort(comparator),
+            articles: articles.sort(comparator).slice(0, 1),
         },
     };
 }
