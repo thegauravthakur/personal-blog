@@ -1,40 +1,24 @@
+﻿import fs from 'node:fs';
+import { createRange, getAllArticles } from '../../utils/articleHelper';
+import { Article, comparator } from '../index';
+import { CustomHead } from '../../components/CustomHead';
+import { backgroundStyle, textStyle } from '../../styles/GlobalStyles';
 import tw from 'twin.macro';
+import { BlogPost } from '../../components/BlogPost';
+import { Footer } from '../../components/Footer';
+import { useRouter } from 'next/router';
+import { Pagination } from '../../components/Pagination';
 
-import { BlogPost } from '../components/BlogPost';
-import { CustomHead } from '../components/CustomHead';
-import { Footer } from '../components/Footer';
-import { backgroundStyle, textStyle } from '../styles/GlobalStyles';
-import { getAllArticles } from '../utils/articleHelper';
-import { Pagination } from '../components/Pagination';
-
-export type MetaData = {
-    title: string;
-    publishedDate: string;
-    author: string;
-    description: string;
-    tags: string;
-};
-
-export interface Article {
-    slug: string;
-    imagePath: string;
-    metaData: MetaData;
-}
-
-export interface HomeProperties {
+interface HomeWithPaginationProps {
     articles: Article[];
     totalPages: number;
+    pageIndex: number;
 }
-
-export const comparator = (articleA: Article, articleB: Article) => {
-    const dateA = new Date(articleA.metaData.publishedDate);
-    const dateB = new Date(articleB.metaData.publishedDate);
-    if (dateA < dateB) return 1;
-    if (dateA > dateB) return -1;
-    return 0;
-};
-
-function Home({ articles, totalPages }: HomeProperties) {
+export default function HomeWithPagination({
+    articles,
+    totalPages,
+    pageIndex,
+}: HomeWithPaginationProps) {
     return (
         <>
             <CustomHead
@@ -69,22 +53,36 @@ function Home({ articles, totalPages }: HomeProperties) {
                         )
                     )}
                 </main>
-                <Pagination currentPage={1} totalPages={totalPages} />
+                <Pagination currentPage={pageIndex} totalPages={totalPages} />
             </div>
             <Footer />
         </>
     );
 }
 
-export default Home;
-
-export async function getStaticProps() {
-    const articles = getAllArticles();
+export async function getStaticProps(context: any) {
+    const { pageIndex } = context.params;
+    const articles = getAllArticles().sort(comparator);
+    const totalPages = Math.ceil(articles.length / 5); // article per page
 
     return {
         props: {
-            articles: articles.sort(comparator).slice(0, 5),
-            totalPages: Math.ceil(articles.length / 5),
+            pageIndex: Number(pageIndex),
+            articles: articles.slice(5 * (pageIndex - 1), pageIndex * 5),
+            totalPages,
         },
+    };
+}
+
+export async function getStaticPaths() {
+    const files = fs.readdirSync('src/content/posts', 'utf-8');
+    const possiblePages = Math.ceil(files.length / 5); // article per page
+    const range = createRange(possiblePages).map((i) => String(i + 1));
+
+    return {
+        fallback: false,
+        paths: range.map((pageIndex) => {
+            return { params: { pageIndex } };
+        }),
     };
 }
