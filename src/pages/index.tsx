@@ -83,7 +83,7 @@ export async function getStaticProps() {
 
     return {
         props: {
-            articles: articles.sort(comparator).slice(0, 1),
+            articles: articles.sort(comparator).slice(0, 5),
             totalPages: Math.ceil(articles.length / 5),
         },
     };
