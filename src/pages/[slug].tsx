@@ -3,7 +3,7 @@ import * as fs from 'node:fs';
 import { readdirSync } from 'node:fs';
 import path from 'node:path';
 import tw, { css } from 'twin.macro';
-import Comments from '@giscus/react';
+import CommentSection from '@giscus/react';
 
 import { ArticleCanvas } from '../components/ArticleCanvas';
 import { CustomHead } from '../components/CustomHead';
@@ -54,7 +54,7 @@ function Home({ code, frontmatter, targetImage }: HomeProps) {
                 <WrittenBySection />
             </section>
             <section css={[canvasStyles, tw``]}>
-                <Comments
+                <CommentSection
                     category='General'
                     categoryId={process.env.NEXT_PUBLIC_CATEGORY_ID}
                     emitMetadata='0'
