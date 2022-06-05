@@ -50,7 +50,7 @@ function Home({ code, frontmatter, targetImage }: HomeProps) {
             <section css={[canvasStyles, tw`py-3!`]}>
                 <WrittenBySection />
             </section>
-            <section css={[canvasStyles, tw`py-3!`]}>
+            <section css={[canvasStyles, tw``]}>
                 <Giscus
                     category='General'
                     categoryId={process.env.NEXT_PUBLIC_CATEGORY_ID}
