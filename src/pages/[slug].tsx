@@ -10,6 +10,8 @@ import { CustomHead } from '../components/CustomHead';
 import { Footer } from '../components/Footer';
 import { WrittenBySection } from '../components/WrittenBySection';
 import { backgroundStyle, textStyle } from '../styles/GlobalStyles';
+import { useContext } from 'react';
+import { ThemeContext } from '../styles/theme';
 
 export interface HomeProps {
     code: string;
@@ -35,6 +37,7 @@ const canvasStyles = css([
     articleCanvasStyles,
 ]);
 function Home({ code, frontmatter, targetImage }: HomeProps) {
+    const { theme } = useContext(ThemeContext);
     const { metaDescription, title } = frontmatter;
     return (
         <>
@@ -63,7 +66,7 @@ function Home({ code, frontmatter, targetImage }: HomeProps) {
                     reactions-enabled='1'
                     repo='thegauravthakur/blog-comments'
                     repoId={process.env.NEXT_PUBLIC_REPO_ID as string}
-                    theme='dark_tritanopia'
+                    theme={theme === 'dark' ? 'dark_tritanopia' : 'light'}
                 />
             </section>
             <Footer />
