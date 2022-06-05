@@ -3,6 +3,7 @@ import * as fs from 'node:fs';
 import { readdirSync } from 'node:fs';
 import path from 'node:path';
 import tw, { css } from 'twin.macro';
+import Giscus from '@giscus/react';
 
 import { ArticleCanvas } from '../components/ArticleCanvas';
 import { CustomHead } from '../components/CustomHead';
@@ -48,6 +49,22 @@ function Home({ code, frontmatter, targetImage }: HomeProps) {
             </main>
             <section css={[canvasStyles, tw`py-3!`]}>
                 <WrittenBySection />
+            </section>
+            <section css={[canvasStyles, tw`py-3!`]}>
+                <Giscus
+                    category='General'
+                    categoryId={process.env.NEXT_PUBLIC_CATEGORY_ID}
+                    emitMetadata='0'
+                    id='comments'
+                    inputPosition='top'
+                    lang='en'
+                    loading='lazy'
+                    mapping='pathname'
+                    reactions-enabled='1'
+                    repo='thegauravthakur/blog-comments'
+                    repoId={process.env.NEXT_PUBLIC_REPO_ID as string}
+                    theme='dark_tritanopia'
+                />
             </section>
             <Footer />
         </>
