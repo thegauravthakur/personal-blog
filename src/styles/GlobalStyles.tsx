@@ -40,7 +40,6 @@ export const GlobalStyles = () => (
                         '#nprogress .bar': tw`dark:bg-blue-600 bg-rose-600 h-1`,
                     },
                     codeBlockStyles,
-                    { '#comments::part(iframe)': tw`py-5` },
                 ]),
 
                 css`
